@@ -1,0 +1,29 @@
+[
+    {
+        "pokemon_name": "Bulbasaur"
+    },
+    {
+        "pokemon_name": "Ivysaur"
+    },
+    {
+        "pokemon_name": "Venusaur"
+    },
+    {
+        "pokemon_name": "Charmander"
+    },
+    {
+        "pokemon_name": "Charmeleon"
+    },
+    {
+        "pokemon_name": "Charizard"
+    },
+    {
+        "pokemon_name": "Squirtle"
+    },
+    {
+        "pokemon_name": "Wartortle"
+    },
+    {
+        "pokemon_name": "Blastoise"
+    }
+]
