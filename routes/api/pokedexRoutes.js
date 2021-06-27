@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Pokemon } = require('../../models');
-const withAuth = require('../../utils/auth');
+const withAuth = require('../../controllers/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
