@@ -3,12 +3,11 @@ import Navbar from '../Navbar';
 import Background from '../Background';
 import "./style.css";
 
-function Header() {
+function Footer() {
     return (
-        <header className="header">
-            <Navbar />
-        </header>
+        <footer className="footer">
+        </footer>
     );
 }
 
-export default Header;
+export default Footer;
