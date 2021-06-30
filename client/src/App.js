@@ -1,5 +1,5 @@
 import React from "react";
-import { BroserRouter as Router, Route } from "react-router-dom;"
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/pokedex" component={Pokedex} />
-          <Route exact path="/update" component={Profile} />
+          <Route exact path="/profile" component={Profile} />
         </Wrapper>
         <Footer />
       </div>

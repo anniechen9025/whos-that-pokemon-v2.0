@@ -1,7 +1,5 @@
 import React from "react";
-import Navbar from '../Navbar';
-import Background from '../Background';
-import "./style.css";
+// import "./style.css";
 
 function Footer() {
     return (
