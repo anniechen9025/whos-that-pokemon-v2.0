@@ -1,4 +1,5 @@
 import React from "react";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
@@ -10,6 +11,7 @@ import Main from "./pages/Main";
 import Menu from "./pages/Menu";
 import Pokedex from "./pages/Pokedex";
 import Profile from "./pages/Profile";
+
 
 function App() {
   return (
