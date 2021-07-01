@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
-const validateEmail = function(email) {
+const validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email)
 };
@@ -31,28 +32,37 @@ const userSchema = new Schema({
   }
 });
 
-//todo: consider the logic for adding pokemon_amount when each guessing game is done
+userSchema.pre('save', function (next) {
+  var user = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!user.isModified('password')) return next();
+
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+    if (err) return next(err);
+
+    // hash the password using our new salt
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) return next(err);
+      // override the cleartext password with the hashed one
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+      if (err) return cb(err);
+      cb(null, isMatch);
+  });
+};
+
+
 
 //todo: onWEB make password shows **** instead of actual password12345 
-// class User extends Model {
-//   checkPassword(loginPw) {
-//     return bcrypt.compareSync(loginPw, this.password);
-//   }
-// }
-//todo: Need to figure out how to hash the password before store into db
-// schema.pre('hash', (NewuserSchema) => {NewuserSchema.password = await bcrypt.hash(NewuserSchema.password, 10)});
-// schema.post('hash', (UpdateduserSchema) => {UpdateduserSchema.password = await bcrypt.hash(UpdateduserSchema.password, 10)});
-// MYSQL:
-// hooks: {
-//   beforeCreate: async (newUserData) => {
-//     newUserData.password = await bcrypt.hash(newUserData.password, 10);
-//     return newUserData;
-//   },
-//   beforeUpdate: async (updatedUserData) => {
-//     updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-//     return updatedUserData;
-//   },
-// },
+
 
 const User = mongoose.model("User", userSchema);
 

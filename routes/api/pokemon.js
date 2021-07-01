@@ -8,8 +8,6 @@ router.route("/")
 
 // Matches with "/api/books/:id"
 router.route("/delete")
-    .get(pokemonController.findById)
-    .put(pokemonController.update)
     .delete(pokemonController.remove);
 
 module.exports = router;

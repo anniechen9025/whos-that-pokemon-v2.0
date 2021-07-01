@@ -8,21 +8,31 @@ const PORT = process.env.PORT || 3001;
 const socketIo = require('socket.io')
 let io;
 
-// const sequelize = require('./config/connection');
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
-// const sess = {
-//   secret: 'Super secret secret',
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize,
-//   }),
-// };
+const store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+  collection: 'mySessions'
+});
 
-// Define middleware here
-// app.use(session(sess));
+// Catch errors
+store.on('error', function (error) {
+  console.log(error);
+});
+
+app.use(require('express-session')({
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  store: store,
+  // Boilerplate options, see:
+  // * https://www.npmjs.com/package/express-session#resave
+  // * https://www.npmjs.com/package/express-session#saveuninitialized
+  resave: true,
+  saveUninitialized: true
+}));
 
 // Define middleware here
 app.use(express.json());
@@ -41,7 +51,7 @@ mongoose.connect(
 );
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
