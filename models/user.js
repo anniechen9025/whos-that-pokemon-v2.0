@@ -31,6 +31,8 @@ const userSchema = new Schema({
   }
 });
 
+//todo: consider the logic for adding pokemon_amount when each guessing game is done
+
 //todo: onWEB make password shows **** instead of actual password12345 
 // class User extends Model {
 //   checkPassword(loginPw) {
