@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from "react";
+import API from "../../utils/API";
 
 
 function Game() {
+
+  useEffect(() => {
+    loadPokemon()
+  }, [])
+
+  function loadPokemon() {
+    API.getPokemonList()
+      .then(res => 
+        console.log(res.data)
+      )
+      .catch(err => console.log(err));
+
+  };
 
     return (
         <div>
