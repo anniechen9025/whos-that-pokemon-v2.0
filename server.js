@@ -1,30 +1,30 @@
 const express = require("express");
 const routes = require("./routes");
+const mongoose = require("mongoose");
+const app = express();
+const PORT = process.env.PORT || 3001;
+// const session = require('express-session');
 
-const session = require('express-session');
 const socketIo = require('socket.io')
 let io;
 
-const sequelize = require('./config/connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const sequelize = require('./config/connection');
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-
-const sess = {
-  secret: 'Super secret secret',
-  cookie: {},
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
-};
+// const sess = {
+//   secret: 'Super secret secret',
+//   cookie: {},
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new SequelizeStore({
+//     db: sequelize,
+//   }),
+// };
 
 // Define middleware here
-app.use(session(sess));
+// app.use(session(sess));
 
+// Define middleware here
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,7 +35,15 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
+// Connect to the Mongo DB
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/pokemongame"
+);
 
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
 
 // Start the API server
 sequelize.sync({ force: false }).then(() => {
