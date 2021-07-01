@@ -1,20 +1,45 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+  // Gets List from Pokemon API (Games.js, Line 41)
+  getPokemonList: function () {
+    return axios.fetch('https://pokeapi.co/api/v2/generation/1');
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  // Gets Pics from Pokemon API based on var (Games.js, Line 120)
+  getPokemonPics: function (chosenWord) {
+    return axios.fetch(`https://pokeapi.co/api/v2/pokemon/${chosenWord}`);
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  // Gets Particular Pokedex info bas on id inserted (Pokedex.js, Line 69)
+  getPokedex: function (id) {
+    return axios.fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  },
+  // Post Pokemon Data they caught in the Game to DB 
+  postGameResult: function () {
+    return axios.post("/api/pokemon");
+  },
+  // Gets all pokemon caught by specific user
+  getPokemon: function () {
+    return axios.get("/api/pokemon");
+  },
+  // Reset user's pokedex
+  resetPokedex: function () {
+    return axios.delete("/api/pokemon/delete");
   },
   // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  signupUser: function (info) {
+    return axios.post("/api/user", info);
+  },
+  // Saves a book to the database
+  loginUser: function (info) {
+    return axios.post("/api/user/login", info);
+  },
+  // Saves a book to the database
+  logoutUser: function (info) {
+    return axios.post("/api/user/logout", info);
+  },
+  //todo double check on the put method structure
+  // Saves a book to the database
+  updatePassword: function (info) {
+    return axios.put("/api/user/pw", info);
   }
 };
