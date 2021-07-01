@@ -29,7 +29,13 @@ const userSchema = new Schema({
   },
   pokemon_amount: {
     type: Number
-  }
+  },
+  pokemon: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Note"
+    }
+  ]
 });
 
 userSchema.pre('save', function (next) {

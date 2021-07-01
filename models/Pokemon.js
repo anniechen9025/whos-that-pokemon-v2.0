@@ -3,12 +3,7 @@ const Schema = mongoose.Schema;
 
 const pokemonSchema = new Schema({
   pokemon: {
-    type: String,
-    required: true
-  },
-  user_id: {
-    type: String,
-    required: true
+    type: String
   },
   date: {
     type: Date,
