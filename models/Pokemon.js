@@ -1,35 +1,21 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-class Pokemon extends Model {}
-
-Pokemon.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    pokemon_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
-    },
+const pokemonSchema = new Schema({
+  pokemon: {
+    type: String,
+    required: true
   },
-  {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'pokemon',
+  user_id: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
-);
+});
+
+const Pokemon = mongoose.model("Pokemon", pokemonSchema);
 
 module.exports = Pokemon;
