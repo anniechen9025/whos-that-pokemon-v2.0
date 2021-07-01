@@ -1,6 +1,7 @@
 // import "./style.css";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Pikachu from "../Pikachubg";
 import {
     Collapse,
     Navbar,
@@ -24,35 +25,40 @@ const Navigation = (props) => {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">Who's that Pokemon</NavbarBrand>
+                <div className="container">
+                    <div className="row">
+                        <NavbarBrand className="col-6 col-sm-6 text-right" href="/">Who's that Pokemon</NavbarBrand> <Pikachu />
+                    </div>
+                </div>
+
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                        <NavItem>
+                        <NavItem className="fs-4">
                             <NavLink href="/">Main</NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem className="fs-4">
                             <NavLink href="/menu">Menu</NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem className="fs-4">
                             <NavLink href="/game">Game</NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem className="fs-4">
                             <NavLink href="/pokedex">Pokedex</NavLink>
                         </NavItem>
-                        <UncontrolledDropdown nav inNavbar>
+                        <UncontrolledDropdown className="fs-4" nav inNavbar>
                             <DropdownToggle nav caret>
                                 Setting
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem tag={Link} to="/login">
+                                <DropdownItem className="fs-4" tag={Link} to="/login">
                                     Login
                                 </DropdownItem>
-                                <DropdownItem>
+                                <DropdownItem className="fs-4">
                                     Logout
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem tag={Link} to="/profile">
+                                <DropdownItem className="fs-4" tag={Link} to="/profile">
                                     Profile
                                 </DropdownItem>
                             </DropdownMenu>
