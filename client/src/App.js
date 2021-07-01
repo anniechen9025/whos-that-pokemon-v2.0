@@ -20,7 +20,7 @@ function App() {
         <Header />
         <Wrapper>
           <Route exact path="/" component={Main} />
-          <Route exact path="/chatbox" component={Chatroom} />
+          <Route exact path="/chatbox" component={Chatroom}/>
           <Route exact path="/game" component={Game} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/menu" component={Menu} />

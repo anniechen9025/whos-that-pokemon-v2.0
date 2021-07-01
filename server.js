@@ -56,21 +56,22 @@ app.listen(PORT, function () {
 });
 
 // Start the API server
-sequelize.sync({ force: false }).then(() => {
-  const server = app.listen(PORT, () => console.log('Now listening'));
-  io = socketIo(server);
-  //const io = socketIO(server)
-  io.on('connection', (socket) => {
-    console.log('User connected')
+//todo: sockeIo need to get rid off sequelize part
+// sequelize.sync({ force: false }).then(() => {
+//   const server = app.listen(PORT, () => console.log('Now listening'));
+//   io = socketIo(server);
+//   //const io = socketIO(server)
+//   io.on('connection', (socket) => {
+//     console.log('User connected')
 
-    // Think about this as an event listener
-    socket.on('chat message', (data, user_name) => {
-      // Sends the message to the client
-      io.emit('chat message', data, user_name)
-    })
+//     // Think about this as an event listener
+//     socket.on('chat message', (data, user_name) => {
+//       // Sends the message to the client
+//       io.emit('chat message', data, user_name)
+//     })
 
-    socket.on('disconnect', () => {
-      console.log('User disconnected');
-    });
-  })
-});
+//     socket.on('disconnect', () => {
+//       console.log('User disconnected');
+//     });
+//   })
+// });

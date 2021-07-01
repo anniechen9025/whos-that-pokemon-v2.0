@@ -33,7 +33,7 @@ const userSchema = new Schema({
   pokemon: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Note"
+      ref: "Pokemon"
     }
   ]
 });

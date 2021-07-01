@@ -3,14 +3,14 @@ const UserController = require("../../controllers/generalController");
 
 // Matches with "/api/books"
 router.route("/")
-  .post(UserController.create);
+  .post(UserController.createUser);
 
 // Matches with "/api/books/:id"
 router.route("/login")
-  .post(UserController.create)
-  .put(UserController.update);
+  .post(UserController.loginUser)
+  .put(UserController.updatePassword);
 
 router.route("/logout")
-  .post(UserController.update);
+  .post(UserController.logoutUser);
 
 module.exports = router;
