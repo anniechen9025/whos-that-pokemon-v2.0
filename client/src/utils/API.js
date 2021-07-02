@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets List from Pokemon API (Games.js, Line 41)
-  getPokemonList: function () {
-    return axios.get('https://pokeapi.co/api/v2/generation/1');
+  getPokemonList: async function () {
+    return await axios.get('https://pokeapi.co/api/v2/generation/1');
   },
   // Gets Pics from Pokemon API based on var (Games.js, Line 120)
   getPokemonPics: function (chosenWord) {
