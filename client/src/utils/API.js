@@ -2,16 +2,16 @@ import axios from "axios";
 
 export default {
   // Gets List from Pokemon API (Games.js, Line 41)
-  getPokemonList: function () {
-    return axios.get('https://pokeapi.co/api/v2/generation/1');
+  getPokemonList: async function () {
+    return await axios.get('https://pokeapi.co/api/v2/generation/1');
   },
   // Gets Pics from Pokemon API based on var (Games.js, Line 120)
-  getPokemonPics: function (chosenWord) {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${chosenWord}`);
+  getPokemonPics: async function (chosenWord) {
+    return await axios.get(`https://pokeapi.co/api/v2/pokemon/${chosenWord}`);
   },
   // Gets Particular Pokedex info bas on id inserted (Pokedex.js, Line 69)
-  getPokedex: function (id) {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  getPokedex: async function (id) {
+    return await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   },
   // Post Pokemon Data they caught in the Game to DB 
   postGameResult: function () {

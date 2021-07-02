@@ -1,47 +1,33 @@
-import React, { useEffect, useState } from "react";
-import API from "../../utils/API";
-
+import React from "react";
+import { useGameLogic } from "./hooks";
 
 function Game() {
-
-  useEffect(() => {
-    loadPokemon()
-  }, [])
-
-  function loadPokemon() {
-    API.getPokemonList()
-      .then(res => 
-        console.log(res.data)
-      )
-      .catch(err => console.log(err));
-
-  };
+ const {randomPokemon, displayString} = useGameLogic();
+console.log(randomPokemon);
+console.log(displayString);
 
     return (
         <div>
-    <header>
-      <div class="large-font">Who's That Pokemon!</div>
-    </header>
 
     <main>
       <section>
-        <div class="card word-guess">
-          <div class="pokemonPic"></div>
-          <div class="large-font word-blanks">_ _ _ _ _ _ _</div>
+        <div className="card word-guess">
+          <div className="pokemonPic"></div>
+          <div className="large-font word-blanks">{displayString}</div>
         </div>
-        <button class="start-button">Start</button>
+        <button className="start-button">Start</button>
       </section>
 
       <section>
-        <div class="card results">
-          <div class="win-loss-container">
+        <div className="card results">
+          <div className="win-loss-container">
             <div>
-              <h2>Pokemon Caught: <span class="win">0 </span> </h2>
+              <h2>Pokemon Caught: <span className="win">0 </span> </h2>
             </div>
           </div>
-          <div class="card timer">
-            <div class="timer-text">
-              <div class="large-font timer-count">30</div>
+          <div className="card timer">
+            <div className="timer-text">
+              <div className="large-font timer-count">30</div>
               <h3>seconds remaining</h3>
             </div>
 
