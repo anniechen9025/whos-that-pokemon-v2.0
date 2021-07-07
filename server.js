@@ -1,6 +1,7 @@
 const express = require("express");
 const routes = require("./routes");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 // const session = require('express-session');
@@ -12,14 +13,18 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
-  collection: 'mySessions'
+  uri: 'mongodb://localhost/pokemongame',
+  collection: 'mySessions',
+  database:'pokemongame'
 });
 
 // Catch errors
 store.on('error', function (error) {
   console.log(error);
 });
+
+// //setting login Auth
+// app.use(cors());
 
 app.use(require('express-session')({
   secret: 'This is a secret',

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   // Gets List from Pokemon API (Games.js, Line 41)
@@ -13,32 +13,32 @@ export default {
   getPokedex: async function (id) {
     return await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   },
-  // Post Pokemon Data they caught in the Game to DB 
+  // Post Pokemon Data they caught in the Game to DB
   postGameResult: function () {
-    return axios.post("/api/pokemon");
+    return axios.post('/api/pokemon');
   },
   // Gets all pokemon caught by specific user
   getPokemon: function () {
-    return axios.get("/api/pokemon");
+    return axios.get('/api/pokemon');
   },
   // Reset user's pokedex
   resetPokedex: function () {
-    return axios.delete("/api/pokemon/delete");
+    return axios.delete('/api/pokemon/delete');
   },
   // Saves a book to the database
   signupUser: function (info) {
-    return axios.post("/api/user", info);
+    return axios.post('/api/user', info);
   },
   // Saves a book to the database
   loginUser: function (info) {
-    return axios.post("/api/user/login", info);
+    return axios.post('/api/user/login', info);
   },
   // Saves a book to the database
   logoutUser: function (info) {
-    return axios.post("/api/user/logout", info);
+    return axios.post('/api/user/logout', info);
   },
   // Saves a book to the database
   updatePassword: function (info) {
-    return axios.put("/api/user/pw", info);
-  }
+    return axios.put('/api/user/pw', info);
+  },
 };

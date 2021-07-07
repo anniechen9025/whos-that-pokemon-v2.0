@@ -53,6 +53,9 @@ const Navigation = (props) => {
                                 Setting
                             </DropdownToggle>
                             <DropdownMenu right>
+                                <DropdownItem className="fs-4" tag={Link} to="/signup">
+                                    Signup
+                                </DropdownItem>
                                 <DropdownItem className="fs-4" tag={Link} to="/login">
                                     Login
                                 </DropdownItem>

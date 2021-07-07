@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const UserController = require("../../controllers/generalController");
 
-// Matches with "/api/books"
+// Matches with "/api/user"
 router.route("/")
   .post(UserController.createUser);
 
-// Matches with "/api/books/:id"
+// Matches with "/api/user/login",
 router.route("/login")
   .post(UserController.loginUser)
   .put(UserController.updatePassword);

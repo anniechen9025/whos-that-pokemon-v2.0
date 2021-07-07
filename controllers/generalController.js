@@ -16,7 +16,7 @@ module.exports = {
   },
   restAllPokemon: function (req, res) {
     db.Pokemon
-      .find({})
+      .find({ _id: req.session.user_id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -32,34 +32,39 @@ module.exports = {
       });
   },
   //todo: double check is it right?
-  createUser: function(req, res) {
+  //! Check on the Module  (Hash Function )
+  //! where to set up the withAuth
+  createUser: function (req, res) {
+    console.log(req.body);
     db.User
       .create(req.body)
-      .then(dbModel => {
+      .then(userData => {
+        console.log(userData);
         req.session.save(() => {
           req.session.user_id = userData.id;
           req.session.logged_in = true;
-    
-          res.json(dbModel);
-        });
+
+        })
+        res.json(userData);
       })
       .catch(err => res.status(422).json(err));
   },
-  loginUser: function(req, res) {
+  loginUser: function (req, res) {
     db.User
       .findOne(req.body.name)
-      .then(dbModel => {
+      .then(userData => {
         req.session.save(() => {
           req.session.user_id = userData.id;
           req.session.logged_in = true;
-    
+
+          res.send(userData);
           res.json({ user: userData, message: 'You are now logged in!' });
         });
         // res.json(dbModel)
       })
       .catch(err => res.status(422).json(err));
   },
-  logoutUser: function(req, res) {
+  logoutUser: function (req, res) {
     if (req.session.logged_in) {
       req.session.destroy(() => {
         res.status(204).end();
@@ -68,12 +73,15 @@ module.exports = {
       res.status(404).end();
     }
   },
-  updatePassword: function(req, res) {
+  updatePassword: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.session.user_id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
+  }
+};
+
+
   // create: function(req, res) {
   //   db.Book
   //     .create(req.body)
@@ -86,4 +94,26 @@ module.exports = {
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // }
-};
+// createUser: async function(req, res) {
+//   console.log(req.body);
+//   const userData = await db.User
+//     .create({
+//       username: req.body.username,
+//       email: req.body.email,
+//       password: req.body.password
+//     })
+//     res.json(userData);
+//     // .then(userData => {
+//     //   console.log(userData);
+//     //   // req.session.save(() => {
+//     //   //   req.session.user_id = userData.id;
+//     //   //   req.session.logged_in = true;
+
+//     //   // })
+//     //   res.json(userData);
+//     // })
+//     // .then(()=>{
+//     //   res.json(userData);
+//     // })
+//     // .catch(err => res.status(422).json(err));
+// },
