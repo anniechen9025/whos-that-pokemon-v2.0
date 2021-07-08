@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
@@ -12,8 +12,9 @@ import Menu from "./pages/Menu";
 import Pokedex from "./pages/Pokedex";
 import Profile from "./pages/Profile";
 
-
 function App() {
+
+
   return (
     <Router>
       <div>
