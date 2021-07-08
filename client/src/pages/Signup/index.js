@@ -36,24 +36,28 @@ const Signup = (props) => {
     };
 
     return (
+        //todo user reactstrap or bootstrap? https://getbootstrap.com/docs/4.6/components/forms/#validation or https://reactstrap.github.io/components/form/
         <Form>
+            <h3>Signup New User</h3>
             <FormGroup>
-                <Label for="exampleEmail">Input without validation</Label>
+                <Label for="exampleUsername">Username</Label>
+                <FormText>This will be your player's name in the Pokemon game</FormText>
                 <Input />
                 <FormFeedback>You will not be able to see this</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
             </FormGroup>
             <FormGroup>
-                <Label for="exampleEmail">Valid input</Label>
-                <Input valid />
-                <FormFeedback valid>Sweet! that name is available</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
-            <FormGroup>
-                <Label for="examplePassword">Invalid input</Label>
+                <Label for="exampleEmail">Email</Label>
+                <FormText>Please input your email</FormText>
                 <Input invalid />
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
+                <FormFeedback invalid>Please input the correct email format</FormFeedback>
+                
+            </FormGroup>
+            <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <FormText>Please set your password</FormText>
+                <Input valid />
+                <FormFeedback valid>Please create a password within 6-12 digits</FormFeedback>
+                
             </FormGroup>
         </Form>
     );

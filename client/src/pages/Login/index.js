@@ -6,19 +6,19 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Header from "../../components/Header";
 
 
-//! Auth: https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
+//!https://auth0.com/docs/quickstart/spa/react/01-login
 
-
-function Login({ setToken }) {
+function Login() {
     // Setting our component's initial state
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     // const [state, setState] = useState({ redirect: null });
 
     async function loginUserFormSubmit(credential) {
+        //todo: since my login user has req.session do i need to setup local storage?
         if (email && password) {
             API.loginUser(credential)
-                .then(data => data.json())
+                .then(data => console.log(data))
                 .catch(err => console.log(err));
         }
     };
@@ -29,21 +29,13 @@ function Login({ setToken }) {
             email,
             password
         });
-        setToken(token);
+        // setToken(token);
     }
 
     return (
         //!https://stackoverflow.com/questions/45089386/what-is-the-best-way-to-redirect-a-page-using-react-router
-        // if (state.redirect) {
-        //     return <Redirect to={state.redirect} />
-        // }
-        // return (
-        //     <div>
-        //         <p>Login</p>
-        //     </div>
-        // )
         <div>
-            <Header />
+            {/* <Header /> */}
             <Form inline onSubmit={handleSubmit}>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleEmail" className="mr-sm-2">Email</Label>
@@ -60,8 +52,8 @@ function Login({ setToken }) {
     );
 }
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-}
+// Login.propTypes = {
+//     setToken: PropTypes.func.isRequired
+// }
 
 export default Login;

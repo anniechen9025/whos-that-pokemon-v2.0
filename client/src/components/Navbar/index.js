@@ -53,17 +53,17 @@ const Navigation = (props) => {
                                 Setting
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem className="fs-4" tag={Link} to="/signup">
+                                <DropdownItem className="fs-4" href="/signup">
                                     Signup
                                 </DropdownItem>
-                                <DropdownItem className="fs-4" tag={Link} to="/login">
+                                <DropdownItem className="fs-4" href="/login">
                                     Login
                                 </DropdownItem>
                                 <DropdownItem className="fs-4">
                                     Logout
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem className="fs-4" tag={Link} to="/profile">
+                                <DropdownItem className="fs-4" href="/profile">
                                     Profile
                                 </DropdownItem>
                             </DropdownMenu>

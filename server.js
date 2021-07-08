@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
-// const session = require('express-session');
 
 const socketIo = require('socket.io')
 let io;
@@ -22,9 +21,6 @@ const store = new MongoDBStore({
 store.on('error', function (error) {
   console.log(error);
 });
-
-// //setting login Auth
-// app.use(cors());
 
 app.use(require('express-session')({
   secret: 'This is a secret',

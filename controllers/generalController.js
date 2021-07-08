@@ -22,7 +22,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   saveCaughtPokemon: function (req, res) {
-    db.Pokemon.create(body)
+    db.Pokemon.create(req.body)
       .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.session.user_id }, { $push: { pokemon: _id } }, { new: true }))
       .then(dbUser => {
         res.json(dbUser);
@@ -56,11 +56,8 @@ module.exports = {
         req.session.save(() => {
           req.session.user_id = userData.id;
           req.session.logged_in = true;
-
-          res.send(userData);
           res.json({ user: userData, message: 'You are now logged in!' });
         });
-        // res.json(dbModel)
       })
       .catch(err => res.status(422).json(err));
   },

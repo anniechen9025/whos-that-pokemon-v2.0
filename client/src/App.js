@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
@@ -15,9 +15,9 @@ import Profile from "./pages/Profile";
 
 
 function App() {
-  const [token, setToken] = useState();
+  // const [token, setToken] = useState();
 
-  // if(!token) {
+  // if (!token) {
   //   return <Login setToken={setToken} />
   // }
 
@@ -25,11 +25,11 @@ function App() {
 
   return (
     <Router>
-      {/* <Switch> */}
-        <Header />
+      <Header />
+      <Switch>
         <Wrapper>
           <Route exact path="/" component={Main} />
-          <Route exact path="/chatbox" component={Chatroom}/>
+          <Route exact path="/chatbox" component={Chatroom} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/menu" component={Menu} />
@@ -38,7 +38,7 @@ function App() {
           <Route exact path="/signup" component={Signup} />
         </Wrapper>
         <Footer />
-      {/* </Switch> */}
+      </Switch>
     </Router>
 
   );
