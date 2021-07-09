@@ -2,6 +2,8 @@ import React from 'react';
 import Login from '../Loginbtn';
 import Logout from '../Logoutbtn';
 
+//https://reactjs.org/docs/conditional-rendering.html
+
 class LoginControl extends React.Component {
     constructor(props) {
         super(props);
