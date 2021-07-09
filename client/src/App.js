@@ -12,14 +12,24 @@ import Menu from "./pages/Menu";
 import Signup from "./pages/Signup";
 import Pokedex from "./pages/Pokedex";
 import Profile from "./pages/Profile";
+import useToken from './utils/useToken';
 
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+}
 
 function App() {
-  // const [token, setToken] = useState();
+  const { token, setToken } = useToken();
 
-  // if (!token) {
-  //   return <Login setToken={setToken} />
-  // }
+  if (!token) {
+    return <Login setToken={setToken} />
+  }
 
   //! https://reactstrap.github.io/components/form/
 

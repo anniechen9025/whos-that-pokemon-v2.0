@@ -8,14 +8,24 @@ import Header from "../../components/Header";
 
 //!https://auth0.com/docs/quickstart/spa/react/01-login
 
-function Login() {
+async function loginUser(credentials) {
+    return fetch('http://localhost:3001/authlogin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json())
+}
+
+function Login({ setToken }) {
     // Setting our component's initial state
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     // const [state, setState] = useState({ redirect: null });
 
-    async function loginUserFormSubmit(credential) {
-        //todo: since my login user has req.session do i need to setup local storage?
+    function loginUserFormSubmit(credential) {
         if (email && password) {
             API.loginUser(credential)
                 .then(data => console.log(data))
@@ -23,19 +33,25 @@ function Login() {
         }
     };
 
+    //todo want to add a stopper before render authlogin only when serverlogin works
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await loginUserFormSubmit({
+        loginUserFormSubmit({
             email,
             password
         });
-        // setToken(token);
+        const token = await loginUser({
+            email,
+            password
+        });
+        setToken(token);
+
     }
 
-    return (
-        //!https://stackoverflow.com/questions/45089386/what-is-the-best-way-to-redirect-a-page-using-react-router
+
+    return(
         <div>
-            {/* <Header /> */}
+            <Header />
             <Form inline onSubmit={handleSubmit}>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleEmail" className="mr-sm-2">Email</Label>
@@ -52,8 +68,8 @@ function Login() {
     );
 }
 
-// Login.propTypes = {
-//     setToken: PropTypes.func.isRequired
-// }
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+}
 
 export default Login;

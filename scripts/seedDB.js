@@ -25,8 +25,8 @@ const userSeed = [{
   username: "anniechen9025",
   email: "anniechen9025@gmail.com",
   password: "annie9025",
-  pokemon_amount: "0",
-  pokemon:[{pokemon: ""},{pokemon: ""},{pokemon: ""}]
+  pokemon_amount: "5",
+  pokemon:[{pokemon: "Togepi"},{pokemon: "Snorlax"},{pokemon: "Jirachi"},{pokemon: "Minccino"},{pokemon: "Piplup"}]
 },
 {
   username: "lihua",

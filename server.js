@@ -43,6 +43,17 @@ app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+//Add Cor as a middleware
+app.use(cors());
+
+//Login Auth API 
+app.use('/authlogin', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
+
 // Add routes, both API and view
 app.use(routes);
 

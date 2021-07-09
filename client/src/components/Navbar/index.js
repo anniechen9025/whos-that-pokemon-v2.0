@@ -1,6 +1,6 @@
 // import "./style.css";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import LoginControl from "../LoginControl"
 import Pikachu from "../Pikachubg";
 import {
     Collapse,
@@ -56,12 +56,7 @@ const Navigation = (props) => {
                                 <DropdownItem className="fs-4" href="/signup">
                                     Signup
                                 </DropdownItem>
-                                <DropdownItem className="fs-4" href="/login">
-                                    Login
-                                </DropdownItem>
-                                <DropdownItem className="fs-4">
-                                    Logout
-                                </DropdownItem>
+                                <LoginControl />
                                 <DropdownItem divider />
                                 <DropdownItem className="fs-4" href="/profile">
                                     Profile
