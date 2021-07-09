@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import API from '../../utils/API'
 import PropTypes from 'prop-types';
+import Login from '../Loginbtn';
+import Logout from '../Logoutbtn';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-// import { Redirect } from "react-router-dom";
 import Header from "../../components/Header";
 
 
-//!https://auth0.com/docs/quickstart/spa/react/01-login
+// class LoginControl extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleLoginClick = this.handleLoginClick.bind(this);
+//         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+//         this.state = { isLoggedIn: false };
+//     }
+// }
 
 async function loginUser(credentials) {
     return fetch('http://localhost:3001/authlogin', {
@@ -23,7 +31,7 @@ function Login({ setToken }) {
     // Setting our component's initial state
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    // const [state, setState] = useState({ redirect: null });
+    const [isLoggedIn, setisLoggedIn] = useState(false);
 
     function loginUserFormSubmit(credential) {
         if (email && password) {
@@ -39,7 +47,11 @@ function Login({ setToken }) {
         loginUserFormSubmit({
             email,
             password
-        });
+        })
+        // .then(()=>{
+            // setisLoggedIn(true)
+            //!how to pass this result to right place?
+        // });
         const token = await loginUser({
             email,
             password
@@ -51,7 +63,7 @@ function Login({ setToken }) {
 
     return(
         <div>
-            <Header />
+            <Header setisLoggedIn/>
             <Form inline onSubmit={handleSubmit}>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleEmail" className="mr-sm-2">Email</Label>

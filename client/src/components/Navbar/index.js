@@ -1,6 +1,8 @@
 // import "./style.css";
 import React, { useState } from 'react';
 import LoginControl from "../LoginControl"
+// import Login from '../Loginbtn';
+// import Logout from '../Logoutbtn';
 import Pikachu from "../Pikachubg";
 import {
     Collapse,
@@ -20,6 +22,14 @@ const Navigation = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    // const isLoggedIn = this.state.isLoggedIn;
+    //     let button;
+    //     if (isLoggedIn) {
+    //         button = <Logout />;
+    //     } else {
+    //         button = <Login />;
+    //     }
 
     return (
         <div>
