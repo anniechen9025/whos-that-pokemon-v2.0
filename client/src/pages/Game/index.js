@@ -9,11 +9,13 @@ function Game() {
     gameStarted,
     setGameStarted,
     gameWon,
+    firstHint,
+    setFirstHint,
+    setGuessedLetters,
   } = useGameLogic();
   console.log(randomPokemon);
-  console.log(displayString);
-  console.log(pokemonPic);
   console.log(gameWon);
+  console.log(firstHint);
 
   return (
     <div>
@@ -21,7 +23,9 @@ function Game() {
         <section>
           {gameStarted && (
             <div className="card word-guess">
-              <div className="pokemonPic"></div>
+              <div className="pokemonPic">
+                <img src={pokemonPic} alt="Current Pokemon"></img>
+              </div>
               <div className="large-font word-blanks">{displayString}</div>
             </div>
           )}
@@ -29,10 +33,26 @@ function Game() {
             className="start-button"
             onClick={() => {
               setGameStarted(!gameStarted);
+              setGuessedLetters([]);
             }}
           >
             Start
           </button>
+          {gameStarted && firstHint && (
+            <>
+              <button
+                className="hint-button"
+                onClick={() => {
+                  setFirstHint(firstHint);
+                }}
+              >
+                Hint
+              </button>
+              <div>
+                This is a <b>{firstHint}</b> type Pokemon.
+              </div>
+            </>
+          )}
         </section>
 
         <section>

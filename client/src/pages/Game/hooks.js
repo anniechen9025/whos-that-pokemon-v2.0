@@ -1,6 +1,12 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import API from '../../utils/API';
 
+// function to return random item
+function chooseRandomIndex(length) {
+  return Math.floor(Math.random() * length);
+}
+
+// hook to handle keydowns in game.
 function useKeyHandlers(action) {
   const keyHandler = useCallback(
     (e) => {
@@ -24,16 +30,13 @@ function useKeyHandlers(action) {
   }, [keyHandler]);
 }
 
-function chooseRandomIndex(length) {
-  return Math.floor(Math.random() * length);
-}
-
 export function useGameLogic() {
   const [randomPokemon, setRandomPokemon] = useState('');
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [pokemonPic, setPokemonPic] = useState('');
   const [gameStarted, setGameStarted] = useState(false);
   const [guessedPokemon, setGuessedPokemon] = useState([]);
+  const [firstHint, setFirstHint] = useState('');
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -57,6 +60,7 @@ export function useGameLogic() {
   useEffect(() => {
     if (gameStarted) {
       loadPokemon();
+      setPokemonPic();
     }
   }, [gameStarted]);
 
@@ -66,6 +70,7 @@ export function useGameLogic() {
     }
   }, [randomPokemon]);
 
+  // calls fetch request to return all pokemon names
   function loadPokemon() {
     API.getPokemonList()
       .then((res) => {
@@ -85,13 +90,18 @@ export function useGameLogic() {
     gameStarted,
     setGameStarted,
     gameWon,
+    firstHint,
+    setFirstHint,
+    setGuessedLetters,
   };
 
+  // calls fetch request to return single pokemon information
   function getPokemonInfo(chosenPokemon) {
     API.getPokemonPics(chosenPokemon)
       .then((res) => {
         console.log(res.data);
         setPokemonPic(res.data.sprites.front_default);
+        setFirstHint(res.data.types[0].type.name);
       })
       .catch((err) => console.log(err));
   }

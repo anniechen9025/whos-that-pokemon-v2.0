@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from 'react';
 
 function Main() {
-    return (
-        <div>
-            <p>Main</p>
-        </div>
-    )
+  return (
+    <div>
+      <p>Main</p>
+    </div>
+  );
 }
 
 export default Main;
