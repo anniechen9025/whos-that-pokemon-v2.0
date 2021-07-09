@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
+import { usePokedexLogic } from './hooks';
 
 function Pokedex() {
+  const { pokemon } = usePokedexLogic();
+  console.log(pokemon);
+
   return (
     <div className="pokedexContainer">
       <div className="pokedex">
@@ -69,7 +73,11 @@ function Pokedex() {
             <div className="right-container__screen"></div>
           </div>
           <div className="right-container__buttons">
-            <button>Release All Your Pokemon</button>
+            <div className="innerContainer">
+              <button className="left-button">Prev</button>
+              <button className="right-button">Next</button>
+            </div>
+            <button className="reset-button">Release All Your Pokemon</button>
           </div>
         </div>
       </div>

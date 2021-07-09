@@ -1,6 +1,15 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import API from '../../utils/API';
 
+// TODOS:
+// Add loading pic for Pokemon Pic
+// reset GussedLetters so that blanks dont render on restart
+// pushed guessedPokemon to DB
+// add functionality to Hint button, so that each click set state of new hint.
+// first hint shows type of pokemon
+// second hint reduces blur of image
+// third hint fills in two blanks?
+
 // function to return random item
 function chooseRandomIndex(length) {
   return Math.floor(Math.random() * length);
@@ -37,6 +46,7 @@ export function useGameLogic() {
   const [gameStarted, setGameStarted] = useState(false);
   const [guessedPokemon, setGuessedPokemon] = useState([]);
   const [firstHint, setFirstHint] = useState('');
+  const [counter, setCounter] = useState(10);
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -56,6 +66,10 @@ export function useGameLogic() {
     () => randomPokemon === displayString.split(' ').join(''),
     [displayString, randomPokemon]
   );
+
+  useEffect(() => {
+    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+  }, [counter]);
 
   useEffect(() => {
     if (gameStarted) {
@@ -92,7 +106,7 @@ export function useGameLogic() {
     gameWon,
     firstHint,
     setFirstHint,
-    setGuessedLetters,
+    counter,
   };
 
   // calls fetch request to return single pokemon information

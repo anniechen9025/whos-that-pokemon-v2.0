@@ -11,7 +11,7 @@ function Game() {
     gameWon,
     firstHint,
     setFirstHint,
-    setGuessedLetters,
+    counter,
   } = useGameLogic();
   console.log(randomPokemon);
   console.log(gameWon);
@@ -33,7 +33,6 @@ function Game() {
             className="start-button"
             onClick={() => {
               setGameStarted(!gameStarted);
-              setGuessedLetters([]);
             }}
           >
             Start
@@ -66,7 +65,9 @@ function Game() {
             </div>
             <div className="card timer">
               <div className="timer-text">
-                <div className="large-font timer-count">30</div>
+                <div className="large-font timer-count">
+                  Countdown: {counter === 0 ? 'Time over' : counter}
+                </div>
                 <h3>seconds remaining</h3>
               </div>
             </div>
