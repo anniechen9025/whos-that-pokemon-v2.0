@@ -2,11 +2,11 @@ const express = require("express");
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 8080;
-// const session = require('express-session');
-
+const PORT = process.env.PORT || 3001;
 const socketIo = require('socket.io')
 let io;
+
+// const session = require('express-session');
 
 // const sequelize = require('./config/connection');
 // const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -41,23 +41,24 @@ mongoose.connect(
 );
 
 // Start the API server
-app.listen(PORT, 'http://localhost:8080', function() {
+const server = app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-  const server = app.listen(PORT, () => console.log('Now listening'));
-  io = socketIo(server);
-  //const io = socketIO(server)
-  io.on('connection', (socket) => {
-    console.log('User connected')
-  
-    // Think about this as an event listener
-    socket.on('chat message', (data, user_name) => {
-      console.log(data)
-      // Sends the message to the client
-      io.emit('chat message', data, user_name)
-    })
-  
-    socket.on('disconnect', () => {
-      console.log('User disconnected');
-    });
-  })
 });
+
+// const server = app.listen(PORT, () => console.log('Now listening'));
+io = socketIo(server);
+// const io = socketIO(server)
+io.on('connection', (socket) => {
+  console.log('User connected')
+
+  // Think about this as an event listener
+  socket.on('chat message', (data, user_name) => {
+    console.log(data, user_name)
+    // Sends the message to the client
+    io.emit('chat message', data, user_name)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+})

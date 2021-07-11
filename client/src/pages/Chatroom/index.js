@@ -3,7 +3,6 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Chatbox from '../../components/Chatbox';
 import socketIOClient from "socket.io-client";
-import { io } from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:3001";
 
 
