@@ -1,43 +1,70 @@
 const express = require("express");
 const routes = require("./routes");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
+
 const socketIo = require('socket.io')
 let io;
 
-// const session = require('express-session');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
-// const sequelize = require('./config/connection');
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const store = new MongoDBStore({
+  uri: 'mongodb://localhost/pokemongame',
+  collection: 'mySessions',
+  database: 'pokemongame'
+});
 
-// const sess = {
-//   secret: 'Super secret secret',
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize,
-//   }),
-// };
+// Catch errors
+store.on('error', function (error) {
+  console.log(error);
+});
 
-// Define middleware here
-// app.use(session(sess));
+app.use(require('express-session')({
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  store: store,
+  // Boilerplate options, see:
+  // * https://www.npmjs.com/package/express-session#resave
+  // * https://www.npmjs.com/package/express-session#saveuninitialized
+  resave: true,
+  saveUninitialized: true
+}));
 
 // Define middleware here
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+
+//Add Cor as a middleware
+app.use(cors());
+
+//Login Auth API 
+app.use('/authlogin', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
+
 // Add routes, both API and view
 app.use(routes);
 
+//! testing why error {[0] Error: ENOENT: no such file or directory, stat '/Users/xiaodai/Desktop/whos-that-pokemon-v2.0/client/build/index.html'}
+app.use(express.static("client/public"));
+
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/pokemongame"
+  process.env.MONGODB_URI || "mongodb://localhost/pokemongame",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
 );
 
 // Start the API server
