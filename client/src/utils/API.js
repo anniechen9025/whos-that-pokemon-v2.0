@@ -30,7 +30,7 @@ export default {
     return axios.post('/api/user', info);
   },
   // Saves a book to the database
-  loginUser: function (info) {
+  loginUser: async function (info) {
     return axios.post('/api/user/login', info);
   },
   // Saves a book to the database

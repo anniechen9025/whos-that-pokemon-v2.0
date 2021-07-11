@@ -14,15 +14,7 @@ import Pokedex from "./pages/Pokedex";
 import Profile from "./pages/Profile";
 import useToken from './utils/useToken';
 
-function setToken(userToken) {
-  sessionStorage.setItem('token', JSON.stringify(userToken));
-}
 
-function getToken() {
-  const tokenString = sessionStorage.getItem('token');
-  const userToken = JSON.parse(tokenString);
-  return userToken?.token
-}
 
 function App() {
   const { token, setToken } = useToken();

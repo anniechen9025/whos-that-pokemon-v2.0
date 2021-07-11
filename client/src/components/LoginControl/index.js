@@ -1,40 +1,23 @@
 import React from 'react';
 import Login from '../Loginbtn';
 import Logout from '../Logoutbtn';
+import useToken from '../../utils/useToken';
 
 //https://reactjs.org/docs/conditional-rendering.html
 
-class LoginControl extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.state = { isLoggedIn: false };
+function LoginControl(props) {
+    const { token, setToken } = useToken();
+
+    let button;
+    if (token) {
+        button = <Logout />;
     }
 
-    handleLoginClick() {
-        this.setState({ isLoggedIn: true });
-    }
+    return (
+        <div>
+            {button}
+        </div>
+    );
+} 
 
-    handleLogoutClick() {
-        this.setState({ isLoggedIn: false });
-    }
-
-    render() {
-        const isLoggedIn = this.state.isLoggedIn;
-        let button;
-        if (isLoggedIn) {
-            button = <Logout onClick={this.handleLogoutClick} />;
-        } else {
-            button = <Login onClick={this.handleLoginClick} />;
-        }
-
-        return (
-            <div>
-                {button}
-            </div>
-        );
-    }
-}
-
-export default LoginControl; 
+export default LoginControl;

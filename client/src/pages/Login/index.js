@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from "react";
 import API from '../../utils/API'
 import PropTypes from 'prop-types';
-import Login from '../Loginbtn';
-import Logout from '../Logoutbtn';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Header from "../../components/Header";
 
-
-// class LoginControl extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.handleLoginClick = this.handleLoginClick.bind(this);
-//         this.handleLogoutClick = this.handleLogoutClick.bind(this);
-//         this.state = { isLoggedIn: false };
-//     }
-// }
-
-async function loginUser(credentials) {
+async function loginAuth(credentials) {
     return fetch('http://localhost:3001/authlogin', {
         method: 'POST',
         headers: {
@@ -27,43 +15,44 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
 
+
 function Login({ setToken }) {
-    // Setting our component's initial state
+
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [isLoggedIn, setisLoggedIn] = useState(false);
 
-    function loginUserFormSubmit(credential) {
-        if (email && password) {
-            API.loginUser(credential)
-                .then(data => console.log(data))
-                .catch(err => console.log(err));
-        }
-    };
-
+    async function loginUserFormSubmit(credential) {
+        console.log(credential);
+        API.loginUser(credential)
+            .then(async data => {
+                console.log(data)
+                if(data.status === 200){
+                    const token = await loginAuth({
+                        email,
+                        password
+                    });
+                    setToken(token);
+                }
+                return data;
+            })
+            .catch(err => {
+                return err
+            });
+    }
     //todo want to add a stopper before render authlogin only when serverlogin works
-    const handleSubmit = async e => {
+    const handleSubmit = async function (e) {
         e.preventDefault();
-        loginUserFormSubmit({
-            email,
-            password
-        })
-        // .then(()=>{
-            // setisLoggedIn(true)
-            //!how to pass this result to right place?
-        // });
-        const token = await loginUser({
-            email,
-            password
-        });
-        setToken(token);
-
+        await loginUserFormSubmit(
+            {
+                email,
+                password
+            }
+        )
     }
 
-
-    return(
+    return (
         <div>
-            <Header setisLoggedIn/>
+            <Header />
             <Form inline onSubmit={handleSubmit}>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleEmail" className="mr-sm-2">Email</Label>
