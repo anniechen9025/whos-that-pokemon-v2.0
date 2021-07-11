@@ -2,10 +2,10 @@ const db = require("../models");
 
 // Defining methods for the booksController
 module.exports = {
-  //todo: want to get the pokemon under one's user_id
   getAllPokemon: function (req, res) {
+    console.log(req.session);
     db.User
-      .find({ _id: req.session.user_id })
+      .find({_id: req.session.user_id})
       .populate("pokemon")
       .then(dbUser => {
         res.json(dbUser);
@@ -15,9 +15,9 @@ module.exports = {
       });
   },
   restAllPokemon: function (req, res) {
-    db.Pokemon
-      .find({ _id: req.session.user_id })
-      .then(dbModel => dbModel.remove())
+    db.User
+      .findOneAndUpdate({ _id: req.session.user_id },{$set:{"pokemon":[]}})
+      // .then(dbModel => dbModel[0].pokemon.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -56,6 +56,7 @@ module.exports = {
         req.session.save(() => {
           req.session.user_id = userData.id;
           req.session.logged_in = true;
+          
           res.json({ user: userData, message: 'You are now logged in!' });
         });
       })
