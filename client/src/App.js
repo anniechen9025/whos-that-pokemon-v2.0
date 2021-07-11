@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
@@ -13,7 +13,6 @@ import Pokedex from "./pages/Pokedex";
 import Profile from "./pages/Profile";
 
 function App() {
-
 
   return (
     <Router>

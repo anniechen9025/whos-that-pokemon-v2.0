@@ -2,7 +2,7 @@ const express = require("express");
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 // const session = require('express-session');
 
 const socketIo = require('socket.io')
@@ -41,27 +41,23 @@ mongoose.connect(
 );
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, 'http://localhost:8080', function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
-
-// Start the API server
-
   const server = app.listen(PORT, () => console.log('Now listening'));
   io = socketIo(server);
   //const io = socketIO(server)
   io.on('connection', (socket) => {
     console.log('User connected')
-
+  
     // Think about this as an event listener
     socket.on('chat message', (data, user_name) => {
       console.log(data)
       // Sends the message to the client
       io.emit('chat message', data, user_name)
     })
-
+  
     socket.on('disconnect', () => {
       console.log('User disconnected');
     });
   })
-
+});
