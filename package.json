@@ -32,6 +32,7 @@
     "mongoose": "^5.3.16",
     "mysql2": "^2.2.5",
     "prettier": "^2.3.2",
+    "react-blur": "^0.6.0",
     "reactstrap": "^8.9.0",
     "sequelize": "^6.6.4",
     "socket.io": "^4.1.2"

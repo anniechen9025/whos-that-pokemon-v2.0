@@ -1,7 +1,8 @@
 import React from 'react';
 import { useGameLogic } from './hooks';
+import { Progress } from 'reactstrap';
 
-function Game() {
+function Game(props) {
   const {
     randomPokemon,
     displayString,
@@ -12,6 +13,7 @@ function Game() {
     firstHint,
     setFirstHint,
     counter,
+    totalPokemon,
   } = useGameLogic();
   console.log(randomPokemon);
   console.log(gameWon);
@@ -59,16 +61,20 @@ function Game() {
             <div className="win-loss-container">
               <div>
                 <h2>
-                  Pokemon Caught: <span className="win">0 </span>{' '}
+                  <div className="text-center">
+                    Pokemon Caught: 50 of {totalPokemon}
+                  </div>
+                  <Progress value={50} max={totalPokemon} />{' '}
                 </h2>
               </div>
             </div>
             <div className="card timer">
               <div className="timer-text">
-                <div className="large-font timer-count">
-                  Countdown: {counter === 0 ? 'Time over' : counter}
-                </div>
-                <h3>seconds remaining</h3>
+                <div className="large-font timer-count">Countdown:</div>
+                <h3>
+                  {' '}
+                  {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
+                </h3>
               </div>
             </div>
           </div>

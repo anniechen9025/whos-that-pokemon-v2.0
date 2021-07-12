@@ -3,8 +3,8 @@ import API from '../../utils/API';
 
 // TODOS:
 // Add loading pic for Pokemon Pic
-// reset GussedLetters so that blanks dont render on restart
-// pushed guessedPokemon to DB
+// reset GuessedLetters so that blanks dont render on restart
+// pushed guessedPokemon to DB--- waiting on Routes to be completed.
 // add functionality to Hint button, so that each click set state of new hint.
 // first hint shows type of pokemon
 // second hint reduces blur of image
@@ -46,7 +46,8 @@ export function useGameLogic() {
   const [gameStarted, setGameStarted] = useState(false);
   const [guessedPokemon, setGuessedPokemon] = useState([]);
   const [firstHint, setFirstHint] = useState('');
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(60);
+  const [totalPokemon, setTotalPokemon] = useState(151);
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -89,6 +90,7 @@ export function useGameLogic() {
     API.getPokemonList()
       .then((res) => {
         const pokemonNames = res.data.pokemon_species.map(({ name }) => name);
+        console.log(pokemonNames.length);
         const filteredPokemonNames = pokemonNames.filter(
           (p) => !guessedPokemon.includes(p)
         );
@@ -107,6 +109,7 @@ export function useGameLogic() {
     firstHint,
     setFirstHint,
     counter,
+    totalPokemon,
   };
 
   // calls fetch request to return single pokemon information
