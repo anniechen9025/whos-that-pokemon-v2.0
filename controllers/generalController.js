@@ -50,8 +50,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   loginUser: function (req, res) {
+    console.log(req.body)
     db.User
-      .findOne(req.body.name)
+      .findOne({email: req.body.email})
       .then(userData => {
         req.session.save(() => {
           req.session.user_id = userData.id;
