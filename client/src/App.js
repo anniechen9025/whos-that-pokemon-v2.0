@@ -15,7 +15,6 @@ import Profile from "./pages/Profile";
 import useToken from './utils/useToken';
 
 
-
 function App() {
   const { token, setToken } = useToken();
 

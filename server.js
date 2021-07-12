@@ -60,27 +60,24 @@ mongoose.connect(
 );
 
 // Start the API server
-app.listen(PORT, function () {
+const server = app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-// Start the API server
-//todo: sockeIo need to get rid off sequelize part
-// sequelize.sync({ force: false }).then(() => {
-//   const server = app.listen(PORT, () => console.log('Now listening'));
-//   io = socketIo(server);
-//   //const io = socketIO(server)
-//   io.on('connection', (socket) => {
-//     console.log('User connected')
+// const server = app.listen(PORT, () => console.log('Now listening'));
+io = socketIo(server);
+// const io = socketIO(server)
+io.on('connection', (socket) => {
+  console.log('User connected')
 
-//     // Think about this as an event listener
-//     socket.on('chat message', (data, user_name) => {
-//       // Sends the message to the client
-//       io.emit('chat message', data, user_name)
-//     })
+  // Think about this as an event listener
+  socket.on('chat message', (data, user_name) => {
+    console.log(data, user_name)
+    // Sends the message to the client
+    io.emit('chat message', data, user_name)
+  })
 
-//     socket.on('disconnect', () => {
-//       console.log('User disconnected');
-//     });
-//   })
-// });
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+})
