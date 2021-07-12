@@ -50,12 +50,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   loginUser: function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     db.User
-      .findOne({email: req.body.email})
+      .findOne({email:req.body.email})
       .then(userData => {
+        console.log(userData);
         req.session.save(() => {
-          req.session.user_id = userData.id;
+          req.session.user_id = userData._id;
           req.session.logged_in = true;
           
           res.json({ user: userData, message: 'You are now logged in!' });
