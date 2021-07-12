@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Chatroom from "./pages/Chatroom";
+import TestChat from "./pages/TestChat/oldindex";
 import Game from "./pages/Game";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
@@ -31,7 +31,7 @@ function App() {
       <Switch>
         <Wrapper>
           <Route exact path="/" component={Main} />
-          <Route exact path="/chatbox" component={Chatroom} />
+          <Route exact path="/chatbox" component={TestChat} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/menu" component={Menu} />
