@@ -1,6 +1,14 @@
 import React from 'react';
 import { useGameLogic } from './hooks';
-import { Progress } from 'reactstrap';
+import {
+  Progress,
+  Card,
+  CardImg,
+  CardTitle,
+  Container,
+  Row,
+  Col,
+} from 'reactstrap';
 
 function Game(props) {
   const {
@@ -13,33 +21,34 @@ function Game(props) {
     firstHint,
     setFirstHint,
     counter,
+    setCounter,
     totalPokemon,
+    setGuessedLetters,
   } = useGameLogic();
-  console.log(randomPokemon);
-  console.log(gameWon);
-  console.log(firstHint);
 
   return (
-    <div>
+    <Container>
       <main>
         <section>
           {gameStarted && (
-            <div className="card word-guess">
-              <div className="pokemonPic">
-                <img src={pokemonPic} alt="Current Pokemon"></img>
-              </div>
-              <div className="large-font word-blanks">{displayString}</div>
-            </div>
+            <Col lg="3">
+              <Card body className="text-center">
+                <CardImg width="50%" src={pokemonPic} alt="Current Pokemon" />
+                <CardTitle tag="h5">{displayString}</CardTitle>
+              </Card>
+            </Col>
           )}
           <button
             className="start-button"
             onClick={() => {
               setGameStarted(!gameStarted);
+              setGuessedLetters([]);
+              setCounter(60);
             }}
           >
             Start
           </button>
-          {gameStarted && firstHint && (
+          {gameStarted && (
             <>
               <button
                 className="hint-button"
@@ -80,7 +89,7 @@ function Game(props) {
           </div>
         </section>
       </main>
-    </div>
+    </Container>
   );
 }
 

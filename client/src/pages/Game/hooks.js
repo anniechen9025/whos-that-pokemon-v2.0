@@ -3,7 +3,8 @@ import API from '../../utils/API';
 
 // TODOS:
 // Add loading pic for Pokemon Pic
-// reset GuessedLetters so that blanks dont render on restart
+// fix timer functionality in start game button?
+// pull # of pokemon from initial fetch to use in progressbar
 // pushed guessedPokemon to DB--- waiting on Routes to be completed.
 // add functionality to Hint button, so that each click set state of new hint.
 // first hint shows type of pokemon
@@ -19,7 +20,6 @@ function chooseRandomIndex(length) {
 function useKeyHandlers(action) {
   const keyHandler = useCallback(
     (e) => {
-      console.log(e);
       action((prev) => {
         if (prev.includes(e.key)) {
           return prev;
@@ -109,7 +109,9 @@ export function useGameLogic() {
     firstHint,
     setFirstHint,
     counter,
+    setCounter,
     totalPokemon,
+    setGuessedLetters,
   };
 
   // calls fetch request to return single pokemon information
