@@ -3,13 +3,11 @@ const pokemonController = require("../../controllers/generalController");
 
 // Matches with "/api/books"
 router.route("/")
-    .get(pokemonController.findAll)
-    .post(pokemonController.create);
+    .get(pokemonController.getAllPokemon)
+    .post(pokemonController.saveCaughtPokemon);
 
 // Matches with "/api/books/:id"
 router.route("/delete")
-    .get(pokemonController.findById)
-    .put(pokemonController.update)
-    .delete(pokemonController.remove);
+    .delete(pokemonController.restAllPokemon);
 
 module.exports = router;

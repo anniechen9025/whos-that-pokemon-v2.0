@@ -10,8 +10,8 @@ export default {
     return await axios.get(`https://pokeapi.co/api/v2/pokemon/${chosenWord}`);
   },
   // Gets Particular Pokedex info bas on id inserted (Pokedex.js, Line 69)
-  getPokedex: function (id) {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  getPokedex: async function (id) {
+    return await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   },
   // Post Pokemon Data they caught in the Game to DB
   postGameResult: function () {
@@ -30,14 +30,13 @@ export default {
     return axios.post('/api/user', info);
   },
   // Saves a book to the database
-  loginUser: function (info) {
+  loginUser: async function (info) {
     return axios.post('/api/user/login', info);
   },
   // Saves a book to the database
   logoutUser: function (info) {
     return axios.post('/api/user/logout', info);
   },
-  //todo double check on the put method structure
   // Saves a book to the database
   updatePassword: function (info) {
     return axios.put('/api/user/pw', info);

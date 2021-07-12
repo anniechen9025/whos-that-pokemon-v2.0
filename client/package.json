@@ -4,6 +4,8 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@auth0/auth0-react": "^1.5.0",
+    "availity-reactstrap-validation": "^2.7.1",
     "axios": "^0.18.0",
     "bootstrap": "^5.0.2",
     "react": "^16.14.0",
@@ -23,5 +25,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
 }
