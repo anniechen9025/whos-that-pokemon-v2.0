@@ -4,6 +4,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
 import API from '../../utils/API'
 
+// password regex
+// https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
+
 // const [formObject, setFormObject] = useState({
 //     username: "",
 //     email: "",
@@ -61,14 +64,15 @@ class Signup extends React.Component {
     // }
 
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
         this.handleInputState();
         console.log(`
             --SUBMITTING--
             UserName: ${this.state.username}
             Email: ${this.state.email}
             Password: ${this.state.password}`);
-            
+
         if (this.state.username && this.state.password && this.state.email) {
 
             API.signupUser({
@@ -85,6 +89,7 @@ class Signup extends React.Component {
         else {
             console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
         }
+        this.props.history.push('/')
     };
 
     handleInputState() {
@@ -97,7 +102,7 @@ class Signup extends React.Component {
     render() {
         // const modalError = this.state.error ? 'not' : ''; // This is just for the modal
         return (
-            <div>
+            <div className="themed-container" fluid="md">
                 <AvForm
                     // onValidSubmit={this.handleValidSubmit}
                     // onInvalidSubmit={this.handleInvalidSubmit}
