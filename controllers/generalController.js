@@ -57,8 +57,8 @@ module.exports = {
         console.log(userData);
         req.session.save(() => {
           req.session.user_id = userData._id;
+          req.session.user_name = userData.username;
           req.session.logged_in = true;
-          
           res.json({ user: userData, message: 'You are now logged in!' });
         });
       })
@@ -78,6 +78,9 @@ module.exports = {
       .findOneAndUpdate({ _id: req.session.user_id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  getUsername: function (req, res) {
+    res.json(req.session.user_name)
   }
 };
 

@@ -41,4 +41,7 @@ export default {
   updatePassword: function (info) {
     return axios.put('/api/user/pw', info);
   },
+  getUsername: function (){
+    return axios.get('/api/user');
+  }
 };

@@ -12,7 +12,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
   uri: 'mongodb://localhost/pokemongame',
   collection: 'mySessions',
-  database:'pokemongame'
+  database: 'pokemongame'
 });
 
 // Catch errors
@@ -61,21 +61,27 @@ mongoose.connect(
 );
 
 // Start the API server
-const server = app.listen(PORT, function() {
+const server = app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-// const server = app.listen(PORT, () => console.log('Now listening'));
-io = socketIo(server);
-// const io = socketIO(server)
+io = socketIo(server, {
+  cors: {
+    origin: "http://localhost:3000",
+      methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
+
 io.on('connection', (socket) => {
   console.log('User connected')
 
   // Think about this as an event listener
-  socket.on('chat message', (data, user_name) => {
-    console.log(data, user_name)
+  socket.on('chat message', (data) => {
+    console.log(data)
     // Sends the message to the client
-    io.emit('chat message', data, user_name)
+    io.emit('chat message', data)
   })
 
   socket.on('disconnect', () => {

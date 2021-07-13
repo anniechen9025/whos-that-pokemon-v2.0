@@ -39,7 +39,7 @@ function Login({ setToken }) {
                 return err
             });
     }
-    //todo want to add a stopper before render authlogin only when serverlogin works
+
     const handleSubmit = async function (e) {
         e.preventDefault();
         await loginUserFormSubmit(
