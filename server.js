@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const socketIo = require("socket.io")
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -64,17 +65,16 @@ const server = app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-// const server = app.listen(PORT, () => console.log('Now listening'));
 io = socketIo(server);
-// const io = socketIO(server)
+
 io.on('connection', (socket) => {
   console.log('User connected')
 
   // Think about this as an event listener
-  socket.on('chat message', (data, user_name) => {
-    console.log(data, user_name)
+  socket.on('chat message', (data) => {
+    console.log(data)
     // Sends the message to the client
-    io.emit('chat message', data, user_name)
+    io.emit('chat message', data)
   })
 
   socket.on('disconnect', () => {
