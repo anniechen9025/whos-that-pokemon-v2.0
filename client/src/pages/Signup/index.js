@@ -131,11 +131,22 @@ class Signup extends React.Component {
                             maxLength: { value: 16, errorMessage: 'Your name must be between 6 and 16 characters' }
                         }} />
                     <AvField
-                        name="passwordCustomMessage"
+                        name="originalpassword"
                         label="Password"
                         type="password"
                         onChange={e => this.state.password = e.target.value}
                         validate={{
+                            required: { value: true, errorMessage: 'Please enter a password' },
+                            // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                            minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
+                            maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
+                        }} />
+                    <AvField
+                        name="password"
+                        label="ConfirmedPassword"
+                        type="password"
+                        validate={{
+                            match:{value:'originalpassword', errorMessage:'Please enter your set password again'},
                             required: { value: true, errorMessage: 'Please enter a password' },
                             // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
                             minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
