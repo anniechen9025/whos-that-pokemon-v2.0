@@ -1,14 +1,19 @@
 import React from 'react';
 import { useGameLogic } from './hooks';
+import { animated } from 'react-spring';
+import './style.css';
 import {
   Progress,
   Card,
   CardImg,
   CardTitle,
+  CardText,
   Container,
-  Row,
   Col,
+  Button,
 } from 'reactstrap';
+
+const AnimatedCardImg = animated(CardImg);
 
 function Game(props) {
   const {
@@ -18,13 +23,20 @@ function Game(props) {
     gameStarted,
     setGameStarted,
     gameWon,
-    firstHint,
-    setFirstHint,
+    hint,
+    setHint,
     counter,
     setCounter,
     totalPokemon,
     setGuessedLetters,
+    pokemonInfo,
+    loadPokemon,
+    styles,
+    letterHint,
   } = useGameLogic();
+  console.log(randomPokemon);
+  console.log(gameWon);
+  console.log(letterHint);
 
   return (
     <Container>
@@ -33,34 +45,44 @@ function Game(props) {
           {gameStarted && (
             <Col lg="3">
               <Card body className="text-center">
-                <CardImg width="50%" src={pokemonPic} alt="Current Pokemon" />
+                <AnimatedCardImg
+                  width="50%"
+                  src={pokemonPic}
+                  alt="Current Pokemon"
+                  style={styles}
+                />
                 <CardTitle tag="h5">{displayString}</CardTitle>
+                {!!hint && (
+                  <CardText>
+                    This is a <b>{pokemonInfo.types[0].type.name}</b> type
+                    Pokemon.
+                  </CardText>
+                )}
               </Card>
             </Col>
           )}
-          <button
+          <Button
             className="start-button"
             onClick={() => {
-              setGameStarted(!gameStarted);
+              loadPokemon();
+              setGameStarted(true);
               setGuessedLetters([]);
               setCounter(60);
+              setHint(0);
             }}
           >
             Start
-          </button>
+          </Button>
           {gameStarted && (
             <>
-              <button
+              <Button
                 className="hint-button"
                 onClick={() => {
-                  setFirstHint(firstHint);
+                  setHint(hint + 1);
                 }}
               >
                 Hint
-              </button>
-              <div>
-                This is a <b>{firstHint}</b> type Pokemon.
-              </div>
+              </Button>
             </>
           )}
         </section>

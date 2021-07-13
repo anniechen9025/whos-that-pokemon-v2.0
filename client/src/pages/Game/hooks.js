@@ -1,14 +1,11 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import API from '../../utils/API';
+import { useSpring } from 'react-spring';
 
 // TODOS:
 // Add loading pic for Pokemon Pic
-// fix timer functionality in start game button?
-// pull # of pokemon from initial fetch to use in progressbar
+// pull # of pokemon from initial fetch to use in
 // pushed guessedPokemon to DB--- waiting on Routes to be completed.
-// add functionality to Hint button, so that each click set state of new hint.
-// first hint shows type of pokemon
-// second hint reduces blur of image
 // third hint fills in two blanks?
 
 // function to return random item
@@ -45,9 +42,11 @@ export function useGameLogic() {
   const [pokemonPic, setPokemonPic] = useState('');
   const [gameStarted, setGameStarted] = useState(false);
   const [guessedPokemon, setGuessedPokemon] = useState([]);
-  const [firstHint, setFirstHint] = useState('');
+  const [hint, setHint] = useState(0);
   const [counter, setCounter] = useState(60);
-  const [totalPokemon, setTotalPokemon] = useState(151);
+  const [totalPokemon, setTotalPokemon] = useState(0);
+  const [pokemonInfo, setPokemonInfo] = useState({});
+  const [letterHint, setLetterHint] = useState('');
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -69,8 +68,22 @@ export function useGameLogic() {
   );
 
   useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-  }, [counter]);
+    if (counter > 0 && gameStarted) {
+      const timer = setTimeout(() => setCounter(counter - 1), 1000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [counter, gameStarted]);
+
+  useEffect(() => {
+    if (hint > 2) {
+      const newLetterHint = randomPokemon
+        .split('')
+        .filter((letter) => !guessedLetters.includes(letter));
+      setLetterHint(newLetterHint[chooseRandomIndex(newLetterHint.length)]);
+    }
+  }, [randomPokemon, hint, setLetterHint, guessedLetters]);
 
   useEffect(() => {
     if (gameStarted) {
@@ -85,17 +98,34 @@ export function useGameLogic() {
     }
   }, [randomPokemon]);
 
+  function picBlur(hint) {
+    switch (hint) {
+      case 1:
+        return 12;
+
+      case 2:
+        return 4;
+
+      case 0:
+        return 12;
+
+      default:
+        return 0;
+    }
+  }
+  const styles = useSpring({ filter: `blur(${picBlur(hint)}px)` });
+
   // calls fetch request to return all pokemon names
   function loadPokemon() {
     API.getPokemonList()
       .then((res) => {
         const pokemonNames = res.data.pokemon_species.map(({ name }) => name);
-        console.log(pokemonNames.length);
         const filteredPokemonNames = pokemonNames.filter(
           (p) => !guessedPokemon.includes(p)
         );
         let chosenPokemon = chooseRandomIndex(filteredPokemonNames.length);
         setRandomPokemon(filteredPokemonNames[chosenPokemon]);
+        setTotalPokemon(pokemonNames.length);
       })
       .catch((err) => console.log(err));
   }
@@ -106,12 +136,16 @@ export function useGameLogic() {
     gameStarted,
     setGameStarted,
     gameWon,
-    firstHint,
-    setFirstHint,
+    hint,
+    setHint,
     counter,
     setCounter,
     totalPokemon,
     setGuessedLetters,
+    pokemonInfo,
+    loadPokemon,
+    styles,
+    letterHint,
   };
 
   // calls fetch request to return single pokemon information
@@ -119,8 +153,8 @@ export function useGameLogic() {
     API.getPokemonPics(chosenPokemon)
       .then((res) => {
         console.log(res.data);
+        setPokemonInfo(res.data);
         setPokemonPic(res.data.sprites.front_default);
-        setFirstHint(res.data.types[0].type.name);
       })
       .catch((err) => console.log(err));
   }

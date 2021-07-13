@@ -17,9 +17,9 @@ import useToken from './utils/useToken';
 function App() {
   const { token, setToken } = useToken();
 
-  // if (!token) {
-  //   return <Login setToken={setToken} />
-  // }
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
 
   //! https://reactstrap.github.io/components/form/
 
