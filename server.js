@@ -5,16 +5,13 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const socketIo = require('socket.io')
-let io;
-
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
   uri: 'mongodb://localhost/pokemongame',
   collection: 'mySessions',
-  database: 'pokemongame'
+  database:'pokemongame'
 });
 
 // Catch errors
@@ -39,6 +36,10 @@ app.use(require('express-session')({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 //Add Cor as a middleware
 app.use(cors());
@@ -53,18 +54,9 @@ app.use('/authlogin', (req, res) => {
 // Add routes, both API and view
 app.use(routes);
 
-//! testing why error {[0] Error: ENOENT: no such file or directory, stat '/Users/xiaodai/Desktop/whos-that-pokemon-v2.0/client/build/index.html'}
-app.use(express.static("client/public"));
-
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/pokemongame",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
+  process.env.MONGODB_URI || "mongodb://localhost/pokemongame"
 );
 
 // Start the API server
