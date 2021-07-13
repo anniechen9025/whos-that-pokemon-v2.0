@@ -50,7 +50,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   loginUser: function (req, res) {
-    console.log(req.body)
+    console.log(req.body.email)
     db.User
       .findOne({email: req.body.email})
       .then(userData => {

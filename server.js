@@ -72,7 +72,6 @@ const server = app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-// const server = app.listen(PORT, () => console.log('Now listening'));
 io = socketIo(server);
 // const io = socketIO(server)
 io.on('connection', (socket) => {
