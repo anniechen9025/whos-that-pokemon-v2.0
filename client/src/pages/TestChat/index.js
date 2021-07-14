@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Container, Row, Col } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import List from "../../components/List";
+import ChatList from "../../components/ChatList";
 import API from '../../utils/API';
 import "./style.css";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:3001";
 const socket = socketIOClient(ENDPOINT);
+
 
 class TestChat extends React.Component {
     constructor(props) {
@@ -18,7 +21,7 @@ class TestChat extends React.Component {
         }
     }
 
-    messaheChild(){
+    messaheChild() {
         socket.on('chat message', (data) => {
             console.log(data)
             let messageArray = this.state.userMessages;;
@@ -27,18 +30,23 @@ class TestChat extends React.Component {
         })
     }
 
+    handleCloseSubmitted = e => {
+        e.preventDefault();
+        this.props.history.push('/')
+    }
+
     handleSubmit = e => {
         e.preventDefault();
-        socket.emit("chat message", {message:this.state.messages, username:this.state.userName})
+        socket.emit("chat message", { message: this.state.messages, username: this.state.userName })
         this.messaheChild();
     }
 
     componentDidMount() {
         API.getUsername()
-        .then(data => {
-            console.log(data);
-            this.setState({ userName: data.data })
-        });
+            .then(data => {
+                console.log(data);
+                this.setState({ userName: data.data })
+            });
     }
 
     render() {
@@ -46,17 +54,29 @@ class TestChat extends React.Component {
             <div className="chat_window">
                 <div className="top_menu">
                     <div className="buttons">
-                        <div className="button close"></div>
-                        <div className="button minimize"></div>
-                        <div className="button maximize"></div>
+                        <div onClick={this.handleCloseSubmitted} className="button close"></div>
+                        <div onClick={this.handleCloseSubmitted} className="button minimize"></div>
+                        <div onClick={this.handleCloseSubmitted} className="button maximize"></div>
                     </div>
                     <div className="title">Chat</div>
                 </div>
-                <ul id="messages" className="messages">
-                {this.state.userMessages.map((message) => {
-                        return <List message={message.message} key={message.id} username={message.userName}/>
-                    })}
-                </ul>
+                <Container>
+                    <Row>
+                        <Col className="chatlist">
+                        <ChatList />
+                        </Col>
+                        <Col></Col>
+                        <Col></Col>
+                        <Col>
+                            <ul id="messages" className="messages">
+                                {this.state.userMessages.map((message) => {
+                                    return <List message={message.message} key={message.id} username={message.userName} />
+                                })}
+                            </ul>
+                        </Col>
+                    </Row>
+                </Container>
+
                 <div className="bottom_wrapper clearfix">
                     <i id="typing"></i>
                     <Form id="form">
