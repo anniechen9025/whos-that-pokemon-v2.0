@@ -39,7 +39,7 @@ export default {
   },
   // Saves a book to the database
   updatePassword: function (info) {
-    return axios.put('/api/user/pw', info);
+    return axios.put('/api/user/login', info);
   },
   getUsername: function (){
     return axios.get('/api/user');

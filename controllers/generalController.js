@@ -17,7 +17,6 @@ module.exports = {
   restAllPokemon: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.session.user_id }, { $set: { "pokemon": [], "pokemon_amount": "0"}})
-      // .then(dbModel => dbModel[0].pokemon.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -43,14 +42,12 @@ module.exports = {
         req.session.save(() => {
           req.session.user_id = userData.id;
           req.session.logged_in = true;
-
         })
         res.json(userData);
       })
       .catch(err => res.status(422).json(err));
   },
   loginUser: function (req, res) {
-    console.log(req.body);
     db.User
       .findOne({ email: req.body.email })
       .then(userData => {
@@ -75,7 +72,7 @@ module.exports = {
   },
   updatePassword: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.session.user_id }, req.body)
+      .findOneAndUpdate({ email: req.body.email }, { $set: { "password": req.body.password}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

@@ -9,6 +9,8 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:3001";
 const socket = socketIOClient(ENDPOINT);
 
+//todo list can use reactstrap (Header Icon)
+
 
 class TestChat extends React.Component {
     constructor(props) {
