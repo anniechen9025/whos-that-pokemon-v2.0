@@ -90,8 +90,8 @@ function Profile() {
                     <Card>
                         {/* <CardImg top width="100%"  alt="Card image cap" /> */}
                         <CardBody>
-                            <CardTitle tag="h5">Hi, {username}!</CardTitle>
-                            <CardSubtitle tag="h6" className="mb-2 text-muted">{rank}</CardSubtitle>
+                            <CardTitle tag="h2">Hi, {username}!</CardTitle>
+                            <CardSubtitle tag="h5" className="mb-2 text-muted">{rank}</CardSubtitle>
                             <CardText></CardText>
                         </CardBody>
                     </Card>

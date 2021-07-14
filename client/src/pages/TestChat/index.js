@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { v4 as uuidv4 } from 'uuid';
+// https://www.npmjs.com/package/uuid
+// uuidv4();
 import List from "../../components/List";
 import ChatList from "../../components/ChatList";
 import API from '../../utils/API';
