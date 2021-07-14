@@ -28,13 +28,13 @@ function App() {
     <Router>
       <Header />
       <Switch>
+        <Route exact path="/menu" component={Menu} />
+        <Route exact path="/game" component={Game} />
+        <Route exact path="/pokedex" component={Pokedex} />
         <Wrapper>
           <Route exact path="/" component={Main} />
           <Route exact path="/chatbox" component={TestChat} />
-          <Route exact path="/game" component={Game} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/menu" component={Menu} />
-          <Route exact path="/pokedex" component={Pokedex} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/signup" component={Signup} />
         </Wrapper>
