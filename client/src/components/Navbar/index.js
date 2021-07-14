@@ -23,13 +23,6 @@ const Navigation = (props) => {
 
     const toggle = () => setIsOpen(!isOpen);
 
-    // const isLoggedIn = this.state.isLoggedIn;
-    //     let button;
-    //     if (isLoggedIn) {
-    //         button = <Logout />;
-    //     } else {
-    //         button = <Login />;
-    //     }
 
     return (
         <div>
