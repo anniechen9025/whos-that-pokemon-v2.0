@@ -16,7 +16,7 @@ module.exports = {
   },
   restAllPokemon: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.session.user_id }, { $set: { "pokemon": [] } })
+      .findOneAndUpdate({ _id: req.session.user_id }, { $set: { "pokemon": [], "pokemon_amount": "0"}})
       // .then(dbModel => dbModel[0].pokemon.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

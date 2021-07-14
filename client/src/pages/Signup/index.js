@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormFeedback,
-  FormText,
-} from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import API from '../../utils/API';
 
 // password regex
@@ -109,60 +102,66 @@ class Signup extends React.Component {
     render() {
         // const modalError = this.state.error ? 'not' : ''; // This is just for the modal
         return (
-            <div className="themed-container" fluid="md">
-                <AvForm
-                    // onValidSubmit={this.handleValidSubmit}
-                    // onInvalidSubmit={this.handleInvalidSubmit}
-                    onSubmit={this.handleSubmit}
-                >
-                    <AvField
-                        name="emailCustomMessage"
-                        label="Email"
-                        type="text"
-                        onChange={e => this.state.email = e.target.value}
-                        validate={{
-                            required: { value: true, errorMessage: 'Please enter an email' },
-                            pattern: { value: "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", errorMessage: 'Please enter in a valid email format' },
-                            minLength: { value: 6, errorMessage: 'Your name must be between 6 and 16 characters' },
-                            maxLength: { value: 50, errorMessage: 'Your name must be between 6 and 50 characters' }
-                        }} />
-                    <AvField
-                        name="usernameCustomMessage"
-                        label="Username"
-                        type="text"
-                        onChange={e => this.state.username = e.target.value}
-                        validate={{
-                            required: { value: true, errorMessage: 'Please enter a username' },
-                            pattern: { value: '^[A-Za-z0-9]+$', errorMessage: 'Your username must be composed only with letter and numbers' },
-                            minLength: { value: 6, errorMessage: 'Your name must be between 6 and 16 characters' },
-                            maxLength: { value: 16, errorMessage: 'Your name must be between 6 and 16 characters' }
-                        }} />
-                    <AvField
-                        name="originalpassword"
-                        label="Password"
-                        type="password"
-                        onChange={e => this.state.password = e.target.value}
-                        validate={{
-                            required: { value: true, errorMessage: 'Please enter a password' },
-                            // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
-                            minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
-                            maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
-                        }} />
-                    <AvField
-                        name="password"
-                        label="ConfirmedPassword"
-                        type="password"
-                        validate={{
-                            match:{value:'originalpassword', errorMessage:'Please enter your set password again'},
-                            required: { value: true, errorMessage: 'Please enter a password' },
-                            // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
-                            minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
-                            maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
-                        }} />
-                    <Button
-                        color="primary"
-                    >Submit</Button>
-                </AvForm>
+            <Container className="themed-container" fluid="md">
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <AvForm
+                            // onValidSubmit={this.handleValidSubmit}
+                            // onInvalidSubmit={this.handleInvalidSubmit}
+                            onSubmit={this.handleSubmit}
+                        >
+                            <AvField
+                                name="emailCustomMessage"
+                                label="Email"
+                                type="text"
+                                onChange={e => this.state.email = e.target.value}
+                                validate={{
+                                    required: { value: true, errorMessage: 'Please enter an email' },
+                                    pattern: { value: "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", errorMessage: 'Please enter in a valid email format' },
+                                    minLength: { value: 6, errorMessage: 'Your name must be between 6 and 16 characters' },
+                                    maxLength: { value: 50, errorMessage: 'Your name must be between 6 and 50 characters' }
+                                }} />
+                            <AvField
+                                name="usernameCustomMessage"
+                                label="Username"
+                                type="text"
+                                onChange={e => this.state.username = e.target.value}
+                                validate={{
+                                    required: { value: true, errorMessage: 'Please enter a username' },
+                                    pattern: { value: '^[A-Za-z0-9]+$', errorMessage: 'Your username must be composed only with letter and numbers' },
+                                    minLength: { value: 6, errorMessage: 'Your name must be between 6 and 16 characters' },
+                                    maxLength: { value: 16, errorMessage: 'Your name must be between 6 and 16 characters' }
+                                }} />
+                            <AvField
+                                name="originalpassword"
+                                label="Password"
+                                type="password"
+                                onChange={e => this.state.password = e.target.value}
+                                validate={{
+                                    required: { value: true, errorMessage: 'Please enter a password' },
+                                    // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                                    minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
+                                    maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
+                                }} />
+                            <AvField
+                                name="password"
+                                label="ConfirmedPassword"
+                                type="password"
+                                validate={{
+                                    match: { value: 'originalpassword', errorMessage: 'Please enter your set password again' },
+                                    required: { value: true, errorMessage: 'Please enter a password' },
+                                    // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                                    minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
+                                    maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
+                                }} />
+                            <Button
+                                color="primary"
+                            >Submit</Button>
+                        </AvForm>
+                    </Col>
+                    <Col></Col>
+                </Row>
 
                 {/* below this is just for show, it's not needed unless you want a modal upon form submission */}
                 {/* <Modal isOpen={this.state.email !== false && this.state.username !== false && this.state.password !== false}
@@ -175,7 +174,7 @@ class Signup extends React.Component {
                         <Button color="primary" onClick={this.closeModal}>Ok, got it!</Button>
                     </ModalFooter>
                 </Modal> */}
-            </div>
+            </Container>
         );
         // return (
         //     //todo https://availity.github.io/availity-reactstrap-validation/
