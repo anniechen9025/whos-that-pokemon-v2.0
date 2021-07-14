@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-//import { usePokedexLogic } from './hooks';
+import { usePokedexLogic } from './hooks';
 
 function Pokedex() {
-  // const { pokemon } = usePokedexLogic();
-  //  console.log(pokemon);
+  const { userPokemon } = usePokedexLogic();
+  console.log(userPokemon);
 
   return (
     <div className="pokedexContainer">
