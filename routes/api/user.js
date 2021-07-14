@@ -9,7 +9,8 @@ router.route("/")
 // Matches with "/api/user/login",
 router.route("/login")
   .post(UserController.loginUser)
-  .put(UserController.updatePassword);
+  .put(UserController.updatePassword)
+  .get(UserController.getUserinfo);
 
 router.route("/logout")
   .post(UserController.logoutUser);

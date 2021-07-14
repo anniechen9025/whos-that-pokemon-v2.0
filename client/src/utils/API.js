@@ -43,5 +43,8 @@ export default {
   },
   getUsername: function (){
     return axios.get('/api/user');
+  },
+  getUserInfo: function (){
+    return axios.get('/api/user/login');
   }
 };

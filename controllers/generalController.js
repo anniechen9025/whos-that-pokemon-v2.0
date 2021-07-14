@@ -5,7 +5,7 @@ module.exports = {
   getAllPokemon: function (req, res) {
     console.log(req.session);
     db.User
-      .find({_id: req.session.user_id})
+      .find({ _id: req.session.user_id })
       .populate("pokemon")
       .then(dbUser => {
         res.json(dbUser);
@@ -16,7 +16,7 @@ module.exports = {
   },
   restAllPokemon: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.session.user_id },{$set:{"pokemon":[]}})
+      .findOneAndUpdate({ _id: req.session.user_id }, { $set: { "pokemon": [] } })
       // .then(dbModel => dbModel[0].pokemon.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -52,7 +52,7 @@ module.exports = {
   loginUser: function (req, res) {
     console.log(req.body);
     db.User
-      .findOne({email:req.body.email})
+      .findOne({ email: req.body.email })
       .then(userData => {
         console.log(userData);
         req.session.save(() => {
@@ -80,7 +80,17 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   getUsername: function (req, res) {
-    res.json(req.session.user_name)
+    if (req.session.logged_in) {
+      res.json(req.session.user_name)
+    } else {
+      res.status(404).end();
+    }
+  },
+  getUserinfo: function (req, res) {
+    db.User
+      .findOne({ _id: req.session.user_id })
+      .then(UserData => res.json(UserData))
+      .catch(err => res.status(422).json(err));
   }
 };
 
