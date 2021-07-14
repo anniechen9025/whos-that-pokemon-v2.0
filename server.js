@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-const socketIo = require("socket.io")
+const socketIo = require('socket.io')
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -13,7 +12,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
   uri: 'mongodb://localhost/pokemongame',
   collection: 'mySessions',
-  database: 'pokemongame',
+  database: 'pokemongame'
 });
 
 // Catch errors
@@ -66,7 +65,14 @@ const server = app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-io = socketIo(server);
+io = socketIo(server, {
+  cors: {
+    origin: "http://localhost:3000",
+      methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
 
 io.on('connection', (socket) => {
   console.log('User connected');

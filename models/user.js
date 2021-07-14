@@ -23,8 +23,8 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    min: [6, 'Must be at least 6 digit'],
-    max: 12,
+    min: [8, 'Must be at least 8 digit'],
+    max: 20,
     required: [true, 'Please input a valid password']
   },
   pokemon_amount: {

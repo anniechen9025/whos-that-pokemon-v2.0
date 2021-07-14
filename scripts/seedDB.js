@@ -30,19 +30,19 @@ const userSeed = [{
 {
   username: "lihua",
   email: "lihua.anderson@gmail.com",
-  password: "123456",
+  password: "12345678",
   pokemon_amount: "200"
 },
 {
   username: "christine",
   email: "ctine.ngyn@gmail.com",
-  password: "123456",
+  password: "12345678",
   pokemon_amount: "100"
 },
 {
   username: "daniel",
   email: "dannyphan@comcast.net",
-  password: "123456",
+  password: "12345678",
   pokemon_amount: "1000"
 }];
 
