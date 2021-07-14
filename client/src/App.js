@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import Pokedex from './pages/Pokedex';
 import Profile from './pages/Profile';
 import useToken from './utils/useToken';
+import TestChat from './pages/TestChat';
 
 function App() {
   const { token, setToken } = useToken();
@@ -29,7 +30,7 @@ function App() {
       <Switch>
         <Wrapper>
           <Route exact path="/" component={Main} />
-          <Route exact path="/chatbox" component={Chatroom} />
+          <Route exact path="/chatbox" component={TestChat} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/menu" component={Menu} />
