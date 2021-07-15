@@ -14,8 +14,6 @@ const socket = socketIOClient(ENDPOINT);
 
 //todo list can use reactstrap (Header Icon)
 
-console.log(uuidv4());
-
 class TestChat extends React.Component {
     constructor(props) {
         super(props);
@@ -30,14 +28,14 @@ class TestChat extends React.Component {
     messaheChild() {
         socket.on('chat message', (data) => {
             console.log(data)
-            let messageArray = this.state.userMessages;;
+            let messageArray = this.state.userMessages;
             messageArray.push(data)
             this.setState({ userMessages: messageArray })
         })
     }
 
-    clearInput(e) {
-        e.target.value = '';
+    handleInputChange = (e) =>{
+        this.setState({[e.target.name]: e.target.value})
     }
 
     handleCloseSubmitted = e => {
@@ -49,17 +47,32 @@ class TestChat extends React.Component {
         e.preventDefault();
         socket.emit("chat message", { message: this.state.messages, username: this.state.userName, id: uuidv4() })
         this.setState({ messages:""});
-        this.messaheChild();
     }
 
     componentDidMount() {
         API.getUsername()
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 this.setState({ userName: data.data })
             });
+            this.messaheChild()
+            this.handleOnlineUsers()
     }
 
+    handleOnlineUsers() {
+        let onlineUsers = this.state.online
+        
+            API.getUsername().then(data => {
+                onlineUsers.push(data.data)
+                this.setState({online: onlineUsers})
+                // console.log(this.state.online);
+                socket.emit("user online", data.data)
+                socket.on("user joined", (data) => {
+                    console.log(data);
+                })
+            })
+         
+    }
     render() {
         return (
             <div className="chat_window">
@@ -74,14 +87,14 @@ class TestChat extends React.Component {
                 <Container>
                     <Row>
                         <Col className="chatlist">
-                        <ChatList />
+                        <ChatList userName = {this.state.userName}/>
                         </Col>
                         <Col></Col>
                         <Col></Col>
                         <Col>
                             <ul id="messages" className="messages">
                                 {this.state.userMessages.map((message) => {
-                                    return <List message={message.message} key={message.id} username={this.state.userName} />
+                                    return <List message={message.message} key={message.id} username={message.username} />
                                 })}
                             </ul>
                         </Col>
@@ -92,7 +105,7 @@ class TestChat extends React.Component {
                     <i id="typing"></i>
                     <Form id="form">
                         <FormGroup className="message_input_wrapper">
-                            <Input id="message" className="message_input" placeholder="Type your message here..." value = {this.state.messages}/>
+                            <Input id="message" name = "messages" className="message_input" placeholder="Type your message here..." onChange = {this.handleInputChange} value = {this.state.messages}/>
                         </FormGroup>
                         <Button className="send_message" onClick={this.handleSubmit}>Send</Button>
                     </Form>

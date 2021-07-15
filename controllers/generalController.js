@@ -30,6 +30,12 @@ module.exports = {
         res.json(err);
       });
   },
+  increasePokemonAmount: function (req,res){
+    db.User
+    .findOneAndUpdate({ _id: req.session.user_id }, { $set: { "pokemon_amount": req.body.pokemon_amount}})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
   //todo: double check is it right?
   //! Check on the Module  (Hash Function )
   //! where to set up the withAuth
