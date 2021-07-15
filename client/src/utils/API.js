@@ -46,5 +46,8 @@ export default {
   },
   getUserInfo: function (){
     return axios.get('/api/user/login');
+  },
+  increasePokemonAmount: function (){
+    return axios.put('api/pokemon')
   }
 };
