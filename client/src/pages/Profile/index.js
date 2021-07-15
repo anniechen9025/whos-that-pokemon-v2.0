@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import API from '../../utils/API'
-// import image from "../../image";
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button

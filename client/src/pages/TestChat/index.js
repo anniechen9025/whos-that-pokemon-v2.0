@@ -14,7 +14,7 @@ const socket = socketIOClient(ENDPOINT);
 
 //todo list can use reactstrap (Header Icon)
 
-console.log(uuidv4());
+// console.log(uuidv4());
 
 class TestChat extends React.Component {
     constructor(props) {
@@ -36,8 +36,8 @@ class TestChat extends React.Component {
         })
     }
 
-    clearInput(e) {
-        e.target.value = '';
+    handleInputChange = (e) =>{
+        this.setState({[e.target.name]: e.target.value})
     }
 
     handleCloseSubmitted = e => {
@@ -49,7 +49,7 @@ class TestChat extends React.Component {
         e.preventDefault();
         socket.emit("chat message", { message: this.state.messages, username: this.state.userName, id: uuidv4() })
         this.setState({ messages:""});
-        this.messaheChild();
+        
     }
 
     componentDidMount() {
@@ -58,8 +58,8 @@ class TestChat extends React.Component {
                 console.log(data);
                 this.setState({ userName: data.data })
             });
+            this.messaheChild()
     }
-
     render() {
         return (
             <div className="chat_window">
@@ -92,7 +92,7 @@ class TestChat extends React.Component {
                     <i id="typing"></i>
                     <Form id="form">
                         <FormGroup className="message_input_wrapper">
-                            <Input id="message" className="message_input" placeholder="Type your message here..." value = {this.state.messages}/>
+                            <Input id="message" name = "messages" className="message_input" placeholder="Type your message here..." onChange = {this.handleInputChange} value = {this.state.messages}/>
                         </FormGroup>
                         <Button className="send_message" onClick={this.handleSubmit}>Send</Button>
                     </Form>
