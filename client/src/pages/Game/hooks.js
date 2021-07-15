@@ -5,11 +5,12 @@ import { useSpring } from 'react-spring';
 // TODOS:
 // Add loading pic for Pokemon Pic
 // pull # of pokemon from initial fetch to use in
-// pushed guessedPokemon to DB--- waiting on Routes to be completed.
+// pushed guessedPokemon to DB--- troubleshoot why returning null
 // if game won, start game, choose another pokemon
 //if time over end game
 //store guessedPokemon array in localstorage? otherwise when browser refresh array is emptied and caught pokemon would be refreshed
 //fix 4th hint so it doesnt appear at same time as first hint
+//API call to push caught pokemon && add to caught pokemon #
 
 // function to return random item
 function chooseRandomIndex(length) {
@@ -51,6 +52,7 @@ export function useGameLogic() {
   const [pokemonInfo, setPokemonInfo] = useState({});
   const [letterHint, setLetterHint] = useState('');
   const [visible, setVisible] = useState(true);
+  const [userPokemon, setUserPokemon] = useState(0);
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -73,6 +75,7 @@ export function useGameLogic() {
 
   useEffect(() => {
     if (gameWon === true) {
+      postGuessedPokemon(randomPokemon);
       guessedPokemon.push(randomPokemon);
       setGameStarted(false);
     }
@@ -99,6 +102,7 @@ export function useGameLogic() {
   useEffect(() => {
     if (gameStarted) {
       loadPokemon();
+      getPokemonAmount();
       setPokemonPic();
     }
   }, [gameStarted]);
@@ -160,6 +164,7 @@ export function useGameLogic() {
     visible,
     setVisible,
     guessedPokemon,
+    userPokemon,
   };
 
   // calls fetch request to return single pokemon information
@@ -169,6 +174,26 @@ export function useGameLogic() {
         console.log(res.data);
         setPokemonInfo(res.data);
         setPokemonPic(res.data.sprites.front_default);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // calls API to post guessed pokemon to DB
+  function postGuessedPokemon(name) {
+    console.log(name);
+    API.postGameResult({ name: name })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // calls APi to return # of pokemon a user has caught
+  function getPokemonAmount() {
+    API.getUserInfo()
+      .then((res) => {
+        console.log(res.data.pokemon_amount);
+        setUserPokemon(res.data.pokemon_amount);
       })
       .catch((err) => console.log(err));
   }

@@ -7,7 +7,6 @@ import {
   Card,
   CardImg,
   CardTitle,
-  CardText,
   Container,
   Col,
   Button,
@@ -37,6 +36,7 @@ function Game(props) {
     visible,
     setVisible,
     guessedPokemon,
+    userPokemon,
   } = useGameLogic();
 
   const onDismiss = () => setVisible(false);
@@ -47,7 +47,12 @@ function Game(props) {
 
   return (
     <Container>
-      <main>
+      <img
+        className="squirtle"
+        src={require('../../assets/squirtle.jpg')}
+        alt={'squirtlebg'}
+      />
+      <main className="content">
         <section>
           {gameStarted && (
             <Col lg="3">
@@ -105,9 +110,9 @@ function Game(props) {
               <div>
                 <h2>
                   <div className="text-center">
-                    Pokemon Caught: 50 of {totalPokemon}
+                    Pokemon Caught: {userPokemon} of {totalPokemon}
                   </div>
-                  <Progress value={50} max={totalPokemon} />{' '}
+                  <Progress value={userPokemon} max={totalPokemon} />{' '}
                 </h2>
               </div>
             </div>

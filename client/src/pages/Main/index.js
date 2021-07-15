@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// Christine
 import Button from '../../components/Button';
-import './style.css'
+import './style.css';
 
 function Main() {
   return (
@@ -16,7 +15,6 @@ function Main() {
         </Button>
       </div>
     </div>
-
 
     // <Container>
     // <LeftContainer>
