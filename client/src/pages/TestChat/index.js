@@ -14,8 +14,6 @@ const socket = socketIOClient(ENDPOINT);
 
 //todo list can use reactstrap (Header Icon)
 
-// console.log(uuidv4());
-
 class TestChat extends React.Component {
     constructor(props) {
         super(props);
@@ -49,7 +47,6 @@ class TestChat extends React.Component {
         e.preventDefault();
         socket.emit("chat message", { message: this.state.messages, username: this.state.userName, id: uuidv4() })
         this.setState({ messages:""});
-        
     }
 
     componentDidMount() {
