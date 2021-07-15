@@ -73,10 +73,18 @@ io = socketIo(server, {
   }
 });
 
+let usersOnline = []
 
 io.on('connection', (socket) => {
   console.log('User connected');
-
+  //io.emit('user online', Object.keys(io.engine.clients))
+  console.log(Object.keys(io.engine.clients));
+  socket.on("user online", (username)=>{
+    socket.username = username;
+    usersOnline.push(socket.username)
+    console.log(socket.username);
+    socket.emit("user joined",usersOnline)
+  })
   // Think about this as an event listener
   socket.on('chat message', (data) => {
     console.log(data)
@@ -86,5 +94,9 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('User disconnected');
+    io.emit('user disconnect', Object.keys(io.engine.clients))
+    usersOnline = usersOnline.filter((username) => !username)
+    console.log(usersOnline);
+    console.log(Object.keys(io.engine.clients));
   });
 });
