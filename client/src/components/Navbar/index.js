@@ -1,6 +1,8 @@
 // import "./style.css";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import LoginControl from "../LoginControl"
+// import Login from '../Loginbtn';
+// import Logout from '../Logoutbtn';
 import Pikachu from "../Pikachubg";
 import {
     Collapse,
@@ -13,14 +15,14 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem,
-    NavbarText
+    DropdownItem
 } from 'reactstrap';
 
 const Navigation = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
 
     return (
         <div>
@@ -54,14 +56,12 @@ const Navigation = (props) => {
                                 Setting
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem className="fs-4" tag={Link} to="/login">
-                                    Login
+                                <DropdownItem className="fs-4" href="/signup">
+                                    Signup
                                 </DropdownItem>
-                                <DropdownItem className="fs-4">
-                                    Logout
-                                </DropdownItem>
+                                <LoginControl />
                                 <DropdownItem divider />
-                                <DropdownItem className="fs-4" tag={Link} to="/profile">
+                                <DropdownItem className="fs-4" href="/profile">
                                     Profile
                                 </DropdownItem>
                             </DropdownMenu>

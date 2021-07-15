@@ -9,15 +9,15 @@ mongoose.connect(
 );
 
 const pokemonSeed = [{
-  pokemon: "Bulbasaur",
+  name: "Bulbasaur",
   date: new Date(Date.now())
 },
 {
-  pokemon: "Ivysaur",
+  name: "Ivysaur",
   date: new Date(Date.now())
 },
 {
-  pokemon: "Venusaur",
+  name: "Venusaur",
   date: new Date(Date.now())
 }];
 
@@ -25,24 +25,24 @@ const userSeed = [{
   username: "anniechen9025",
   email: "anniechen9025@gmail.com",
   password: "annie9025",
-  pokemon_amount: "0"
+  pokemon_amount: "5"
 },
 {
   username: "lihua",
   email: "lihua.anderson@gmail.com",
-  password: "123456",
+  password: "12345678",
   pokemon_amount: "200"
 },
 {
   username: "christine",
   email: "ctine.ngyn@gmail.com",
-  password: "123456",
+  password: "12345678",
   pokemon_amount: "100"
 },
 {
   username: "daniel",
   email: "dannyphan@comcast.net",
-  password: "123456",
+  password: "12345678",
   pokemon_amount: "1000"
 }];
 

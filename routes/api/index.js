@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const userRoutes = require("./user");
-const pokemonRoutes = require("./user");
+const pokemonRoutes = require("./pokemon");
 
 // Book routes
 router.use("/user", userRoutes);
