@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import API from '../../utils/API';
 
@@ -103,9 +104,18 @@ class Signup extends React.Component {
         // const modalError = this.state.error ? 'not' : ''; // This is just for the modal
         return (
             <Container className="themed-container" fluid="md">
+                <Jumbotron fluid>
+                    <Container fluid>
+                        <Row>
+                            <Col sm={{ size: 6, order: 2, offset: 1 }}>
+                                <h1 className="display-3 text-center">Welcome New User!!</h1>
+                                <p className="lead text-center">Please Signup your unique account HERE!!!</p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Jumbotron>
                 <Row>
-                    <Col></Col>
-                    <Col>
+                    <Col sm="12" md={{ size: 6, offset: 3 }}>
                         <AvForm
                             // onValidSubmit={this.handleValidSubmit}
                             // onInvalidSubmit={this.handleInvalidSubmit}
@@ -155,12 +165,9 @@ class Signup extends React.Component {
                                     minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
                                     maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                                 }} />
-                            <Button
-                                color="primary"
-                            >Submit</Button>
+                            <Button>Submit</Button>
                         </AvForm>
                     </Col>
-                    <Col></Col>
                 </Row>
 
                 {/* below this is just for show, it's not needed unless you want a modal upon form submission */}

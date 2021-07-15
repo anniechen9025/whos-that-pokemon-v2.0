@@ -11,6 +11,7 @@ import {
   Container,
   Col,
   Button,
+  Alert,
 } from 'reactstrap';
 
 const AnimatedCardImg = animated(CardImg);
@@ -33,10 +34,16 @@ function Game(props) {
     loadPokemon,
     styles,
     letterHint,
+    visible,
+    setVisible,
+    guessedPokemon,
   } = useGameLogic();
+
+  const onDismiss = () => setVisible(false);
   console.log(randomPokemon);
   console.log(gameWon);
   console.log(letterHint);
+  console.log(guessedPokemon);
 
   return (
     <Container>
@@ -53,10 +60,15 @@ function Game(props) {
                 />
                 <CardTitle tag="h5">{displayString}</CardTitle>
                 {!!hint && (
-                  <CardText>
+                  <Alert color="secondary" isOpen={visible} toggle={onDismiss}>
                     This is a <b>{pokemonInfo.types[0].type.name}</b> type
                     Pokemon.
-                  </CardText>
+                  </Alert>
+                )}
+                {!!hint && (
+                  <Alert color="info" isOpen={visible} toggle={onDismiss}>
+                    A possible letter is: <b>{letterHint}</b>.
+                  </Alert>
                 )}
               </Card>
             </Col>

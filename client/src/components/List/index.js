@@ -1,11 +1,12 @@
 import React from "react";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-function List({ message }) {
+function List(prop ) {
+    console.log(prop);
     return (
         <div className="col-12 col-sm-6">
-            <li>{message.message}</li>
-            <span>by {message.username}</span>
+            <li>{prop.message}</li>
+            <span>by {prop.username}</span>
         </div>
     );
 }
