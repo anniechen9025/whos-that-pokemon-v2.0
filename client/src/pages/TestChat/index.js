@@ -14,6 +14,7 @@ const socket = socketIOClient(ENDPOINT);
 
 //todo list can use reactstrap (Header Icon)
 
+console.log(uuidv4());
 
 class TestChat extends React.Component {
     constructor(props) {
@@ -35,6 +36,10 @@ class TestChat extends React.Component {
         })
     }
 
+    clearInput(e) {
+        e.target.value = '';
+    }
+
     handleCloseSubmitted = e => {
         e.preventDefault();
         this.props.history.push('/')
@@ -42,7 +47,8 @@ class TestChat extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        socket.emit("chat message", { message: this.state.messages, username: this.state.userName })
+        socket.emit("chat message", { message: this.state.messages, username: this.state.userName, id: uuidv4() })
+        this.setState({ messages:""});
         this.messaheChild();
     }
 
@@ -75,7 +81,7 @@ class TestChat extends React.Component {
                         <Col>
                             <ul id="messages" className="messages">
                                 {this.state.userMessages.map((message) => {
-                                    return <List message={message.message} key={message.id} username={message.userName} />
+                                    return <List message={message.message} key={message.id} username={this.state.userName} />
                                 })}
                             </ul>
                         </Col>
@@ -86,7 +92,7 @@ class TestChat extends React.Component {
                     <i id="typing"></i>
                     <Form id="form">
                         <FormGroup className="message_input_wrapper">
-                            <Input id="message" className="message_input" placeholder="Type your message here..." onChange={e => this.state.messages = e.target.value} />
+                            <Input id="message" className="message_input" placeholder="Type your message here..." value = {this.state.messages}/>
                         </FormGroup>
                         <Button className="send_message" onClick={this.handleSubmit}>Send</Button>
                     </Form>
@@ -97,6 +103,7 @@ class TestChat extends React.Component {
     }
 }
 
+// onChange={e => this.state.messages = e.target.value} 
 // function TestChat() {
 //     const [message, setMessage] = useState();
 

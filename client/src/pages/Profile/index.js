@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from '../../utils/API'
+// import image from "../../image";
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
@@ -7,6 +8,7 @@ import {
 import { Container, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
+// console.log(image);
 
 function Profile() {
     const [username, setUserName] = useState();
@@ -74,13 +76,14 @@ function Profile() {
 
     useEffect(() => {
         setImageNumber(chooseRandomIndex(imagesource.length))
+        // console.log(imageNumber);
         UserInfo();
         setHide(false);
-
     }, []);
+
     //todo when console log is undefine but later number will pops up 
     // console.log(imageNumber);
-    // src={require(`./${imageNumber}.png`)}
+    
 
     return (
         <Container>
@@ -88,9 +91,9 @@ function Profile() {
 
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     <Card>
-                        {/* <CardImg top width="100%"  alt="Card image cap" /> */}
+                        <CardImg top width="100%" alt="Card image cap" />
                         <CardBody>
-                            <CardTitle tag="h2">Hi, {username}!</CardTitle>
+                            <CardTitle tag="h1">Hi, {username}!</CardTitle>
                             <CardSubtitle tag="h5" className="mb-2 text-muted">{rank}</CardSubtitle>
                             <CardText></CardText>
                         </CardBody>
