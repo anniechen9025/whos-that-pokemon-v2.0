@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { usePokedexLogic } from './hooks';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 function Pokedex() {
-  const { userPokemon } = usePokedexLogic();
+  const { userPokemon, pokemonData } = usePokedexLogic();
   console.log(userPokemon);
 
   return (

@@ -6,7 +6,10 @@ import { useSpring } from 'react-spring';
 // Add loading pic for Pokemon Pic
 // pull # of pokemon from initial fetch to use in
 // pushed guessedPokemon to DB--- waiting on Routes to be completed.
-// third hint fills in two blanks?
+// if game won, start game, choose another pokemon
+//if time over end game
+//store guessedPokemon array in localstorage? otherwise when browser refresh array is emptied and caught pokemon would be refreshed
+//fix 4th hint so it doesnt appear at same time as first hint
 
 // function to return random item
 function chooseRandomIndex(length) {
@@ -47,6 +50,7 @@ export function useGameLogic() {
   const [totalPokemon, setTotalPokemon] = useState(0);
   const [pokemonInfo, setPokemonInfo] = useState({});
   const [letterHint, setLetterHint] = useState('');
+  const [visible, setVisible] = useState(true);
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -66,6 +70,13 @@ export function useGameLogic() {
     () => randomPokemon === displayString.split(' ').join(''),
     [displayString, randomPokemon]
   );
+
+  useEffect(() => {
+    if (gameWon === true) {
+      guessedPokemon.push(randomPokemon);
+      setGameStarted(false);
+    }
+  }, [gameWon, setGuessedPokemon, randomPokemon]);
 
   useEffect(() => {
     if (counter > 0 && gameStarted) {
@@ -146,6 +157,9 @@ export function useGameLogic() {
     loadPokemon,
     styles,
     letterHint,
+    visible,
+    setVisible,
+    guessedPokemon,
   };
 
   // calls fetch request to return single pokemon information
