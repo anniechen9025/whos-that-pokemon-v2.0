@@ -70,12 +70,10 @@ class TestChat extends React.Component {
                 </div>
                 <Container>
                     <Row>
-                        <Col className="chatlist">
+                        <Col xs="3" sm="3" className="chatlist">
                         <ChatList />
                         </Col>
-                        <Col></Col>
-                        <Col></Col>
-                        <Col>
+                        <Col xs="9" sm="9" >
                             <ul id="messages" className="messages">
                                 {this.state.userMessages.map((message) => {
                                     return <List message={message.message} key={message.id} username={this.state.userName} />
