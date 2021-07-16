@@ -188,7 +188,7 @@ export function useGameLogic() {
       .then((res) => {
         console.log(res.data);
         setPokemonInfo(res.data);
-        setPokemonPic(res.data.sprites.front_default);
+        setPokemonPic(res.data.sprites.other.dream_world.front_default);
       })
       .catch((err) => console.log(err));
   }
