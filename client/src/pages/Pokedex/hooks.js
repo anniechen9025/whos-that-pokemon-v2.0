@@ -34,16 +34,7 @@ export function usePokedexLogic() {
   }
   return { userPokemon, pokemonData };
 
-  // API call to fetch 3rd party AI info on one pokemon
-  function getPokemonData(pokemonName) {
-    API.getPokedex(pokemonName)
-      .then((res) => {
-        console.log(res.data);
-        setPokemonData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
-
+  // API call to fetch 3rd party API info on one pokemon
   function getPokemonData(pokemonName) {
     API.getPokedex(pokemonName)
       .then((res) => {

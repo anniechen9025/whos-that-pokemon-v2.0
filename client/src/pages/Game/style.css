@@ -1,12 +1,5 @@
-.squirtle{ 
-    width: 1000px;
-    z-index: 1;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.pokemon{ 
+    width: 10px;
     display: flex;
     justify-content: center;
-}
-
-.content {
-    z-index: 3;
 }
