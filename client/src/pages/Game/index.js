@@ -33,13 +33,14 @@ function Game(props) {
     loadPokemon,
     styles,
     letterHint,
-    visible,
-    setVisible,
+    hint1Visible,
+    hint2Visible,
     guessedPokemon,
     userPokemon,
+    onDismiss1,
+    onDismiss2,
   } = useGameLogic();
 
-  const onDismiss = () => setVisible(false);
   console.log(randomPokemon);
   console.log(gameWon);
   console.log(letterHint);
@@ -47,31 +48,30 @@ function Game(props) {
 
   return (
     <Container>
-      <img
-        className="squirtle"
-        src={require('../../assets/squirtle.jpg')}
-        alt={'squirtlebg'}
-      />
       <main className="content">
         <section>
           {gameStarted && (
-            <Col lg="3">
+            <Col sm="12" md={{ size: 4, offset: 4 }}>
               <Card body className="text-center">
                 <AnimatedCardImg
-                  width="50%"
+                  className="pokemon"
                   src={pokemonPic}
                   alt="Current Pokemon"
                   style={styles}
                 />
                 <CardTitle tag="h5">{displayString}</CardTitle>
-                {!!hint && (
-                  <Alert color="secondary" isOpen={visible} toggle={onDismiss}>
+                {!!hint && hint > 1 && (
+                  <Alert
+                    color="secondary"
+                    isOpen={hint1Visible}
+                    toggle={onDismiss1}
+                  >
                     This is a <b>{pokemonInfo.types[0].type.name}</b> type
                     Pokemon.
                   </Alert>
                 )}
-                {!!hint && (
-                  <Alert color="info" isOpen={visible} toggle={onDismiss}>
+                {!!hint && hint > 2 && (
+                  <Alert color="info" isOpen={hint2Visible} toggle={onDismiss2}>
                     A possible letter is: <b>{letterHint}</b>.
                   </Alert>
                 )}

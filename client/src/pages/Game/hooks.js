@@ -51,8 +51,11 @@ export function useGameLogic() {
   const [totalPokemon, setTotalPokemon] = useState(0);
   const [pokemonInfo, setPokemonInfo] = useState({});
   const [letterHint, setLetterHint] = useState('');
-  const [visible, setVisible] = useState(true);
+  const [hint1Visible, setHint1Visible] = useState(true);
+  const [hint2Visible, setHint2Visible] = useState(true);
   const [userPokemon, setUserPokemon] = useState(0);
+  const onDismiss1 = () => setHint1Visible(false);
+  const onDismiss2 = () => setHint2Visible(false);
   useKeyHandlers(setGuessedLetters);
 
   const displayString = useMemo(() => {
@@ -74,12 +77,23 @@ export function useGameLogic() {
   );
 
   useEffect(() => {
-    if (gameWon === true) {
+    if (gameWon && !!randomPokemon) {
+      setRandomPokemon('');
       postGuessedPokemon(randomPokemon);
-      guessedPokemon.push(randomPokemon);
+      setGuessedPokemon((prev) => [...prev, randomPokemon]);
+      putPokemonAmount(userPokemon + 1);
       setGameStarted(false);
     }
-  }, [gameWon, setGuessedPokemon, randomPokemon]);
+  }, [
+    setRandomPokemon,
+    gameWon,
+    postGuessedPokemon,
+    setGuessedPokemon,
+    randomPokemon,
+    putPokemonAmount,
+    userPokemon,
+    setGameStarted,
+  ]);
 
   useEffect(() => {
     if (counter > 0 && gameStarted) {
@@ -100,18 +114,17 @@ export function useGameLogic() {
   }, [randomPokemon, hint, setLetterHint, guessedLetters]);
 
   useEffect(() => {
-    if (gameStarted) {
+    if (gameStarted && randomPokemon === '') {
       loadPokemon();
       getPokemonAmount();
-      setPokemonPic();
     }
-  }, [gameStarted]);
+  }, [gameStarted, randomPokemon, loadPokemon, getPokemonAmount]);
 
   useEffect(() => {
-    if (randomPokemon) {
+    if (gameStarted && pokemonInfo.name != randomPokemon) {
       getPokemonInfo(randomPokemon);
     }
-  }, [randomPokemon]);
+  }, [gameStarted, randomPokemon, pokemonInfo, getPokemonInfo]);
 
   function picBlur(hint) {
     switch (hint) {
@@ -161,10 +174,12 @@ export function useGameLogic() {
     loadPokemon,
     styles,
     letterHint,
-    visible,
-    setVisible,
+    hint1Visible,
+    hint2Visible,
     guessedPokemon,
     userPokemon,
+    onDismiss1,
+    onDismiss2,
   };
 
   // calls fetch request to return single pokemon information
@@ -184,6 +199,16 @@ export function useGameLogic() {
     API.postGameResult({ name: name })
       .then((res) => {
         console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // calls API to update # of pokemon a user has caught
+  function putPokemonAmount(number) {
+    API.increasePokemonAmount({ pokemon_amount: number })
+      .then((res) => {
+        console.log(res.data.pokemon_amount);
+        setUserPokemon(res.data.pokemon_amount);
       })
       .catch((err) => console.log(err));
   }
