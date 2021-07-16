@@ -1,5 +1,6 @@
-.pokemon{ 
-    width: 10px;
+.btncont{ 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

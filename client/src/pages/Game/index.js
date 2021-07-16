@@ -7,6 +7,7 @@ import {
   Card,
   CardImg,
   CardTitle,
+  CardSubtitle,
   Container,
   Col,
   Button,
@@ -51,8 +52,12 @@ function Game(props) {
       <main className="content">
         <section>
           {gameStarted && (
-            <Col sm="12" md={{ size: 4, offset: 4 }}>
-              <Card body className="text-center">
+            <Col sm="12" md={{ size: 3, offset: 4 }}>
+              <Card body className="text-center bg-light">
+                <CardSubtitle tag="h6" className="mb-2 text-muted">
+                  {' '}
+                  {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
+                </CardSubtitle>
                 <AnimatedCardImg
                   className="pokemon"
                   src={pokemonPic}
@@ -60,7 +65,7 @@ function Game(props) {
                   style={styles}
                 />
                 <CardTitle tag="h5">{displayString}</CardTitle>
-                {!!hint && hint > 1 && (
+                {!!hint && (
                   <Alert
                     color="secondary"
                     isOpen={hint1Visible}
@@ -78,54 +83,42 @@ function Game(props) {
               </Card>
             </Col>
           )}
-          <Button
-            className="start-button"
-            onClick={() => {
-              loadPokemon();
-              setGameStarted(true);
-              setGuessedLetters([]);
-              setCounter(60);
-              setHint(0);
-            }}
-          >
-            Start
-          </Button>
+          <Col sm="12" md={{ size: 3, offset: 4 }} className="btncont">
+            <Button
+              className="start-button"
+              onClick={() => {
+                loadPokemon();
+                setGameStarted(true);
+                setGuessedLetters([]);
+                setCounter(60);
+                setHint(0);
+              }}
+            >
+              Start
+            </Button>
+            {gameStarted && (
+              <>
+                <Button
+                  className="hint-button"
+                  onClick={() => {
+                    setHint(hint + 1);
+                  }}
+                >
+                  Hint
+                </Button>
+              </>
+            )}
+          </Col>
           {gameStarted && (
-            <>
-              <Button
-                className="hint-button"
-                onClick={() => {
-                  setHint(hint + 1);
-                }}
-              >
-                Hint
-              </Button>
-            </>
+            <Col sm="12" md={{ size: 3, offset: 4 }}>
+              <h5>
+                <div className="text-center">
+                  Pokemon Caught: {userPokemon} of {totalPokemon}
+                </div>
+                <Progress value={userPokemon} max={totalPokemon} />{' '}
+              </h5>
+            </Col>
           )}
-        </section>
-
-        <section>
-          <div className="card results">
-            <div className="win-loss-container">
-              <div>
-                <h2>
-                  <div className="text-center">
-                    Pokemon Caught: {userPokemon} of {totalPokemon}
-                  </div>
-                  <Progress value={userPokemon} max={totalPokemon} />{' '}
-                </h2>
-              </div>
-            </div>
-            <div className="card timer">
-              <div className="timer-text">
-                <div className="large-font timer-count">Countdown:</div>
-                <h3>
-                  {' '}
-                  {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
-                </h3>
-              </div>
-            </div>
-          </div>
         </section>
       </main>
     </Container>
