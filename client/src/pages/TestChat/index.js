@@ -28,7 +28,7 @@ class TestChat extends React.Component {
     messaheChild() {
         socket.on('chat message', (data) => {
             console.log(data)
-            let messageArray = this.state.userMessages;;
+            let messageArray = this.state.userMessages;
             messageArray.push(data)
             this.setState({ userMessages: messageArray })
         })
@@ -52,10 +52,26 @@ class TestChat extends React.Component {
     componentDidMount() {
         API.getUsername()
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 this.setState({ userName: data.data })
             });
             this.messaheChild()
+            this.handleOnlineUsers()
+    }
+
+    handleOnlineUsers() {
+        let onlineUsers = this.state.online
+        
+            API.getUsername().then(data => {
+                onlineUsers.push(data.data)
+                this.setState({online: onlineUsers})
+                // console.log(this.state.online);
+                socket.emit("user online", data.data)
+                socket.on("user joined", (data) => {
+                    console.log(data);
+                })
+            })
+         
     }
     render() {
         return (
@@ -70,13 +86,13 @@ class TestChat extends React.Component {
                 </div>
                 <Container>
                     <Row>
-                        <Col xs="3" sm="3" className="chatlist">
-                        <ChatList />
+                        <Col className="chatlist">
+                        <ChatList userName = {this.state.userName}/>
                         </Col>
                         <Col xs="9" sm="9" >
                             <ul id="messages" className="messages">
                                 {this.state.userMessages.map((message) => {
-                                    return <List message={message.message} key={message.id} username={this.state.userName} />
+                                    return <List message={message.message} key={message.id} username={message.username} />
                                 })}
                             </ul>
                         </Col>

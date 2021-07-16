@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { usePokedexLogic } from './hooks';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink, Button } from 'reactstrap';
 
 function Pokedex() {
   const { userPokemon, pokemonData } = usePokedexLogic();
@@ -71,7 +71,11 @@ function Pokedex() {
         </div>
         <div className="right-container">
           <div className="right-container__black">
-            <div className="right-container__screen"></div>
+            <div className="right-container__screen">
+              <div className="list-item">
+                <button className="list-item">Pikachu</button>
+              </div>
+            </div>
           </div>
           <div className="right-container__buttons">
             <div className="innerContainer">

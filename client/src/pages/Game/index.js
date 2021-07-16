@@ -7,7 +7,6 @@ import {
   Card,
   CardImg,
   CardTitle,
-  CardText,
   Container,
   Col,
   Button,
@@ -34,12 +33,14 @@ function Game(props) {
     loadPokemon,
     styles,
     letterHint,
-    visible,
-    setVisible,
+    hint1Visible,
+    hint2Visible,
     guessedPokemon,
+    userPokemon,
+    onDismiss1,
+    onDismiss2,
   } = useGameLogic();
 
-  const onDismiss = () => setVisible(false);
   console.log(randomPokemon);
   console.log(gameWon);
   console.log(letterHint);
@@ -47,26 +48,30 @@ function Game(props) {
 
   return (
     <Container>
-      <main>
+      <main className="content">
         <section>
           {gameStarted && (
-            <Col lg="3">
+            <Col sm="12" md={{ size: 4, offset: 4 }}>
               <Card body className="text-center">
                 <AnimatedCardImg
-                  width="50%"
+                  className="pokemon"
                   src={pokemonPic}
                   alt="Current Pokemon"
                   style={styles}
                 />
                 <CardTitle tag="h5">{displayString}</CardTitle>
-                {!!hint && (
-                  <Alert color="secondary" isOpen={visible} toggle={onDismiss}>
+                {!!hint && hint > 1 && (
+                  <Alert
+                    color="secondary"
+                    isOpen={hint1Visible}
+                    toggle={onDismiss1}
+                  >
                     This is a <b>{pokemonInfo.types[0].type.name}</b> type
                     Pokemon.
                   </Alert>
                 )}
-                {!!hint && (
-                  <Alert color="info" isOpen={visible} toggle={onDismiss}>
+                {!!hint && hint > 2 && (
+                  <Alert color="info" isOpen={hint2Visible} toggle={onDismiss2}>
                     A possible letter is: <b>{letterHint}</b>.
                   </Alert>
                 )}
@@ -105,9 +110,9 @@ function Game(props) {
               <div>
                 <h2>
                   <div className="text-center">
-                    Pokemon Caught: 50 of {totalPokemon}
+                    Pokemon Caught: {userPokemon} of {totalPokemon}
                   </div>
-                  <Progress value={50} max={totalPokemon} />{' '}
+                  <Progress value={userPokemon} max={totalPokemon} />{' '}
                 </h2>
               </div>
             </div>
