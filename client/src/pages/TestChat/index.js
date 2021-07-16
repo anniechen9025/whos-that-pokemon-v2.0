@@ -89,9 +89,7 @@ class TestChat extends React.Component {
                         <Col className="chatlist">
                         <ChatList userName = {this.state.userName}/>
                         </Col>
-                        <Col></Col>
-                        <Col></Col>
-                        <Col>
+                        <Col xs="9" sm="9" >
                             <ul id="messages" className="messages">
                                 {this.state.userMessages.map((message) => {
                                     return <List message={message.message} key={message.id} username={message.username} />

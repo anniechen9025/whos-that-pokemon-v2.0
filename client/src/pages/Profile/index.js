@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from '../../utils/API'
-// import image from "../../image";
+import ChatImage from "../../components/CardImage";
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
@@ -82,7 +82,7 @@ function Profile() {
     }, []);
 
     //todo when console log is undefine but later number will pops up 
-    // console.log(imageNumber);
+    console.log(imageNumber);
     
 
     return (
@@ -91,7 +91,7 @@ function Profile() {
 
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     <Card>
-                        <CardImg top width="100%" alt="Card image cap" />
+                        {imageNumber && <ChatImage imagenumber = {imageNumber}/>}
                         <CardBody>
                             <CardTitle tag="h1">Hi, {username}!</CardTitle>
                             <CardSubtitle tag="h5" className="mb-2 text-muted">{rank}</CardSubtitle>
