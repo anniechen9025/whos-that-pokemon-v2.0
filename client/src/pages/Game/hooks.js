@@ -5,12 +5,9 @@ import { useSpring } from 'react-spring';
 // TODOS:
 // Add loading pic for Pokemon Pic
 // pull # of pokemon from initial fetch to use in
-// pushed guessedPokemon to DB--- troubleshoot why returning null
 // if game won, start game, choose another pokemon
 //if time over end game
 //store guessedPokemon array in localstorage? otherwise when browser refresh array is emptied and caught pokemon would be refreshed
-//fix 4th hint so it doesnt appear at same time as first hint
-//API call to push caught pokemon && add to caught pokemon #
 
 // function to return random item
 function chooseRandomIndex(length) {
@@ -47,7 +44,7 @@ export function useGameLogic() {
   const [gameStarted, setGameStarted] = useState(false);
   const [guessedPokemon, setGuessedPokemon] = useState([]);
   const [hint, setHint] = useState(0);
-  const [counter, setCounter] = useState(60);
+  const [counter, setCounter] = useState(20);
   const [totalPokemon, setTotalPokemon] = useState(0);
   const [pokemonInfo, setPokemonInfo] = useState({});
   const [letterHint, setLetterHint] = useState('');
@@ -105,6 +102,12 @@ export function useGameLogic() {
   }, [counter, gameStarted]);
 
   useEffect(() => {
+    if (counter === 0 && gameStarted) {
+      setGameStarted(false);
+    }
+  }, [counter, gameStarted, setGameStarted]);
+
+  useEffect(() => {
     if (hint > 2) {
       const newLetterHint = randomPokemon
         .split('')
@@ -121,7 +124,7 @@ export function useGameLogic() {
   }, [gameStarted, randomPokemon, loadPokemon, getPokemonAmount]);
 
   useEffect(() => {
-    if (gameStarted && pokemonInfo.name != randomPokemon) {
+    if (gameStarted && pokemonInfo.name !== randomPokemon) {
       getPokemonInfo(randomPokemon);
     }
   }, [gameStarted, randomPokemon, pokemonInfo, getPokemonInfo]);
