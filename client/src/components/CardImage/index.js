@@ -8,7 +8,7 @@ import {
 function ChatImage(prop) {
     console.log(prop);
     return (
-        <CardImg top width="100%" src={`image/${prop.imagenumber}.png`}alt="Card image cap" />
+        <CardImg id= "pokemon_image" top width="100%" src={`image/${prop.imagenumber}.png`} alt="Card image cap" />
     );
 }
 

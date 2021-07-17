@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import Header from "../../components/Header";
+import Header from "../../components/Navbar2";
+import { useHistory  } from 'react-router-dom';
+import Signup from '../Signup';
+import LoginSignup from '../../components/Loginsignup'
 
 async function loginAuth(credentials) {
     return fetch('http://localhost:3001/authlogin', {
@@ -18,10 +21,12 @@ async function loginAuth(credentials) {
 }
 
 
-function Login({ setToken }) {
+function Login({ setToken, token }) {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const history = useHistory();
+    // const [signup, setSingup] = useState(false);
 
     async function loginUserFormSubmit(credential) {
         console.log(credential);
@@ -34,6 +39,7 @@ function Login({ setToken }) {
                         password
                     });
                     setToken(token);
+                    history.push('/')
                 }
                 return data;
             })
@@ -52,9 +58,40 @@ function Login({ setToken }) {
         )
     }
 
+    // useEffect(() => {
+    //     if (token) {
+    //         history.push('/game');
+    //     }
+    // }, [token])
+
+    // const handleclicktrue = (e) => {
+    //     setSingup = true;
+    // }
+
+    // const handleclickfalse = (e) => {
+    //     setSingup = false;
+    // }
+
+    // let button;
+    // let switchback;
+
+    // if (signup == true) {
+    //     button =
+    //         <Router>
+    //             <Route exact path="/login/signup" component={Signup} />
+    //         </Router>;
+    //     switchback =
+    //         <Row>
+    //             <Col sm="12" md={{ size: 6, offset: 4 }}>
+    //                 <br></br>
+    //                 <Button onClick={handleclickfalse} color="link" href="/login"> Back to Login </Button>
+    //             </Col>
+    //         </Row>;
+    // }
+
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <Form inline onSubmit={handleSubmit}>
                 <Container>
                     <Jumbotron fluid>
@@ -80,6 +117,12 @@ function Login({ setToken }) {
                             </FormGroup>
                             <br></br>
                             <Button>Submit</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm="12" md={{ size: 6, offset: 4 }}>
+                            <br></br>
+                            <Button color="link" href="/signup">Need to sign for new account?</Button>
                         </Col>
                     </Row>
                 </Container>

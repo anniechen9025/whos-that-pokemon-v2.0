@@ -18,7 +18,7 @@ function Profile() {
     const [rank, setRank] = useState();
     const [imageNumber, setImageNumber] = useState();
     const [hide, setHide] = useState();
-    const imagesource = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82];
+    const imagesource = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
 
     function UserInfo() {
         API.getUserInfo()
@@ -58,47 +58,66 @@ function Profile() {
     }
 
     function playerRank(amount) {
+        setPkAmount(amount)
         if (amount >= 0 && amount < 10) {
             setRank("Beginner Trainer")
-        } else if (amount > 10 && amount < 30) {
+            setImageNumber("1")
+        } else if (amount >= 10 && amount < 30) {
             setRank("Intermediate Trainer")
-        } else if (amount > 30 && amount < 60) {
+            setImageNumber("2")
+        } else if (amount >= 30 && amount < 60) {
             setRank("Advance Trainer")
-        } else if (amount > 60 && amount < 100) {
+            setImageNumber("3")
+        } else if (amount >= 60 && amount < 100) {
             setRank("Proficient Trainer")
-        } else if (amount > 100 && amount < 150) {
+            setImageNumber("4")
+        } else if (amount >= 100 && amount < 150) {
             setRank("Master Trainer")
-        } else if (amount > 150) {
+            setImageNumber("5")
+        } else if (amount >= 150) {
             setRank("Grand Master")
+            setImageNumber("6")
         }
     }
 
 
     useEffect(() => {
-        setImageNumber(chooseRandomIndex(imagesource.length))
+        // setImageNumber(chooseRandomIndex(imagesource.length))
         // console.log(imageNumber);
         UserInfo();
         setHide(false);
+        console.log(imageNumber);
     }, []);
 
     //todo when console log is undefine but later number will pops up 
-    console.log(imageNumber);
-    
+    // console.log(imageNumber);
+
 
     return (
         <Container>
             <Row>
-
-                <Col sm="12" md={{ size: 6, offset: 3 }}>
+                <Col></Col>
+                <Col s="6" sm="4">
                     <Card>
-                        {imageNumber && <ChatImage imagenumber = {imageNumber}/>}
                         <CardBody>
                             <CardTitle tag="h1">Hi, {username}!</CardTitle>
+                            <br></br>
+                            <h4>Rank:</h4>
                             <CardSubtitle tag="h5" className="mb-2 text-muted">{rank}</CardSubtitle>
-                            <CardText></CardText>
+                            <br></br>
+                            <CardSubtitle tag="h5" className="mb-2 text-muted">Total Pokemon #: {pkamount}</CardSubtitle>
+                            <br></br>
+                            <CardText>Trainers, you can check your rank and update your account password below,</CardText>
+                            <CardText>Enjoy your journey!</CardText>
                         </CardBody>
                     </Card>
                 </Col>
+                <Col s="6" sm="4">
+                    <div>
+                        {imageNumber && <ChatImage imagenumber={imageNumber} />}
+                    </div>
+                </Col>
+                <Col></Col>
             </Row>
 
             <br></br>
@@ -126,7 +145,7 @@ function Profile() {
                             onChange={e => setPassword(e.target.value)}
                             validate={{
                                 required: { value: true, errorMessage: 'Please enter a password' },
-                                // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                                pattern: { value: '^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$', errorMessage: 'Your password must be at least three lowercase letter, two uppercase letter, two number and one special character' },
                                 minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
                                 maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                             }} />
@@ -137,7 +156,7 @@ function Profile() {
                             validate={{
                                 match: { value: 'originalpassword', errorMessage: 'Please enter your set password again' },
                                 required: { value: true, errorMessage: 'Please enter a password' },
-                                // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                                // pattern: { value: '^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$', errorMessage: 'Your password must be at least three lowercase letter, two uppercase letter, two number and one special character' },
                                 minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
                                 maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                             }} />
