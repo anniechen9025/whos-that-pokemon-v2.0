@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import Header from "../../components/Header";
+import Header from "../../components/Navbar2";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Signup from '../Signup';
 import LoginSignup from '../../components/Loginsignup'
@@ -83,7 +83,7 @@ function Login({ setToken }) {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <Form inline onSubmit={handleSubmit}>
                 <Container>
                     <Jumbotron fluid>
@@ -114,14 +114,9 @@ function Login({ setToken }) {
                     <Row>
                         <Col sm="12" md={{ size: 6, offset: 4 }}>
                             <br></br>
-                            <Button color="link" href="/login/signup">Need to sign for new account?</Button>
+                            <Button color="link" href="/signup">Need to sign for new account?</Button>
                         </Col>
                     </Row>
-                    {/* <Router>
-                        <Route exact path="/login/signup" component={Signup} />
-                    </Router> */}
-                    {/* {button}
-                    {switchback} */}
                 </Container>
             </Form>
 

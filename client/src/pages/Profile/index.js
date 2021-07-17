@@ -62,19 +62,19 @@ function Profile() {
         if (amount >= 0 && amount < 10) {
             setRank("Beginner Trainer")
             setImageNumber("1")
-        } else if (amount > 10 && amount < 30) {
+        } else if (amount >= 10 && amount < 30) {
             setRank("Intermediate Trainer")
             setImageNumber("2")
-        } else if (amount > 30 && amount < 60) {
+        } else if (amount >= 30 && amount < 60) {
             setRank("Advance Trainer")
             setImageNumber("3")
-        } else if (amount > 60 && amount < 100) {
+        } else if (amount >= 60 && amount < 100) {
             setRank("Proficient Trainer")
             setImageNumber("4")
-        } else if (amount > 100 && amount < 150) {
+        } else if (amount >= 100 && amount < 150) {
             setRank("Master Trainer")
             setImageNumber("5")
-        } else if (amount > 150) {
+        } else if (amount >= 150) {
             setRank("Grand Master")
             setImageNumber("6")
         }
@@ -99,7 +99,6 @@ function Profile() {
                 <Col></Col>
                 <Col s="6" sm="4">
                     <Card>
-
                         <CardBody>
                             <CardTitle tag="h1">Hi, {username}!</CardTitle>
                             <br></br>
