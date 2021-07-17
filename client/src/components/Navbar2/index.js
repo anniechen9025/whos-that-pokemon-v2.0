@@ -45,7 +45,6 @@ const Nav2 = (props) => {
                                     Signup
                                 </DropdownItem>
                                 <LoginControl />
-                                <DropdownItem divider />
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>

@@ -115,7 +115,6 @@ function Profile() {
                 <Col s="6" sm="4">
                     <div>
                         {imageNumber && <ChatImage imagenumber={imageNumber} />}
-                        {/* {imageNumber && <CardImg id= "pokemon_image" top width="100%" src={`/public/image/${imageNumber}.png`} alt="Card image cap" />} */}
                     </div>
                 </Col>
                 <Col></Col>
@@ -146,7 +145,7 @@ function Profile() {
                             onChange={e => setPassword(e.target.value)}
                             validate={{
                                 required: { value: true, errorMessage: 'Please enter a password' },
-                                // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                                pattern: { value: '^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$', errorMessage: 'Your password must be at least three lowercase letter, two uppercase letter, two number and one special character' },
                                 minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
                                 maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                             }} />
@@ -157,7 +156,7 @@ function Profile() {
                             validate={{
                                 match: { value: 'originalpassword', errorMessage: 'Please enter your set password again' },
                                 required: { value: true, errorMessage: 'Please enter a password' },
-                                // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
+                                // pattern: { value: '^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$', errorMessage: 'Your password must be at least three lowercase letter, two uppercase letter, two number and one special character' },
                                 minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
                                 maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                             }} />
