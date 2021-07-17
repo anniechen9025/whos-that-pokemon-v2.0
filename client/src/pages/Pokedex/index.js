@@ -71,14 +71,45 @@ function Pokedex() {
         </div>
         <div className="right-container">
           <div className="right-container__black">
-            <div className="right-container__screen"></div>
+            <div className="right-container__screen">
+              <div className="list-item">Pikachu</div>
+              <Pagination aria-label="Page navigation example">
+                <PaginationItem>
+                  <PaginationLink first href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink previous href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">4</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">5</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink next href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink last href="#" />
+                </PaginationItem>
+              </Pagination>
+            </div>
           </div>
           <div className="right-container__buttons">
             <div className="innerContainer">
               <button className="left-button">Prev</button>
               <button className="right-button">Next</button>
             </div>
-            <button className="reset-button">Release All Your Pokemon</button>
+            <button className="reset-button">Release All Pokemon</button>
           </div>
         </div>
       </div>

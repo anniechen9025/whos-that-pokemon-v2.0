@@ -26,24 +26,15 @@ export function usePokedexLogic() {
   function loadPokedex() {
     API.getPokemon()
       .then((res) => {
-        console.log(res.data);
-        const pokemonList = res.data.pokemon.name;
-        setUserPokemon(pokemonList);
+        const pokemonList = res.data[0].pokemon.map(({ name }) => name);
+        console.log(pokemonList);
+        //setUserPokemon(pokemonList);
       })
       .catch((err) => console.log(err));
   }
   return { userPokemon, pokemonData };
 
-  // API call to fetch 3rd party AI info on one pokemon
-  function getPokemonData(pokemonName) {
-    API.getPokedex(pokemonName)
-      .then((res) => {
-        console.log(res.data);
-        setPokemonData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
-
+  // API call to fetch 3rd party API info on one pokemon
   function getPokemonData(pokemonName) {
     API.getPokedex(pokemonName)
       .then((res) => {

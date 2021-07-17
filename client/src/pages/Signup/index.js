@@ -1,39 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import API from '../../utils/API';
 
-// password regex
-// https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
-
-// const [formObject, setFormObject] = useState({
-//     username: "",
-//     email: "",
-//     password: ""
-// })
-
-//video validator
-// const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-// const formValid = ({ formObjects, ...rest }) => {
-//     let valid = true;
-
-//     // validate form errors being empty
-//     Object.values(formObjects).forEach(val => {
-//         val.length < 0 && (valid = false);
-//     });
-
-//     // validate the form was filled out
-//     Object.values(rest).forEach(val => {
-//         val === null && (valid = false);
-//     });
-
-//     return valid;
-// };
-
-// https://www.coursera.org/lecture/front-end-react/exercise-video-controlled-form-validation-ezz4V
-// https://github.com/MyNameIsURL/react-form-validation-tutorial/blob/master/src/App.js
-// https://www.youtube.com/watch?v=4CeTFW4agRw
 class Signup extends React.Component {
 
     constructor(props) {
@@ -103,9 +74,18 @@ class Signup extends React.Component {
         // const modalError = this.state.error ? 'not' : ''; // This is just for the modal
         return (
             <Container className="themed-container" fluid="md">
+                <Jumbotron fluid>
+                    <Container fluid>
+                        <Row>
+                            <Col sm={{ size: 6, order: 2, offset: 1 }}>
+                                <h1 className="display-3 text-center">Welcome New User!!</h1>
+                                <p className="lead text-center">Please Signup your unique account HERE!!!</p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Jumbotron>
                 <Row>
-                    <Col></Col>
-                    <Col>
+                    <Col sm="12" md={{ size: 6, offset: 3 }}>
                         <AvForm
                             // onValidSubmit={this.handleValidSubmit}
                             // onInvalidSubmit={this.handleInvalidSubmit}
@@ -140,8 +120,8 @@ class Signup extends React.Component {
                                 onChange={e => this.state.password = e.target.value}
                                 validate={{
                                     required: { value: true, errorMessage: 'Please enter a password' },
-                                    // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
-                                    minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
+                                    pattern: { value: '^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$', errorMessage: 'Your password must be at least three lowercase letter, two uppercase letter, two number and one special character' },
+                                    minLength: { value: 8, errorMessage: 'Your name must be between 6 and 20 characters' },
                                     maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                                 }} />
                             <AvField
@@ -152,15 +132,12 @@ class Signup extends React.Component {
                                     match: { value: 'originalpassword', errorMessage: 'Please enter your set password again' },
                                     required: { value: true, errorMessage: 'Please enter a password' },
                                     // pattern: { value: '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', errorMessage: 'Your password must be at least one letter, one number and one special character' },
-                                    minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
+                                    minLength: { value: 8, errorMessage: 'Your name must be between 6 and 20 characters' },
                                     maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                                 }} />
-                            <Button
-                                color="primary"
-                            >Submit</Button>
+                            <Button>Submit</Button>
                         </AvForm>
                     </Col>
-                    <Col></Col>
                 </Row>
 
                 {/* below this is just for show, it's not needed unless you want a modal upon form submission */}

@@ -7,7 +7,7 @@ import {
   Card,
   CardImg,
   CardTitle,
-  CardText,
+  CardSubtitle,
   Container,
   Col,
   Button,
@@ -34,12 +34,14 @@ function Game(props) {
     loadPokemon,
     styles,
     letterHint,
-    visible,
-    setVisible,
+    hint1Visible,
+    hint2Visible,
     guessedPokemon,
+    userPokemon,
+    onDismiss1,
+    onDismiss2,
   } = useGameLogic();
 
-  const onDismiss = () => setVisible(false);
   console.log(randomPokemon);
   console.log(gameWon);
   console.log(letterHint);
@@ -47,80 +49,76 @@ function Game(props) {
 
   return (
     <Container>
-      <main>
+      <main className="content">
         <section>
           {gameStarted && (
-            <Col lg="3">
-              <Card body className="text-center">
+            <Col sm="12" md={{ size: 3, offset: 4 }}>
+              <Card body className="text-center bg-light">
+                <CardSubtitle tag="h6" className="mb-2 text-muted">
+                  {' '}
+                  {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
+                </CardSubtitle>
                 <AnimatedCardImg
-                  width="50%"
+                  className="pokemon"
                   src={pokemonPic}
                   alt="Current Pokemon"
                   style={styles}
                 />
                 <CardTitle tag="h5">{displayString}</CardTitle>
                 {!!hint && (
-                  <Alert color="secondary" isOpen={visible} toggle={onDismiss}>
+                  <Alert
+                    color="secondary"
+                    isOpen={hint1Visible}
+                    toggle={onDismiss1}
+                  >
                     This is a <b>{pokemonInfo.types[0].type.name}</b> type
                     Pokemon.
                   </Alert>
                 )}
-                {!!hint && (
-                  <Alert color="info" isOpen={visible} toggle={onDismiss}>
+                {!!hint && hint > 2 && (
+                  <Alert color="info" isOpen={hint2Visible} toggle={onDismiss2}>
                     A possible letter is: <b>{letterHint}</b>.
                   </Alert>
                 )}
               </Card>
             </Col>
           )}
-          <Button
-            className="start-button"
-            onClick={() => {
-              loadPokemon();
-              setGameStarted(true);
-              setGuessedLetters([]);
-              setCounter(60);
-              setHint(0);
-            }}
-          >
-            Start
-          </Button>
+          <Col sm="12" md={{ size: 3, offset: 4 }} className="btncont">
+            <Button
+              className="start-button"
+              onClick={() => {
+                loadPokemon();
+                setGameStarted(true);
+                setGuessedLetters([]);
+                setCounter(60);
+                setHint(0);
+              }}
+            >
+              Start
+            </Button>
+            {gameStarted && (
+              <>
+                <Button
+                  className="hint-button"
+                  onClick={() => {
+                    setHint(hint + 1);
+                  }}
+                >
+                  Hint
+                </Button>
+              </>
+            )}
+          </Col>
           {gameStarted && (
-            <>
-              <Button
-                className="hint-button"
-                onClick={() => {
-                  setHint(hint + 1);
-                }}
-              >
-                Hint
-              </Button>
-            </>
+            <Col sm="12" md={{ size: 3, offset: 4 }}>
+              <h5>
+                <div className="text-center">
+                  Pokemon Caught: {userPokemon} of {totalPokemon}
+                </div>
+                <Progress value={userPokemon} max={totalPokemon} />{' '}
+              </h5>
+            </Col>
           )}
-        </section>
-
-        <section>
-          <div className="card results">
-            <div className="win-loss-container">
-              <div>
-                <h2>
-                  <div className="text-center">
-                    Pokemon Caught: 50 of {totalPokemon}
-                  </div>
-                  <Progress value={50} max={totalPokemon} />{' '}
-                </h2>
-              </div>
-            </div>
-            <div className="card timer">
-              <div className="timer-text">
-                <div className="large-font timer-count">Countdown:</div>
-                <h3>
-                  {' '}
-                  {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
-                </h3>
-              </div>
-            </div>
-          </div>
         </section>
       </main>
     </Container>

@@ -14,12 +14,12 @@ export default {
     return await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   },
   // Post Pokemon Data they caught in the Game to DB
-  postGameResult: function () {
-    return axios.post('/api/pokemon');
+  postGameResult: function (body) {
+    return axios({ method: 'post', url: '/api/pokemon', data: body });
   },
   // Gets all pokemon caught by specific user
-  getPokemon: function () {
-    return axios.get('/api/pokemon');
+  getPokemon: async function () {
+    return await axios.get('/api/pokemon');
   },
   // Reset user's pokedex
   resetPokedex: function () {
@@ -39,12 +39,15 @@ export default {
   },
   // Saves a book to the database
   updatePassword: function (info) {
-    return axios.put('/api/user/pw', info);
+    return axios.put('/api/user/login', info);
   },
-  getUsername: function (){
+  getUsername: function () {
     return axios.get('/api/user');
   },
-  getUserInfo: function (){
+  getUserInfo: function () {
     return axios.get('/api/user/login');
-  }
+  },
+  increasePokemonAmount: function (info) {
+    return axios.put('/api/pokemon', info);
+  },
 };
