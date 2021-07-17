@@ -25,25 +25,29 @@ const userSeed = [{
   username: "anniechen9025",
   email: "anniechen9025@gmail.com",
   password: "annie9025",
-  pokemon_amount: "5"
+  pokemon_amount: "5",
+  online: false
 },
 {
   username: "lihua",
   email: "lihua.anderson@gmail.com",
   password: "12345678",
-  pokemon_amount: "200"
+  pokemon_amount: "200",
+  online: false
 },
 {
   username: "christine",
   email: "ctine.ngyn@gmail.com",
   password: "12345678",
-  pokemon_amount: "100"
+  pokemon_amount: "100",
+  online: false
 },
 {
   username: "daniel",
   email: "dannyphan@comcast.net",
   password: "12345678",
-  pokemon_amount: "1000"
+  pokemon_amount: "1000",
+  online: false
 }];
 
 db.Pokemon

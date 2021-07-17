@@ -61,23 +61,35 @@ class TestChat extends React.Component {
             .then(data => {
                 // console.log(data);
                 this.setState({ userName: data.data })
+                this.messaheChild()
+                this.handleOnlineUsers()
             });
-        this.messaheChild()
-        this.handleOnlineUsers()
     }
 
     handleOnlineUsers() {
-        let onlineUsers = this.state.online
-
-        API.getUsername().then(data => {
-            onlineUsers.push(data.data)
-            this.setState({ online: onlineUsers })
-            // console.log(this.state.online);
-            socket.emit("user online", data.data)
-            socket.on("user joined", (data) => {
-                console.log(data);
-            })
-        })
+        
+            
+                // onlineUsers.push(data.data)
+                // this.setState({online: onlineUsers})
+                // console.log(this.state.online);
+                socket.emit("user online", this.state.userName)
+                socket.on("user joined", (data) => {
+                    console.log(data, "hello");
+                    API.getOnlineUsers().then(data => {
+                        console.log(data.data, "asdf");
+                        const userArray = []
+                        for(let i = 0; i < data.data.length; i++) {
+                            let userObject = {
+                                username: data.data[i].username,
+                                id: uuidv4()
+                            }
+                            userArray.push(userObject)
+                        }
+                        this.setState({online: userArray})
+                    })
+                    // console.log(this.state.online, "hello");
+                })
+          
     }
     render() {
         return (
@@ -93,7 +105,7 @@ class TestChat extends React.Component {
                 <Container>
                     <Row>
                         <Col className="chatlist">
-                            <ChatList userName={this.state.userName} />
+                        <ChatList userName = {this.state.userName} onlineUsers = {this.state.online}/>
                         </Col>
                         <Col xs="9" sm="9" >
                             <ul id="messages" className="messages">
