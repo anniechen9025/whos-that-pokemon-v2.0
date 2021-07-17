@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-Christine
 import Button from '../../components/Button';
 import './style.css'
 
@@ -17,13 +16,11 @@ function Main() {
         </div>
       </div>
 
-
     // <Container>
     // <LeftContainer>
     // <img scr={pokemonLogo} alt="pokemon logo" />
     // </LeftContainer>
     // </Container>
-main
   );
 }
 
