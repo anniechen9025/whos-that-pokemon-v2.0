@@ -7,7 +7,8 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
+  Row,
+  Col,
 } from 'reactstrap';
 import './style.css';
 
@@ -28,11 +29,13 @@ function Pokemon({ userPokemon, loading }) {
   return (
     <div>
       {userPokemon.map((pokemon) => (
-        <div key={pokemon}>
-          <Card className="mb3">
-            <CardTitle>{pokemon}</CardTitle>
-          </Card>
-        </div>
+        <Row key={pokemon}>
+          <Col sm="6" md="2">
+            <Card className="mb3">
+              <CardTitle>{pokemon}</CardTitle>
+            </Card>
+          </Col>
+        </Row>
       ))}
     </div>
   );
