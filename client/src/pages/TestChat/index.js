@@ -71,7 +71,6 @@ class TestChat extends React.Component {
                     console.log(data);
                 })
             })
-         
     }
     render() {
         return (
@@ -92,7 +91,7 @@ class TestChat extends React.Component {
                         <Col xs="9" sm="9" >
                             <ul id="messages" className="messages">
                                 {this.state.userMessages.map((message) => {
-                                    return <List message={message.message} key={message.id} username={message.username} />
+                                    return <List message={message.message} key={message.id} username={message.username} user={this.state.userName}/>
                                 })}
                             </ul>
                         </Col>

@@ -5,6 +5,9 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import Header from "../../components/Header";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Signup from '../Signup';
+import LoginSignup from '../../components/Loginsignup'
 
 async function loginAuth(credentials) {
     return fetch('http://localhost:3001/authlogin', {
@@ -22,6 +25,7 @@ function Login({ setToken }) {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    // const [signup, setSingup] = useState(false);
 
     async function loginUserFormSubmit(credential) {
         console.log(credential);
@@ -51,6 +55,31 @@ function Login({ setToken }) {
             }
         )
     }
+
+    // const handleclicktrue = (e) => {
+    //     setSingup = true;
+    // }
+
+    // const handleclickfalse = (e) => {
+    //     setSingup = false;
+    // }
+
+    // let button;
+    // let switchback;
+
+    // if (signup == true) {
+    //     button =
+    //         <Router>
+    //             <Route exact path="/login/signup" component={Signup} />
+    //         </Router>;
+    //     switchback =
+    //         <Row>
+    //             <Col sm="12" md={{ size: 6, offset: 4 }}>
+    //                 <br></br>
+    //                 <Button onClick={handleclickfalse} color="link" href="/login"> Back to Login </Button>
+    //             </Col>
+    //         </Row>;
+    // }
 
     return (
         <div>
@@ -82,6 +111,17 @@ function Login({ setToken }) {
                             <Button>Submit</Button>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col sm="12" md={{ size: 6, offset: 4 }}>
+                            <br></br>
+                            <Button color="link" href="/login/signup">Need to sign for new account?</Button>
+                        </Col>
+                    </Row>
+                    {/* <Router>
+                        <Route exact path="/login/signup" component={Signup} />
+                    </Router> */}
+                    {/* {button}
+                    {switchback} */}
                 </Container>
             </Form>
 

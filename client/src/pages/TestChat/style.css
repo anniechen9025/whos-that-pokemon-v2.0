@@ -58,7 +58,7 @@ body {
 .messages {
     position: relative;
     list-style: none;
-    padding: 20px 10px 0 10px;
+    padding: 20px .5px 0 .5px;
     margin: 0;
     height: 347px;
     overflow: scroll;
@@ -199,10 +199,11 @@ body {
 
 .messages > li {
     font-size: 15px;
-    color: rgb(13, 223, 153);
-    background: #f7a30675;
+    color: #3a3735d7;
+    /* background: #f7a30675; */
     border-radius: 5px;
     width: fit-content;
+    margin: 2px;
 }
 
 .messages > span {
@@ -212,4 +213,28 @@ body {
 
 .chatlist{
     background-color: #fff;
+}
+.card-title{
+    margin-right:.5rem;
+    margin-left:.5rem;
+}
+
+.card-subtitle{
+    margin-top: .5rem;
+    margin-right:.5rem;
+    margin-left:.5rem;
+}
+/* .col-9.col-sm-9{
+    width:80%;
+} */
+#mine.col-12.col-sm-6{
+    color:#45829b;
+}
+
+#others.col-12.col-sm-6{
+    color:black;
+}
+
+.mb-2.text-muted{
+    margin-top:.5rem;
 }
