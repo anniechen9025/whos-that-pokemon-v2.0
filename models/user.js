@@ -27,6 +27,10 @@ const userSchema = new Schema({
     max: 20,
     required: [true, 'Please input a valid password']
   },
+  online: {
+    type: Boolean,
+    default: false
+  },
   pokemon_amount: {
     type: Number
   },

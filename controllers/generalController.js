@@ -94,6 +94,18 @@ module.exports = {
       .findOne({ _id: req.session.user_id })
       .then(UserData => res.json(UserData))
       .catch(err => res.status(422).json(err));
+  },
+  getOnlineUsers: function (req, res) {
+    db.User
+    .find({online: true}, (err, found) => {
+      if (err) {
+        console.log(err);
+        throw(err)
+      }
+      else {
+        res.json(found)
+      }
+    })
   }
 };
 
