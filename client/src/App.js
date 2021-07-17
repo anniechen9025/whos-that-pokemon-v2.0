@@ -25,19 +25,13 @@ const App = () => {
   //   }
   // }
 
-  useEffect(() => {
-    if (token) {
-      history.push('/');
-    }
-  }, [token])
-
   if (!token) {
     return (
       <div>
         <Navbar2 />
         <Switch>
           <Wrapper>
-            <Route exact path="/login" render={() => <Login setToken={setToken} />} />
+            <Route exact path="/login" render={() => <Login setToken={setToken} token = {token} />} />
             <Route exact path="/signup" component={Signup} />
           </Wrapper>
           <Footer />

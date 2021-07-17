@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import Header from "../../components/Navbar2";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useHistory  } from 'react-router-dom';
 import Signup from '../Signup';
 import LoginSignup from '../../components/Loginsignup'
 
@@ -21,10 +21,11 @@ async function loginAuth(credentials) {
 }
 
 
-function Login({ setToken }) {
+function Login({ setToken, token }) {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const history = useHistory();
     // const [signup, setSingup] = useState(false);
 
     async function loginUserFormSubmit(credential) {
@@ -38,6 +39,7 @@ function Login({ setToken }) {
                         password
                     });
                     setToken(token);
+                    history.push('/')
                 }
                 return data;
             })
@@ -55,6 +57,12 @@ function Login({ setToken }) {
             }
         )
     }
+
+    // useEffect(() => {
+    //     if (token) {
+    //         history.push('/game');
+    //     }
+    // }, [token])
 
     // const handleclicktrue = (e) => {
     //     setSingup = true;
