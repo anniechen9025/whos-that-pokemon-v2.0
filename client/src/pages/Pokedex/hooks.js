@@ -26,9 +26,9 @@ export function usePokedexLogic() {
   function loadPokedex() {
     API.getPokemon()
       .then((res) => {
-        console.log(res.data);
-        const pokemonList = res.data.pokemon.name;
-        setUserPokemon(pokemonList);
+        const pokemonList = res.data[0].pokemon.map(({ name }) => name);
+        console.log(pokemonList);
+        //setUserPokemon(pokemonList);
       })
       .catch((err) => console.log(err));
   }

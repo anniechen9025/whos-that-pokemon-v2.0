@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { usePokedexLogic } from './hooks';
-import { Pagination, PaginationItem, PaginationLink, Button } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 function Pokedex() {
   const { userPokemon, pokemonData } = usePokedexLogic();
@@ -72,9 +72,36 @@ function Pokedex() {
         <div className="right-container">
           <div className="right-container__black">
             <div className="right-container__screen">
-              <div className="list-item">
-                <button className="list-item">Pikachu</button>
-              </div>
+              <div className="list-item">Pikachu</div>
+              <Pagination aria-label="Page navigation example">
+                <PaginationItem>
+                  <PaginationLink first href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink previous href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">4</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">5</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink next href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink last href="#" />
+                </PaginationItem>
+              </Pagination>
             </div>
           </div>
           <div className="right-container__buttons">
@@ -82,7 +109,7 @@ function Pokedex() {
               <button className="left-button">Prev</button>
               <button className="right-button">Next</button>
             </div>
-            <button className="reset-button">Release All Your Pokemon</button>
+            <button className="reset-button">Release All Pokemon</button>
           </div>
         </div>
       </div>

@@ -227,14 +227,28 @@ body {
 /* .col-9.col-sm-9{
     width:80%;
 } */
-#mine.col-12.col-sm-6{
+#mine.card-title{
     color:#45829b;
+    margin-bottom: .25rem;
 }
 
-#others.col-12.col-sm-6{
+#others.card-title{
     color:black;
+    margin-bottom: .25rem;
 }
 
 .mb-2.text-muted{
     margin-top:.5rem;
+}
+
+.close{
+    float:none;
+}
+
+#rowofmessage{
+    background:transparent;
+}
+
+h7.mb-2.mb-2.text-muted.card-subtitle{
+    margin-bottom: .25rem!important;
 }

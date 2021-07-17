@@ -18,8 +18,8 @@ export default {
     return axios({ method: 'post', url: '/api/pokemon', data: body });
   },
   // Gets all pokemon caught by specific user
-  getPokemon: function () {
-    return axios.get('/api/pokemon');
+  getPokemon: async function () {
+    return await axios.get('/api/pokemon');
   },
   // Reset user's pokedex
   resetPokedex: function () {
