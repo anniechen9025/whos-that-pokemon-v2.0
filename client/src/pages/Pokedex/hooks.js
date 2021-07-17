@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import API from '../../utils/API';
 
 //TODO:
-//Pagination Links
 // event handler for each button where targets name = chosen word for fetch
 // render components for individual pokemon
 //event handler to release alll pokemon
@@ -27,29 +26,13 @@ export function usePokedexLogic() {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    if (userPokemon) {
-      getPokemonData(userPokemon);
-    }
-  }, [userPokemon]);
-
   // API call to load list of all Pokemon attached to User
   function loadPokedex() {
     API.getPokemon()
       .then((res) => {
-        const pokemonList = res.data[0].pokemon.map(({ name }) => name);
-        console.log(pokemonList);
-        setUserPokemon(pokemonList);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  // API call to fetch 3rd party API info on one pokemon
-  function getPokemonData(pokemonName) {
-    API.getPokedex(pokemonName)
-      .then((res) => {
-        console.log(res.data);
-        setPokemonData(res.data);
+        //const pokemonList = res.data[0].map(({ name }) => name);
+        console.log(res);
+        //setUserPokemon(pokemonList);
       })
       .catch((err) => console.log(err));
   }
