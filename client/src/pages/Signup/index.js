@@ -140,15 +140,13 @@ class Signup extends React.Component {
                     </Col>
                 </Row>
 
-                {/* below this is just for show, it's not needed unless you want a modal upon form submission */}
-                {/* <Modal isOpen={this.state.email !== false && this.state.username !== false && this.state.password !== false}
-                    toggle={this.closeModal}>
-                    <ModalHeader toggle={this.closeModal}>Form is {modalError} valid!</ModalHeader>
+                {/* <Modal isOpen={modal} toggle={toggle} className={className}>
+                    <ModalHeader toggle={toggle}>Submit Successful!!!</ModalHeader>
                     <ModalBody>
-                        You have {modalError} successfully filled out the form and submitted it. Your email ({this.state.email}) is {modalError} valid!
+                        You had signup a new account!!
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.closeModal}>Ok, got it!</Button>
+                        <Button color="secondary" onClick={redirect}>Close</Button>
                     </ModalFooter>
                 </Modal> */}
             </Container>
