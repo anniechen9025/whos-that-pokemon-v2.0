@@ -74,7 +74,7 @@ const server = app.listen(PORT, function () {
 
 io = socketIo(server, {
   cors: {
-    origin: "https://enigmatic-reaches-30017.herokuapp.com" || "http://localhost:3000",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     credentials: true
   }
