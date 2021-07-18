@@ -117,10 +117,9 @@ module.exports = {
     }
   },
   getUserinfo: function (req, res) {
-    db.User
-      .findOne({ _id: req.session.user_id })
-      .then(UserData => res.json(UserData))
-      .catch(err => res.status(422).json(err));
+    db.User.findOne({ _id: req.session.user_id })
+      .then((UserData) => res.json(UserData))
+      .catch((err) => res.status(422).json(err));
   },
   getOnlineUsers: function (req, res) {
     db.User.find({ online: true }, (err, found) => {
@@ -130,11 +129,8 @@ module.exports = {
       } else {
         res.json(found);
       }
-      else {
-        res.json(found);
-      }
-    })
-  }
+    });
+  },
 };
 
 // create: function(req, res) {

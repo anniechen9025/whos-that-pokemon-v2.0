@@ -19,11 +19,14 @@ function Pokedex() {
   return (
     <div>
       <Pokemon userPokemon={currentPokemon} loading={loading} />
-      <Pagination
-        pokemonPerPage={pokemonPerPage}
-        totalPokemon={userPokemon.length}
-        paginate={paginate}
-      />
+      <div className="container-md d-flex justify-content-center">
+        .
+        <Pagination
+          pokemonPerPage={pokemonPerPage}
+          totalPokemon={userPokemon.length}
+          paginate={paginate}
+        />
+      </div>
     </div>
   );
 }

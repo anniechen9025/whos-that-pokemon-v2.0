@@ -31,6 +31,20 @@ export function usePokedexLogic() {
     API.getPokemon()
       .then((res) => {
         const pokemonList = res.data;
+        // let output = '';
+        // for (let i = 0; (i = pokemonList.length); i + 5) {
+        //   output += pokemonList.slice(i, i + 5).join(',') + '\n';
+        // }
+        //console.log(output);
+        setUserPokemon(pokemonList);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function loadPokemonInfo(pokemonName) {
+    API.getPokedex(pokemonName)
+      .then((res) => {
+        const pokemonList = res.data;
         console.log(res);
         setUserPokemon(pokemonList);
       })
