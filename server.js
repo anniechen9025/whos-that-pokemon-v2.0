@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const socketIo = require('socket.io')
+const db = require("./models");
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -79,17 +80,32 @@ io = socketIo(server, {
   }
 });
 
-let usersOnline = []
+let usersOnline = ''
 
 io.on('connection', (socket) => {
   console.log('User connected');
   //io.emit('user online', Object.keys(io.engine.clients))
-  console.log(Object.keys(io.engine.clients));
+  //console.log(Object.keys(io.engine.clients));
   socket.on("user online", (username)=>{
     socket.username = username;
-    usersOnline.push(socket.username)
-    console.log(socket.username);
-    socket.emit("user joined",usersOnline)
+    usersOnline = socket.username
+    console.log(socket.username, "user connected");
+    db.User.updateOne(
+      {
+        username: username
+      },
+       {
+         $set: {online: true}
+        },
+        (error,edited) =>{
+        if(error){
+          console.log(error);
+        }
+        else{
+          console.log(edited, "found");
+          socket.emit("user joined",usersOnline)
+        }
+        });
   })
   // Think about this as an event listener
   socket.on('chat message', (data) => {
@@ -99,10 +115,24 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    console.log('User disconnected');
+    console.log('User disconnected', usersOnline);
     io.emit('user disconnect', Object.keys(io.engine.clients))
-    usersOnline = usersOnline.filter((username) => !username)
-    console.log(usersOnline);
-    console.log(Object.keys(io.engine.clients));
+    db.User.updateOne(
+      {
+        username: usersOnline
+      },
+       {
+         $set: {online: false}
+        },
+        (error,edited) =>{
+        if(error){
+          console.log(error);
+        }
+        else{
+          console.log(edited);
+        }
+        });
+   // console.log(usersOnline, "disconnect");
+   // console.log(Object.keys(io.engine.clients));
   });
 });

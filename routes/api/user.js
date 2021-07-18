@@ -15,4 +15,7 @@ router.route("/login")
 router.route("/logout")
   .post(UserController.logoutUser);
 
+router.route("/online")
+  .get(UserController.getOnlineUsers);
+
 module.exports = router;
