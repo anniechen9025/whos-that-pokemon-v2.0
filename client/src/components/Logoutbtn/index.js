@@ -1,18 +1,25 @@
 import React from 'react';
 import { DropdownItem } from 'reactstrap';
 import Login from '../../pages/Login';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { useHistory } from "react-router";
+import { useHistory  } from 'react-router-dom';
+import API from '../../utils/API'
 
 
 
 const LogoutButton = (props) => {
+    const history = useHistory();
 
-
-    // const history = useHistory()
+    const handlelogout = () => {
+        API.logoutUser().then(data => {
+            history.push('/login');
+        }).catch(err => {
+            return err
+        });
+    }
 
     const clearToken = () => {
         localStorage.removeItem('token');
+        handlelogout();
         window.location.reload();
     }
 

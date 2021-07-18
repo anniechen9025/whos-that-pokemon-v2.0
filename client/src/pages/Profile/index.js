@@ -7,10 +7,12 @@ import {
 } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { useHistory  } from 'react-router-dom';
 
 // console.log(image);
 
-function Profile() {
+function Profile(props) {
     const [username, setUserName] = useState();
     const [pkamount, setPkAmount] = useState();
     const [email, setEmail] = useState();
@@ -18,7 +20,18 @@ function Profile() {
     const [rank, setRank] = useState();
     const [imageNumber, setImageNumber] = useState();
     const [hide, setHide] = useState();
-    const imagesource = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+    const {
+        buttonLabel,
+        className
+    } = props;
+    const [modal, setModal] = useState(false);
+    const history = useHistory();
+
+    const toggle = () => setModal(!modal);
+    
+    const redirect = ()=> history.push('/');
+
+
 
     function UserInfo() {
         API.getUserInfo()
@@ -160,11 +173,21 @@ function Profile() {
                                 minLength: { value: 6, errorMessage: 'Your name must be between 6 and 20 characters' },
                                 maxLength: { value: 20, errorMessage: 'Your name must be between 6 and 20 characters' }
                             }} />
-                        <Button>Update Password</Button>
+                        <Button onClick={toggle}>Update Password</Button>
                     </AvForm>
                 </Col>
             </Row>
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>Submit Successful!!!</ModalHeader>
+                <ModalBody>
+                    Your Password has been updated!!
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="secondary" onClick={redirect}>Close</Button>
+                </ModalFooter>
+            </Modal>
         </Container>
+
     )
 }
 

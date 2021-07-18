@@ -40,7 +40,7 @@ const Navigation = (props) => {
                             <NavLink href="/">Main</NavLink>
                         </NavItem>
                         <NavItem className="fs-4">
-                            <NavLink href="/menu">Menu</NavLink>
+                            <NavLink href="/menu">Fun!!</NavLink>
                         </NavItem>
                         <NavItem className="fs-4">
                             <NavLink href="/chatbox">Chatroom</NavLink>
