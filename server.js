@@ -11,7 +11,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost/pokemongame',
+  uri: process.env.MONGODB_URI ||'mongodb://localhost/pokemongame',
   collection: 'mySessions',
   database: 'pokemongame'
 });
