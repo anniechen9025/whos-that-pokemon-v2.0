@@ -55,7 +55,6 @@ function Game(props) {
             <Col sm="12" md={{ size: 3, offset: 4 }}>
               <Card body className="text-center bg-light">
                 <CardSubtitle tag="h6" className="mb-2 text-muted">
-                  {' '}
                   {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
                 </CardSubtitle>
                 <AnimatedCardImg
@@ -90,7 +89,7 @@ function Game(props) {
                 loadPokemon();
                 setGameStarted(true);
                 setGuessedLetters([]);
-                setCounter(60);
+                setCounter(20);
                 setHint(0);
               }}
             >
