@@ -18,12 +18,6 @@ import TestChat from './pages/TestChat';
 
 const App = () => {
   const { token, setToken } = useToken();
-  const history = useHistory();
-  // const handleLogin = ()=>{
-  //   if(token && history){
-  //     history.push("/");
-  //   }
-  // }
 
   if (!token) {
     return (

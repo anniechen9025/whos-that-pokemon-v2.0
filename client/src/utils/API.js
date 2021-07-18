@@ -50,4 +50,7 @@ export default {
   increasePokemonAmount: function (info) {
     return axios.put('/api/pokemon', info);
   },
+  getOnlineUsers: function () {
+    return axios.get('/api/user/online')
+  }
 };
