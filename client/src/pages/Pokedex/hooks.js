@@ -30,9 +30,9 @@ export function usePokedexLogic() {
   function loadPokedex() {
     API.getPokemon()
       .then((res) => {
-        //const pokemonList = res.data[0].map(({ name }) => name);
+        const pokemonList = res.data;
         console.log(res);
-        //setUserPokemon(pokemonList);
+        setUserPokemon(pokemonList);
       })
       .catch((err) => console.log(err));
   }
