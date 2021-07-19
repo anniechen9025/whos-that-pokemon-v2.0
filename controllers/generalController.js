@@ -131,6 +131,21 @@ module.exports = {
       }
     });
   },
+  //pokedex routes
+  createGeneration: function (req, res) {
+    console.log(req.body);
+    db.Generation.create(req.body)
+      .then((userData) => {
+        console.log(userData);
+        res.json(userData);
+      })
+      .catch((err) => res.status(422).json(err));
+  },
+  getGeneration: function (req, res) {
+    db.Generation.findOne({ name: req.body })
+      .then((UserData) => res.json(UserData))
+      .catch((err) => res.status(422).json(err));
+  }
 };
 
 // create: function(req, res) {
