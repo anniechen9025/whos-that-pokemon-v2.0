@@ -10,8 +10,8 @@ export function usePokedexLogic() {
   const [pokemonData, setPokemonData] = useState({});
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonPerPage, setPokemonPerPage] = useState(5);
-  const [hasPokemon, setHasPokemon] = useState(false);
+  const [pokemonPerPage] = useState(5);
+  const [hasPokemon] = useState(false);
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
   const currentPokemon = userPokemon.slice(

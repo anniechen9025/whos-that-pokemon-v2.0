@@ -149,7 +149,7 @@ export function useGameLogic() {
   }
   const styles = useSpring({ filter: `blur(${picBlur(hint)}px)` });
 
-  // calls fetch request to return all pokemon names
+  //calls fetch request to return all pokemon names
   function loadPokemon() {
     API.getPokemonList()
       .then((res) => {
@@ -165,6 +165,28 @@ export function useGameLogic() {
       })
       .catch((err) => console.log(err));
   }
+  // const loadPokemon = useCallback(() => {
+  //   API.getPokemonList()
+  //     .then((res) => {
+  //       console.log(res);
+  //       const pokemonNames = res.data.pokemon_species.map(({ name }) => name);
+  //       const filteredPokemonNames = pokemonNames.filter(
+  //         (p) => !guessedPokemon.includes(p)
+  //       );
+  //       let chosenPokemon = chooseRandomIndex(filteredPokemonNames.length);
+  //       setRandomPokemon(filteredPokemonNames[chosenPokemon]);
+  //       //console.log(pokemonNames.length);
+  //       setTotalPokemon(pokemonNames.length);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [
+  //   pokemonNames,
+  //   filteredPokemonNames,
+  //   chosenPokemon,
+  //   chooseRandomIndex,
+  //   setRandomPokemon,
+  //   setTotalPokemon,
+  // ]);
   return {
     randomPokemon,
     displayString,

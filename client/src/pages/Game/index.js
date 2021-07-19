@@ -51,7 +51,7 @@ function Game(props) {
       <main className="content">
         <section>
           {gameStarted && (
-            <Col sm="12" md={{ size: 3, offset: 4 }}>
+            <Col sm="12" md={{ size: 3, offset: 4 }} className="mt-3">
               <Card body className="text-center bg-light">
                 <CardSubtitle tag="h6" className="mb-2 text-muted">
                   {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
@@ -82,9 +82,31 @@ function Game(props) {
             </Col>
           )}
           {counter === 0 && (
+            <Col
+              sm="12"
+              md={{ size: 3, offset: 4 }}
+              className="mt-5 d-flex align-items-center p-0"
+            >
+              <Card body className="text-center bg-light">
+                <p>
+                  <span className="text-uppercase fw-bold">TIME'S UP!!</span>{' '}
+                  The pokemon got away. Please try again.
+                </p>
+              </Card>
+            </Col>
+          )}
+
+          {gameWon && (
             <Col sm="12" md={{ size: 3, offset: 4 }} className="mt-5">
               <Card body className="text-center bg-light">
-                TIME'S UP!! The pokemon got away. Please try again.
+                <p>
+                  You caught{' '}
+                  <span className="text-uppercase fw-bold">
+                    {pokemonInfo.name}
+                  </span>
+                  !! Check your Pokedex to see your pokemon, or continue playing
+                  to catch more!
+                </p>
               </Card>
             </Col>
           )}
