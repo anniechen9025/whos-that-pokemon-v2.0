@@ -65,7 +65,6 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
   });
 };
 
-//todo: onWEB make password shows **** instead of actual password12345 
 
 const User = mongoose.model("User", userSchema);
 
