@@ -12,14 +12,19 @@ export function usePokedexLogic() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonPerPage, setPokemonPerPage] = useState(5);
+  const [hasPokemon, setHasPokemon] = useState(false);
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
-  const currentPokemon = userPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon);
+  const currentPokemon = userPokemon.slice(
+    indexOfFirstPokemon,
+    indexOfLastPokemon
+  );
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     setLoading(true);
     loadPokedex();
+    loadPokemonInfo();
     setLoading(false);
   }, []);
 
@@ -33,21 +38,32 @@ export function usePokedexLogic() {
       .catch((err) => console.log(err));
   }
 
-  function loadPokemonInfo(pokemonName) {
-    API.getPokedex(pokemonName)
+  // API call to load all pokemon data stored to DB
+  function loadPokemonInfo() {
+    API.getGeneration()
       .then((res) => {
-        const pokemonList = res.data;
         console.log(res);
-        setUserPokemon(pokemonList);
+        setPokemonData(res);
       })
       .catch((err) => console.log(err));
   }
 
+  //API call to reset all pokemon attached to User ID
   function releasePokemon() {
     API.resetPokedex()
       .then((res) => {
         console.log(res.data);
         setUserPokemon(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // API to update # of pokemon a user has caught
+  function putPokemonAmount(number) {
+    API.increasePokemonAmount({ pokemon_amount: number })
+      .then((res) => {
+        console.log(res.data.pokemon_amount);
+        setUserPokemon(res.data.pokemon_amount);
       })
       .catch((err) => console.log(err));
   }
@@ -60,5 +76,8 @@ export function usePokedexLogic() {
     currentPage,
     pokemonPerPage,
     paginate,
+    releasePokemon,
+    putPokemonAmount,
+    hasPokemon,
   };
 }

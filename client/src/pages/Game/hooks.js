@@ -4,7 +4,6 @@ import { useSpring } from 'react-spring';
 
 // TODOS:
 // Add loading pic for Pokemon Pic
-// pull # of pokemon from initial fetch to use in
 // if game won, start game, choose another pokemon
 //if time over end game
 //store guessedPokemon array in localstorage? otherwise when browser refresh array is emptied and caught pokemon would be refreshed
@@ -51,7 +50,6 @@ export function useGameLogic() {
   const [hint1Visible, setHint1Visible] = useState(true);
   const [hint2Visible, setHint2Visible] = useState(true);
   const [userPokemon, setUserPokemon] = useState(0);
-  const [pokemonData, setPokemonData] = useState({});
   const onDismiss1 = () => setHint1Visible(false);
   const onDismiss2 = () => setHint2Visible(false);
   useKeyHandlers(setGuessedLetters);
@@ -76,10 +74,12 @@ export function useGameLogic() {
 
   useEffect(() => {
     if (gameWon && !!randomPokemon) {
-      setRandomPokemon('');
       postGuessedPokemon(randomPokemon);
       setGuessedPokemon((prev) => [...prev, randomPokemon]);
       putPokemonAmount(userPokemon + 1);
+      postPokemonData(pokemonInfo);
+      console.log(pokemonInfo);
+      setRandomPokemon('');
       setGameStarted(false);
     }
   }, [
@@ -91,6 +91,8 @@ export function useGameLogic() {
     putPokemonAmount,
     userPokemon,
     setGameStarted,
+    postPokemonData,
+    pokemonInfo,
   ]);
 
   useEffect(() => {
@@ -151,12 +153,14 @@ export function useGameLogic() {
   function loadPokemon() {
     API.getPokemonList()
       .then((res) => {
+        //console.log(res);
         const pokemonNames = res.data.pokemon_species.map(({ name }) => name);
         const filteredPokemonNames = pokemonNames.filter(
           (p) => !guessedPokemon.includes(p)
         );
         let chosenPokemon = chooseRandomIndex(filteredPokemonNames.length);
         setRandomPokemon(filteredPokemonNames[chosenPokemon]);
+        //console.log(pokemonNames.length);
         setTotalPokemon(pokemonNames.length);
       })
       .catch((err) => console.log(err));
@@ -190,8 +194,8 @@ export function useGameLogic() {
   function getPokemonInfo(chosenPokemon) {
     API.getPokemonPics(chosenPokemon)
       .then((res) => {
-        console.log(res.data);
         setPokemonInfo(res.data);
+        console.log(pokemonInfo);
         setPokemonPic(res.data.sprites.other.dream_world.front_default);
       })
       .catch((err) => console.log(err));
@@ -213,6 +217,33 @@ export function useGameLogic() {
       .then((res) => {
         console.log(res.data.pokemon_amount);
         setUserPokemon(res.data.pokemon_amount);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // function to post pokemonData to DB to use in pokedex
+  function postPokemonData(data) {
+    console.log(data);
+    const name = data.name;
+    const type = data.types[0].type.name;
+    const height = data.height;
+    const weight = data.weight;
+    const id = data.id;
+    // console.log(name);
+    // console.log(type);
+    // console.log(height);
+    // console.log(weight);
+    // console.log(id);
+    // console.log(data.name);
+    API.createGeneration({
+      name: name,
+      type: type,
+      height: height,
+      weight: weight,
+      pk_id: id,
+    })
+      .then((res) => {
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }

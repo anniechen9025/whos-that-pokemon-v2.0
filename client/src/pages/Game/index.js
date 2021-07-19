@@ -44,7 +44,6 @@ function Game(props) {
 
   console.log(randomPokemon);
   console.log(gameWon);
-  console.log(letterHint);
   console.log(guessedPokemon);
 
   return (

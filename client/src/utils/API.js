@@ -15,7 +15,7 @@ export default {
   },
   // Post Pokemon Data they caught in the Game to DB
   postGameResult: function (body) {
-    return axios({ method: 'post', url: '/api/pokemon', data: body });
+    return axios.post('/api/pokemon', body);
   },
   // Gets all pokemon caught by specific user
   getPokemon: async function () {
@@ -51,12 +51,12 @@ export default {
     return axios.put('/api/pokemon', info);
   },
   getOnlineUsers: function () {
-    return axios.get('/api/user/online')
+    return axios.get('/api/user/online');
   },
   getGeneration: function () {
-    return axios.get('/api/pokemon/pokedex')
+    return axios.get('/api/pokemon/pokedex');
   },
-  createGeneration: function () {
-    return axios.post('/api/pokemon/pokedex')
-  }
+  createGeneration: function (info) {
+    return axios.post('/api/pokemon/pokedex', info);
+  },
 };
