@@ -14,10 +14,7 @@ export function usePokedexLogic() {
   const [pokemonPerPage, setPokemonPerPage] = useState(5);
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
-  const currentPokemon = userPokemon.slice(
-    indexOfFirstPokemon,
-    indexOfLastPokemon
-  );
+  const currentPokemon = userPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
@@ -31,11 +28,6 @@ export function usePokedexLogic() {
     API.getPokemon()
       .then((res) => {
         const pokemonList = res.data;
-        // let output = '';
-        // for (let i = 0; (i = pokemonList.length); i + 5) {
-        //   output += pokemonList.slice(i, i + 5).join(',') + '\n';
-        // }
-        //console.log(output);
         setUserPokemon(pokemonList);
       })
       .catch((err) => console.log(err));

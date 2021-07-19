@@ -145,7 +145,7 @@ module.exports = {
     db.Generation.findOne({ name: req.body })
       .then((UserData) => res.json(UserData))
       .catch((err) => res.status(422).json(err));
-  }
+  },
 };
 
 // create: function(req, res) {

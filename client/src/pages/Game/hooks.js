@@ -51,6 +51,7 @@ export function useGameLogic() {
   const [hint1Visible, setHint1Visible] = useState(true);
   const [hint2Visible, setHint2Visible] = useState(true);
   const [userPokemon, setUserPokemon] = useState(0);
+  const [pokemonData, setPokemonData] = useState({});
   const onDismiss1 = () => setHint1Visible(false);
   const onDismiss2 = () => setHint2Visible(false);
   useKeyHandlers(setGuessedLetters);
