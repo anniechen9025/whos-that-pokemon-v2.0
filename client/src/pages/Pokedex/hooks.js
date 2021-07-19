@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import API from '../../utils/API';
 
 //TODO:
-// event handler for each button where targets name = chosen word for fetch
+//show component if userPokemon is zero or null
 // render components for individual pokemon
-//event handler to release alll pokemon
 
 export function usePokedexLogic() {
   const [userPokemon, setUserPokemon] = useState([]);

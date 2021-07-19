@@ -81,6 +81,14 @@ function Game(props) {
               </Card>
             </Col>
           )}
+          {counter === 0 && (
+            <Col sm="12" md={{ size: 3, offset: 4 }} className="mt-5">
+              <Card body className="text-center bg-light">
+                TIME'S UP!! The pokemon got away. Please try again.
+              </Card>
+            </Col>
+          )}
+
           <Col sm="12" md={{ size: 3, offset: 4 }} className="btncont">
             <Button
               className="start-button"
