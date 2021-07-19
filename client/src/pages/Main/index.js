@@ -13,14 +13,20 @@ function Main() {
             <span data-letters="GO!"></span>
           </a>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a974e3e2557625848883fc82a6bb2098ae60841
         </Button>
       </div>
     </div>
 
     // <Container>
+<<<<<<< HEAD
 =======
         </Button>{/* // <Container>
 >>>>>>> fdbafb9d16522ef10b9503bf7dd7a844920552da
+=======
+>>>>>>> 8a974e3e2557625848883fc82a6bb2098ae60841
     // <LeftContainer>
     // <img scr={pokemonLogo} alt="pokemon logo" />
     // </LeftContainer>
