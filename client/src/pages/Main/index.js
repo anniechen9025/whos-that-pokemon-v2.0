@@ -12,15 +12,22 @@ function Main() {
             Challenge<span data-letters="GO!"></span>
             <span data-letters="GO!"></span>
           </a>
+<<<<<<< HEAD
         </Button>
       </div>
     </div>
 
     // <Container>
+=======
+        </Button>{/* // <Container>
+>>>>>>> fdbafb9d16522ef10b9503bf7dd7a844920552da
     // <LeftContainer>
     // <img scr={pokemonLogo} alt="pokemon logo" />
     // </LeftContainer>
-    // </Container>
+    // </Container> */}
+      </div>
+    </div>
+
   );
 }
 

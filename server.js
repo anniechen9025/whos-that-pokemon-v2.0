@@ -11,7 +11,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost/pokemongame',
+  uri: process.env.MONGODB_URI || 'mongodb://localhost/pokemongame',
   collection: 'mySessions',
   database: 'pokemongame'
 });
@@ -60,12 +60,12 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pokemongame',
-{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-});
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  });
 
 // Start the API server
 const server = app.listen(PORT, function () {
@@ -75,7 +75,7 @@ const server = app.listen(PORT, function () {
 io = socketIo(server, {
   cors: {
     origin: "http://localhost:3000",
-      methods: ["GET", "POST"],
+    methods: ["GET", "POST"],
     credentials: true
   }
 });
@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
   console.log('User connected');
   //io.emit('user online', Object.keys(io.engine.clients))
   //console.log(Object.keys(io.engine.clients));
-  socket.on("user online", (username)=>{
+  socket.on("user online", (username) => {
     socket.username = username;
     usersOnline = socket.username
     console.log(socket.username, "user connected");
@@ -94,18 +94,18 @@ io.on('connection', (socket) => {
       {
         username: username
       },
-       {
-         $set: {online: true}
-        },
-        (error,edited) =>{
-        if(error){
+      {
+        $set: { online: true }
+      },
+      (error, edited) => {
+        if (error) {
           console.log(error);
         }
-        else{
+        else {
           console.log(edited, "found");
-          socket.emit("user joined",usersOnline)
+          socket.emit("user joined", usersOnline)
         }
-        });
+      });
   })
   // Think about this as an event listener
   socket.on('chat message', (data) => {
@@ -121,18 +121,18 @@ io.on('connection', (socket) => {
       {
         username: usersOnline
       },
-       {
-         $set: {online: false}
-        },
-        (error,edited) =>{
-        if(error){
+      {
+        $set: { online: false }
+      },
+      (error, edited) => {
+        if (error) {
           console.log(error);
         }
-        else{
+        else {
           console.log(edited);
         }
-        });
-   // console.log(usersOnline, "disconnect");
-   // console.log(Object.keys(io.engine.clients));
+      });
+    // console.log(usersOnline, "disconnect");
+    // console.log(Object.keys(io.engine.clients));
   });
 });
