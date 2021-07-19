@@ -57,6 +57,6 @@ export default {
     return axios.get('/api/pokemon/pokedex')
   },
   createGeneration: function () {
-    return axios.get('/api/pokemon/pokedex')
+    return axios.post('/api/pokemon/pokedex')
   }
 };
