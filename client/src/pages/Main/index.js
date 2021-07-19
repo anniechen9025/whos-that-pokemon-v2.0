@@ -12,7 +12,11 @@ function Main() {
             Challenge<span data-letters="GO!"></span>
             <span data-letters="GO!"></span>
           </a>
-        </Button>{/* // <Container>
+        </Button>
+      </div>
+    </div>
+
+    // <Container>
     // <LeftContainer>
     // <img scr={pokemonLogo} alt="pokemon logo" />
     // </LeftContainer>
