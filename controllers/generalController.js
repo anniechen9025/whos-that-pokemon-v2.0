@@ -8,7 +8,8 @@ module.exports = {
     db.User.find({ _id: req.session.user_id })
       .populate('pokemon')
       .then((dbUser) => {
-        // console.log(dbUser[0].pokemon[0].name);
+        console.log(dbUser);
+        // res.json(dbUser[0]);
         const pokemonarray = dbUser[0].pokemon;
         const dataarray = [];
         // console.log(pokemonarray);
@@ -142,7 +143,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   getGeneration: function (req, res) {
-    db.Generation.findOne({ name: req.body })
+    db.Generation.find({})
       .then((UserData) => res.json(UserData))
       .catch((err) => res.status(422).json(err));
   }
