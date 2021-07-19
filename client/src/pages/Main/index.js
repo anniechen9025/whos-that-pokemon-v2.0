@@ -20,7 +20,10 @@ function Main() {
     // <LeftContainer>
     // <img scr={pokemonLogo} alt="pokemon logo" />
     // </LeftContainer>
-    // </Container>
+    // </Container> */}
+      </div>
+    </div>
+
   );
 }
 
