@@ -22,7 +22,7 @@ function Pokedex() {
   return (
     <div>
       {!hasPokemon && (
-        <div className="bg-light">
+        <div className="bg-light mt-5">
           <p>
             You don't have any Pokemon! Please play the game first to catch some
             pokemon to view them!
