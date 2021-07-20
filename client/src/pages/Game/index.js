@@ -112,7 +112,7 @@ function Game(props) {
                       <span className="text-uppercase fw-bold">
                         {lastCaughtPokemon}
                       </span>
-                      !!
+                      !!{' '}
                     </>
                   )}
                   Check your Pokedex to see your pokemon, or continue playing to

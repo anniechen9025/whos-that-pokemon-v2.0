@@ -1,15 +1,6 @@
 import React from 'react';
 import spinner from '../../assets/loading.gif';
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Row,
-  Col,
-} from 'reactstrap';
+import { CardBody, CardImg, CardTitle, Col } from 'reactstrap';
 import './style.css';
 
 function Pokemon({ userPokemon = [], loading, pokemonData }) {
@@ -28,31 +19,35 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
   }
 
   return (
-    <div className="d-flex justify-content-between flex-wrap">
+    <div className="d-flex flex-column align-items-center justify-content-center align-content-center">
       {userPokemon &&
         userPokemon.length > 0 &&
         userPokemon.map((pokemon) => {
           return (
-            <Row key={pokemon.id}>
+            <Col md="4" className="card mb-1 mt-1" key={pokemon.id}>
               <div>
                 <div className="m-2">
                   <div className={pokemon.type}>
-                    <CardTitle className="text-uppercase">
+                    <div>#{pokemon.pk_id}</div>
+                    <CardTitle className="text-uppercase fs-4">
                       {pokemon.name}
                     </CardTitle>
-                    <img
-                      width="100%"
-                      src={pokemon.Image_url}
-                      alt="Card image cap"
-                    />
+                    <div className="pokemonBg">
+                      <CardImg src={pokemon.Image_url} alt="Card image cap" />
+                    </div>
                     <CardBody>
+                      <div className="pokemonType d-flex flex-row justify-content-center align-items-center offset-5">
+                        <div className="d-flex flex-row align-items-center">
+                          <span className="text-uppercase">{pokemon.type}</span>
+                        </div>
+                      </div>
                       <p>Height: {pokemon.height}</p>
                       <p>Weight: {pokemon.weight}</p>
                     </CardBody>
                   </div>
                 </div>
               </div>
-            </Row>
+            </Col>
           );
         })}
     </div>
