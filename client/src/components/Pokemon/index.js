@@ -24,7 +24,7 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
         userPokemon.length > 0 &&
         userPokemon.map((pokemon) => {
           return (
-            <Col sm="12" md="4" className="card mb-1 mt-1" key={pokemon.id}>
+            <Col sm="12" md="4" className="mb-1 mt-1" key={pokemon.id}>
               <div>
                 <div className="m-2">
                   <div className={pokemon.type}>
