@@ -229,6 +229,7 @@ export function useGameLogic() {
       })
       .catch((err) => console.log(err));
   }
+  //thisis so stupid i hate this project
 
   // calls APi to return # of pokemon a user has caught
   function getPokemonAmount() {
