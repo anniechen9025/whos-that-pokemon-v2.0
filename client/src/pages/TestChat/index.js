@@ -9,7 +9,7 @@ import ChatList from "../../components/ChatList";
 import API from '../../utils/API';
 import "./style.css";
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:3001";
+const ENDPOINT = process.env.SOCKETIO_URI ||"http://localhost:3000";
 const socket = socketIOClient(ENDPOINT);
 
 //todo list can use reactstrap (Header Icon)
