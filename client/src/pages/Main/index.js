@@ -1,22 +1,25 @@
 import React from 'react';
-import { Jumbotron, Button } from 'reactstrap';
-import './style.css';
+import { Button } from "../../components/Button";
+import "./style.css";
 
-function Main() {
+function main() {
   return (
 
-    <div>
-      <Jumbotron>
-        <h1 className="display-3">Hello, world!</h1>
-        <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr className="my-2" />
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p className="lead">
-          <Button color="primary">Learn More</Button>
-        </p>
-      </Jumbotron>
+    // Ash & Pikachu Gif style
+    <div className="gifcontainer">
+      <img clasName="maingif"/>
+      <h1>Who's That Pokémon?</h1>
+      <p>Test your knowledge with our guess the Pokémon quiz!</p>
+      <div className="gifbtn">
+        <Button className="btns" 
+        buttonStyle="btn--primary"
+        buttonSize="btn--large">
+          CHALLENGE
+        </Button>
+      </div>
     </div>
-);
+  )
 }
 
-export default Main;
+export default main
+
