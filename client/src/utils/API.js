@@ -53,10 +53,10 @@ export default {
   getOnlineUsers: function () {
     return axios.get('/api/user/online');
   },
-  getGeneration: function () {
-    return axios.get('/api/pokemon/pokedex');
-  },
-  createGeneration: function (info) {
-    return axios.post('/api/pokemon/pokedex', info);
-  },
+  // getGeneration: function () {
+  //   return axios.get('/api/pokemon/pokedex')
+  // },
+  // createGeneration: function () {
+  //   return axios.post('/api/pokemon/pokedex')
+  // }
 };

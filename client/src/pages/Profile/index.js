@@ -40,6 +40,7 @@ function Profile(props) {
                 const Amount = data.data.pokemon_amount;
                 setEmail(data.data.email);
                 playerRank(Amount);
+                setPkAmount(Amount);
             })
             .catch(err => {
                 return err
@@ -71,7 +72,7 @@ function Profile(props) {
     }
 
     function playerRank(amount) {
-        setPkAmount(amount)
+        // setPkAmount(amount)
         if (amount >= 0 && amount < 10) {
             setRank("Beginner Trainer")
             setImageNumber("1")
@@ -118,7 +119,9 @@ function Profile(props) {
                             <h4>Rank:</h4>
                             <CardSubtitle tag="h5" className="mb-2 text-muted">{rank}</CardSubtitle>
                             <br></br>
-                            <CardSubtitle tag="h5" className="mb-2 text-muted">Total Pokemon #: {pkamount}</CardSubtitle>
+                            <div>
+                                {pkamount && <CardSubtitle tag="h5" className="mb-2 text-muted">Total Pokemon #: {pkamount}</CardSubtitle>}
+                            </div>
                             <br></br>
                             <CardText>Trainers, you can check your rank and update your account password below,</CardText>
                             <CardText>Enjoy your journey!</CardText>
