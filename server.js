@@ -72,13 +72,15 @@ const server = app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-io = socketIo(server, {
-  cors: {
-    origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
+io = socketIo(server
+  //  ,{
+  // cors: {
+  //   origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
+  //   methods: ["GET", "POST"],
+  //   credentials: true
+  // }
+// }
+);
 
 let usersOnline = ''
 
