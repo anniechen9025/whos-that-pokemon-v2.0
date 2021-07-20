@@ -10,7 +10,7 @@ import Signup from '../Signup';
 import LoginSignup from '../../components/Loginsignup'
 
 async function loginAuth(credentials) {
-    return fetch('http://localhost:3001/authlogin', {
+    return fetch('/authlogin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
