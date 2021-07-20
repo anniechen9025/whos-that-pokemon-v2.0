@@ -117,8 +117,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    console.log('User disconnected',socket.username);
-    io.emit('user disconnect', Object.keys(io.engine.clients))
+    console.log('User disconnected', socket.username);
+    // io.emit('user disconnect', Object.keys(io.engine.clients))
+    io.emit('user disconnect', socket.username)
     db.User.updateOne(
       {
         username:socket.username
