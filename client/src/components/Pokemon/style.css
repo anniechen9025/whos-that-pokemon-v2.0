@@ -1,71 +1,107 @@
 .normal {
     background: #BABAAE;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .fighting {
     background: #A75543;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .flying {
     background: #78A2FF;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .poison {
     background: #A95CA0;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .ground {
     background: #EECC55;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .rock {
     background: #CCBD72;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .bug {
     background: #C2D21E;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .ghost {
     background: #7975D7;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .steel {
     background: #C4C2DB;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .fire {
     background: #FA5643;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .water {
     background: #56ADFF;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .grass {
     background: #8CD750;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .electric {
     background: #FDE139;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .psychic {
     background: #FA65B4;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .ice {
     background: #96F1FF;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .dragon {
     background: #8673FF;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .dark {
     background: #8D6855;
+    padding: 1rem;
+    border-radius: 10px;
   }
   
   .fairy {
     background: #F9AEFF;
+    padding: 1rem;
+    border-radius: 10px;
   }

@@ -28,15 +28,14 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
   }
 
   return (
-    <div>
+    <div className="d-flex justify-content-between flex-wrap">
       {userPokemon &&
         userPokemon.length > 0 &&
         userPokemon.map((pokemon) => {
-          console.log(pokemon);
           return (
             <Row key={pokemon.id}>
-              <Col sm="6" md="2">
-                <div className="m-2 px-2">
+              <div>
+                <div className="m-2">
                   <div className={pokemon.type}>
                     <CardTitle className="text-uppercase">
                       {pokemon.name}
@@ -52,7 +51,7 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
                     </CardBody>
                   </div>
                 </div>
-              </Col>
+              </div>
             </Row>
           );
         })}
