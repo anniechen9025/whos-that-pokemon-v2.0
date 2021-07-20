@@ -9,8 +9,7 @@ import ChatList from "../../components/ChatList";
 import API from '../../utils/API';
 import "./style.css";
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "https://enigmatic-reaches-30017.herokuapp.com" 
-// ||"http://localhost:3000";
+const ENDPOINT = "http://localhost:3001";
 const socket = socketIOClient(ENDPOINT);
 
 //todo list can use reactstrap (Header Icon)
