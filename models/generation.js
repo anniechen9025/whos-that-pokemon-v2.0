@@ -16,6 +16,9 @@ const generationSchema = new Schema({
     },
     weight: {
         type: Number
+    },
+    image_url: {
+        type: String
     }
 });
 
