@@ -67,8 +67,6 @@ class TestChat extends React.Component {
     }
 
     handleOnlineUsers() {
-        
-            
                 // onlineUsers.push(data.data)
                 // this.setState({online: onlineUsers})
                 // console.log(this.state.online);
@@ -87,9 +85,8 @@ class TestChat extends React.Component {
                         }
                         this.setState({online: userArray})
                     })
-                    // console.log(this.state.online, "hello");
+                     console.log(this.state.online, "hello");
                 })
-          
     }
     render() {
         return (
