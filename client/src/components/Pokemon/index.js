@@ -29,15 +29,33 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
 
   return (
     <div>
-      {userPokemon.map((pokemon) => (
-        <Row key={pokemon.id}>
-          <Col sm="6" md="2">
-            <Card className="mb3">
-              <CardTitle>{pokemon.name}</CardTitle>
-            </Card>
-          </Col>
-        </Row>
-      ))}
+      {userPokemon &&
+        userPokemon.length > 0 &&
+        userPokemon.map((pokemon) => {
+          console.log(pokemon);
+          return (
+            <Row key={pokemon.id}>
+              <Col sm="6" md="2">
+                <div className="m-2 px-2">
+                  <div className={pokemon.type}>
+                    <CardTitle className="text-uppercase">
+                      {pokemon.name}
+                    </CardTitle>
+                    <img
+                      width="100%"
+                      src={pokemon.Image_url}
+                      alt="Card image cap"
+                    />
+                    <CardBody>
+                      <p>Height: {pokemon.height}</p>
+                      <p>Weight: {pokemon.weight}</p>
+                    </CardBody>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          );
+        })}
     </div>
   );
 }

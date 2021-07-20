@@ -6,7 +6,7 @@ import API from '../../utils/API';
 
 export function usePokedexLogic() {
   const [userPokemon, setUserPokemon] = useState([]);
-  const [pokemonData, setPokemonData] = useState({});
+  const [pokemonData, setPokemonData] = useState();
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonPerPage] = useState(5);
@@ -46,6 +46,7 @@ export function usePokedexLogic() {
       .then((res) => {
         console.log(res.data);
         setPokemonData(res.data);
+        console.log(pokemonData);
       })
       .catch((err) => console.log(err));
   }, []);

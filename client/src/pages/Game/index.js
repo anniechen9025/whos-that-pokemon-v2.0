@@ -46,6 +46,7 @@ function Game(props) {
   console.log(randomPokemon);
   console.log(gameWon);
   console.log(guessedPokemon);
+  console.log(pokemonInfo);
 
   return (
     <Container>

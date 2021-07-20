@@ -29,9 +29,7 @@ function Pokedex() {
           </p>
         </div>
       )}
-      <div>
-        <Pokemon userPokemon={currentPokemon} loading={loading} />
-      </div>
+      <Pokemon userPokemon={pokemonData} loading={loading} />
       <div className="container-md d-flex justify-content-center mt-5">
         <Pagination
           pokemonPerPage={pokemonPerPage}

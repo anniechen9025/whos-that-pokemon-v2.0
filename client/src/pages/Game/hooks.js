@@ -2,10 +2,6 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import API from '../../utils/API';
 import { useSpring } from 'react-spring';
 
-// TODOS:
-// Add loading pic for Pokemon Pic
-//store guessedPokemon array in localstorage? otherwise when browser refresh array is emptied and caught pokemon would be refreshed
-
 // function to return random item
 function chooseRandomIndex(length) {
   return Math.floor(Math.random() * length);
@@ -184,6 +180,7 @@ export function useGameLogic() {
       API.getPokemonPics(chosenPokemon)
         .then((res) => {
           setPokemonInfo(res.data);
+          console.log(res.data);
           setPokemonPic(res.data.sprites.other.dream_world.front_default);
         })
         .catch((err) => console.log(err));
@@ -218,12 +215,14 @@ export function useGameLogic() {
     const height = data.height;
     const weight = data.weight;
     const id = data.id;
+    const pic = data.sprites.other.dream_world.front_default;
     API.createGeneration({
       name: name,
       type: type,
       height: height,
       weight: weight,
       pk_id: id,
+      Image_url: pic,
     })
       .then((res) => {
         console.log(res.data);
