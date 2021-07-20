@@ -12,7 +12,8 @@ import {
 } from 'reactstrap';
 import './style.css';
 
-function Pokemon({ userPokemon = [], loading }) {
+function Pokemon({ userPokemon = [], loading, pokemonData }) {
+  // console.log(pokemonData);
   if (loading) {
     return (
       <div>
@@ -29,10 +30,10 @@ function Pokemon({ userPokemon = [], loading }) {
   return (
     <div>
       {userPokemon.map((pokemon) => (
-        <Row key={pokemon}>
+        <Row key={pokemon.id}>
           <Col sm="6" md="2">
             <Card className="mb3">
-              <CardTitle>{pokemon}</CardTitle>
+              <CardTitle>{pokemon.name}</CardTitle>
             </Card>
           </Col>
         </Row>

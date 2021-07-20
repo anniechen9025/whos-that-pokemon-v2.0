@@ -1,8 +1,7 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import API from '../../utils/API';
 
 //TODO:
-//show component if userPokemon is zero or null
 // render components for individual pokemon
 
 export function usePokedexLogic() {
@@ -41,14 +40,15 @@ export function usePokedexLogic() {
   }
 
   // API call to load all pokemon data stored to DB
-  function loadPokemonInfo() {
+
+  const loadPokemonInfo = useCallback(() => {
     API.getGeneration()
       .then((res) => {
-        console.log(res);
-        setPokemonData(res);
+        console.log(res.data);
+        setPokemonData(res.data);
       })
       .catch((err) => console.log(err));
-  }
+  }, []);
 
   //API call to reset all pokemon attached to User ID
   function releasePokemon() {

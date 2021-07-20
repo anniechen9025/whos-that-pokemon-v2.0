@@ -15,14 +15,14 @@ function Pokedex() {
     pokemonPerPage,
     paginate,
     releasePokemon,
+    putPokemonAmount,
     hasPokemon,
   } = usePokedexLogic();
-  console.log(userPokemon);
-
+  console.log(pokemonData);
   return (
     <div>
       {!hasPokemon && (
-        <div className="bg-light mt-3 container-md d-flex justify-content-center">
+        <div className="bg-light">
           <p>
             You don't have any Pokemon! Please play the game first to catch some
             pokemon to view them!
@@ -43,6 +43,7 @@ function Pokedex() {
         <Button
           onClick={() => {
             releasePokemon();
+            putPokemonAmount();
           }}
         >
           DELETE ALL POKEMON AND RESET POKEDEX

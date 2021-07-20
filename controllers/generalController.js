@@ -146,7 +146,10 @@ module.exports = {
   getGeneration: function (req, res) {
     db.Generation.find({})
       .then((UserData) => res.json(UserData))
-      .catch((err) => res.status(422).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(422).json(err);
+      });
   },
 };
 
