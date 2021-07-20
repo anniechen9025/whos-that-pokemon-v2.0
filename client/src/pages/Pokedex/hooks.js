@@ -8,19 +8,10 @@ export function usePokedexLogic() {
   const [userPokemon, setUserPokemon] = useState([]);
   const [pokemonData, setPokemonData] = useState();
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonPerPage] = useState(5);
   const hasPokemon = useMemo(
     () => userPokemon.length > 0,
     [userPokemon.length]
   );
-  const indexOfLastPokemon = currentPage * pokemonPerPage;
-  const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
-  const currentPokemon = userPokemon.slice(
-    indexOfFirstPokemon,
-    indexOfLastPokemon
-  );
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     setLoading(true);
@@ -65,10 +56,6 @@ export function usePokedexLogic() {
     userPokemon,
     pokemonData,
     loading,
-    currentPokemon,
-    currentPage,
-    pokemonPerPage,
-    paginate,
     releasePokemon,
     hasPokemon,
   };

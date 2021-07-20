@@ -3,8 +3,7 @@ import spinner from '../../assets/loading.gif';
 import { CardBody, CardImg, CardTitle, Col } from 'reactstrap';
 import './style.css';
 
-function Pokemon({ userPokemon = [], loading, pokemonData }) {
-  // console.log(pokemonData);
+function Pokemon({ pokemon = [], loading }) {
   if (loading) {
     return (
       <div>
@@ -20,9 +19,9 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
 
   return (
     <div className="d-flex flex-column-reverse align-items-center justify-content-center align-content-center">
-      {userPokemon &&
-        userPokemon.length > 0 &&
-        userPokemon.map((pokemon) => {
+      {pokemon &&
+        pokemon.length > 0 &&
+        pokemon.map((pokemon) => {
           return (
             <Col sm="12" md="4" className="mb-1 mt-1" key={pokemon.id}>
               <div>
