@@ -216,7 +216,7 @@ export function useGameLogic() {
     const weight = data.weight;
     const id = data.id;
     const pic = data.sprites.other.dream_world.front_default;
-    API.postGameResult({
+    API.createGeneration({
       name: name,
       type: type,
       height: height,
