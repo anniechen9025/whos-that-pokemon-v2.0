@@ -11,8 +11,8 @@ router.route("/")
 router.route("/delete")
     .delete(pokemonController.restAllPokemon);
 
-// router.route("/pokedex")
-//     .post(pokemonController.createGeneration)
-//     .get(pokemonController.getGeneration);
+router.route("/pokedex")
+    .post(pokemonController.createGeneration)
+    .get(pokemonController.getGeneration);
 
 module.exports = router;
