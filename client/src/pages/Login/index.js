@@ -116,7 +116,7 @@ function Login({ setToken, token }) {
                                 <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" onChange={e => setPassword(e.target.value)} />
                             </FormGroup>
                             <br></br>
-                            <Button>Submit</Button>
+                            <Button onClick = {handleSubmit}>Submit</Button>
                         </Col>
                     </Row>
                     <Row>
