@@ -19,12 +19,12 @@ function Pokemon({ userPokemon = [], loading, pokemonData }) {
   }
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center align-content-center">
+    <div className="d-flex flex-column-reverse align-items-center justify-content-center align-content-center">
       {userPokemon &&
         userPokemon.length > 0 &&
         userPokemon.map((pokemon) => {
           return (
-            <Col md="4" className="card mb-1 mt-1" key={pokemon.id}>
+            <Col sm="12" md="4" className="card mb-1 mt-1" key={pokemon.id}>
               <div>
                 <div className="m-2">
                   <div className={pokemon.type}>

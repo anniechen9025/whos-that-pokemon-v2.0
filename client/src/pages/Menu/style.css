@@ -4,10 +4,12 @@ img#slides{
 }
 div#pokemonpics{
     vertical-align: middle!important;
-    margin-left: 25%;
-    margin-right: 30%;
+    /* margin-left: 25%;
+    margin-right: 30%; */
     margin-top: 5%;
     margin-bottom: 10%;
+    display:flex;
+    justify-content:center;
 }
 
 div.carousel-inner{
