@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import './style.css';
 
-function Pokemon({ userPokemon, loading }) {
+function Pokemon({ userPokemon = [], loading }) {
   if (loading) {
     return (
       <div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import API from '../../utils/API';
 
 //TODO:
@@ -11,7 +11,10 @@ export function usePokedexLogic() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonPerPage] = useState(5);
-  const [hasPokemon] = useState(false);
+  const hasPokemon = useMemo(
+    () => userPokemon.length > 0,
+    [userPokemon.length]
+  );
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
   const currentPokemon = userPokemon.slice(
@@ -51,18 +54,8 @@ export function usePokedexLogic() {
   function releasePokemon() {
     API.resetPokedex()
       .then((res) => {
-        console.log(res.data);
-        setUserPokemon(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  // API to update # of pokemon a user has caught
-  function putPokemonAmount(number) {
-    API.increasePokemonAmount({ pokemon_amount: number })
-      .then((res) => {
-        console.log(res.data.pokemon_amount);
-        setUserPokemon(res.data.pokemon_amount);
+        console.log(res.data.pokemon);
+        setUserPokemon(res.data.pokemon);
       })
       .catch((err) => console.log(err));
   }
@@ -76,7 +69,6 @@ export function usePokedexLogic() {
     pokemonPerPage,
     paginate,
     releasePokemon,
-    putPokemonAmount,
     hasPokemon,
   };
 }

@@ -21,9 +21,6 @@ function Main() {
     // <img scr={pokemonLogo} alt="pokemon logo" />
     // </LeftContainer>
     // </Container> */}
-      </div>
-    </div>
-
   );
 }
 

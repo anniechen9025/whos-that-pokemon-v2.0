@@ -40,6 +40,7 @@ function Game(props) {
     userPokemon,
     onDismiss1,
     onDismiss2,
+    lastCaughtPokemon,
   } = useGameLogic();
 
   console.log(randomPokemon);
@@ -96,16 +97,21 @@ function Game(props) {
             </Col>
           )}
 
-          {gameWon && (
+          {!gameStarted && (
             <Col sm="12" md={{ size: 3, offset: 4 }} className="mt-5">
               <Card body className="text-center bg-light">
                 <p>
-                  You caught{' '}
-                  <span className="text-uppercase fw-bold">
-                    {pokemonInfo.name}
-                  </span>
-                  !! Check your Pokedex to see your pokemon, or continue playing
-                  to catch more!
+                  {!!lastCaughtPokemon && (
+                    <>
+                      You caught{' '}
+                      <span className="text-uppercase fw-bold">
+                        {lastCaughtPokemon}
+                      </span>
+                      !!
+                    </>
+                  )}
+                  Check your Pokedex to see your pokemon, or continue playing to
+                  catch more!
                 </p>
               </Card>
             </Col>

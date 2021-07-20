@@ -50,6 +50,7 @@ export function useGameLogic() {
   const [hint1Visible, setHint1Visible] = useState(true);
   const [hint2Visible, setHint2Visible] = useState(true);
   const [userPokemon, setUserPokemon] = useState(0);
+  const [lastCaughtPokemon, setLastCaughtPokemon] = useState('');
   const onDismiss1 = () => setHint1Visible(false);
   const onDismiss2 = () => setHint2Visible(false);
   useKeyHandlers(setGuessedLetters);
@@ -79,8 +80,10 @@ export function useGameLogic() {
       putPokemonAmount(userPokemon + 1);
       postPokemonData(pokemonInfo);
       console.log(pokemonInfo);
+      setLastCaughtPokemon(randomPokemon);
       setRandomPokemon('');
       setGameStarted(false);
+      setHint(0);
     }
   }, [
     setRandomPokemon,
@@ -93,6 +96,8 @@ export function useGameLogic() {
     setGameStarted,
     postPokemonData,
     pokemonInfo,
+    setLastCaughtPokemon,
+    setHint,
   ]);
 
   useEffect(() => {
@@ -109,6 +114,15 @@ export function useGameLogic() {
       setGameStarted(false);
     }
   }, [counter, gameStarted, setGameStarted]);
+
+  useEffect(() => {
+    if (hint === 0 && !hint1Visible) {
+      setHint1Visible(true);
+    }
+    if (hint === 0 && !hint2Visible) {
+      setHint2Visible(true);
+    }
+  }, [hint, hint1Visible, setHint1Visible, hint2Visible, setHint2Visible]);
 
   useEffect(() => {
     if (hint > 2) {
@@ -187,6 +201,19 @@ export function useGameLogic() {
   //   setRandomPokemon,
   //   setTotalPokemon,
   // ]);
+
+  const getPokemonInfo = useCallback(
+    (chosenPokemon) => {
+      API.getPokemonPics(chosenPokemon)
+        .then((res) => {
+          setPokemonInfo(res.data);
+          setPokemonPic(res.data.sprites.other.dream_world.front_default);
+        })
+        .catch((err) => console.log(err));
+    },
+    [setPokemonInfo, setPokemonPic]
+  );
+
   return {
     randomPokemon,
     displayString,
@@ -210,18 +237,10 @@ export function useGameLogic() {
     userPokemon,
     onDismiss1,
     onDismiss2,
+    lastCaughtPokemon,
   };
 
   // calls fetch request to return single pokemon information
-  function getPokemonInfo(chosenPokemon) {
-    API.getPokemonPics(chosenPokemon)
-      .then((res) => {
-        setPokemonInfo(res.data);
-        console.log(pokemonInfo);
-        setPokemonPic(res.data.sprites.other.dream_world.front_default);
-      })
-      .catch((err) => console.log(err));
-  }
 
   // calls API to post guessed pokemon to DB
   function postGuessedPokemon(name) {

@@ -35,7 +35,8 @@ module.exports = {
   restAllPokemon: function (req, res) {
     db.User.findOneAndUpdate(
       { _id: req.session.user_id },
-      { $set: { pokemon: [], pokemon_amount: '0' } }
+      { $set: { pokemon: [], pokemon_amount: '0' } },
+      { new: true }
     )
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
