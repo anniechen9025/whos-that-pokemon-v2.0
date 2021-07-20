@@ -77,7 +77,11 @@ function Game(props) {
                 )}
                 {!!hint && hint > 2 && (
                   <Alert color="info" isOpen={hint2Visible} toggle={onDismiss2}>
-                    A possible letter is: <b>{letterHint}</b>.
+                    A possible letter is:{' '}
+                    <span className="text-uppercase fw-bold fs-5">
+                      {letterHint}
+                    </span>
+                    .
                   </Alert>
                 )}
               </Card>

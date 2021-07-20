@@ -41,7 +41,6 @@ function Pokedex() {
         <Button
           onClick={() => {
             releasePokemon();
-            putPokemonAmount();
           }}
         >
           DELETE ALL POKEMON AND RESET POKEDEX
