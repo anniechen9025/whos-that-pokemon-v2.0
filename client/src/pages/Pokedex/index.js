@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-import { Button } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 import { usePokedexLogic } from './hooks';
 import Pokemon from '../../components/Pokemon';
 import Pagination from '../../components/Pagination';
@@ -29,7 +29,9 @@ function Pokedex() {
           </p>
         </div>
       )}
+
       <Pokemon userPokemon={pokemonData} loading={loading} />
+
       <div className="container-md d-flex justify-content-center mt-5">
         <Pagination
           pokemonPerPage={pokemonPerPage}
@@ -41,7 +43,6 @@ function Pokedex() {
         <Button
           onClick={() => {
             releasePokemon();
-            putPokemonAmount();
           }}
         >
           DELETE ALL POKEMON AND RESET POKEDEX
