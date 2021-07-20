@@ -11,7 +11,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost/pokemongame',
+  uri: process.env.MONGODB_URI || 'mongodb://localhost/pokemongame',
   collection: 'mySessions',
   database: 'pokemongame'
 });
@@ -74,8 +74,8 @@ const server = app.listen(PORT, function () {
 
 io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
-      methods: ["GET", "POST"],
+    origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
+    methods: ["GET", "POST"],
     credentials: true
   }
 });
@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
   console.log('User connected');
   //io.emit('user online', Object.keys(io.engine.clients))
   //console.log(Object.keys(io.engine.clients));
-  socket.on("user online", (username)=>{
+  socket.on("user online", (username) => {
     socket.username = username;
     //usersOnline = socket.username
     //usersOnline = username;
@@ -96,18 +96,18 @@ io.on('connection', (socket) => {
       {
         username: socket.username
       },
-       {
-         $set: {online: true}
-        },
-        (error,edited) =>{
-        if(error){
+      {
+        $set: { online: true }
+      },
+      (error, edited) => {
+        if (error) {
           console.log(error);
         }
-        else{
+        else {
           console.log(edited, "found");
           socket.emit("user joined", socket.username)
         }
-        });
+      });
   })
   // Think about this as an event listener
   socket.on('chat message', (data) => {
@@ -124,18 +124,18 @@ io.on('connection', (socket) => {
       {
         username:socket.username
       },
-       {
-         $set: {online: false}
-        },
-        (error,edited) =>{
-        if(error){
+      {
+        $set: { online: false }
+      },
+      (error, edited) => {
+        if (error) {
           console.log(error);
         }
-        else{
+        else {
           console.log(edited);
         }
-        });
-   // console.log(usersOnline, "disconnect");
-   // console.log(Object.keys(io.engine.clients));
+      });
+    // console.log(usersOnline, "disconnect");
+    // console.log(Object.keys(io.engine.clients));
   });
 });

@@ -1,4 +1,5 @@
 module.exports = {
-  Pokemon: require("./pokemon"),
-  User: require("./user")
+  Pokemon: require("./Pokemon"),
+  User: require("./user"),
+  // Generation: require("./generation")
 };

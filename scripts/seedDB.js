@@ -50,6 +50,29 @@ const userSeed = [{
   online: false
 }];
 
+// const generationSeed = [
+//   {
+//     name: "mew",
+//     type: "idk",
+//     pk_id: "01",
+//     weight: "50",
+//     height: "50"
+//   },
+//   {
+//     name: "snorlax",
+//     type: "idk",
+//     pk_id: "02",
+//     weight: "1000",
+//     height: "100"
+//   },
+//   {
+//     name: "pikachu",
+//     type: "eletric",
+//     pk_id: "03",
+//     weight: "10",
+//     height: "10"
+  // }];
+
 db.Pokemon
   .remove({})
   .then(() => db.Pokemon.collection.insertMany(pokemonSeed))
@@ -62,14 +85,28 @@ db.Pokemon
     process.exit(1);
   });
 
-  db.User
+// db.Generation
+//   .remove({})
+//   .then(() => db.Generation.collection.insertMany(generationSeed))
+//   .then(data => {
+//     console.log(data.result.n + " generation pokedex inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
+
+db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {
-    console.log(data.result.n + " pokemon records inserted!");
+    console.log(data.result.n + " user records inserted!");
     process.exit(0);
   })
   .catch(err => {
     console.error(err);
     process.exit(1);
   });
+
+
