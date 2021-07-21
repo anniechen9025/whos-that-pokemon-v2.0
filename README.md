@@ -49,6 +49,15 @@ Run `npm install` in your terminal to install all dependencies. To run the appli
 ![Pokedex](./client/public/image/pokedex.jpg)
 ![Chatbox](./client/public/image/chat.jpg)
 
+## Kanban:
+![Group Page](./client/public/image/group.jpg)
+![LiHUA Page](./client/public/image/lihua.jpg)
+![Jouan Page](./client/public/image/jouan1.jpg)
+![Jouan Page2](./client/public/image/jouan2.jpg)
+![Jouan Page3](./client/public/image/jouan3.jpg)
+![Jouan Page4](./client/public/image/jouan4.jpg)
+![Jouan Page5](./client/public/image/jouan5.jpg)
+
 ## Contributors:
 Please feel free to contact any of the contributors through their GitHub to collaborate.
 - [Li Hua Anderson](https://github.com/chopsushi206)
