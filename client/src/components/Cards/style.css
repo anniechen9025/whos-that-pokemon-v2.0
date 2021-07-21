@@ -65,8 +65,8 @@ h1 {
     max-width: calc((100%) - 60px);
     font-size: 12px;
     font-weight: 700;
-    color: #fff;
-    background-color: #1f98f4;
+    color: #242424 !important;
+    background-color: #fff !important;
     box-sizing: border-box;
 }
 
@@ -94,7 +94,6 @@ h1 {
 }
 
 .cards__item__text {
-    color: #252e48;
     font-size: 18px;
     line-height: 24px;
 }
@@ -116,38 +115,3 @@ h1 {
         margin-bottom: 2rem;
     }
 }
-
-
-
-
-
-
-
-
-/* img#slides{
-    border-radius: 10%;
-    border-left: 10rem;
-}
-div#pokemonpics{
-    vertical-align: middle!important;
-    margin-left: 25%;
-    margin-right: 30%;
-    margin-top: 5%;
-    margin-bottom: 10%;
-}
-
-div.carousel-inner{
-    background-color:#EDEDED;
-    height:75%;
-}
-
-div.carousel.slide{
-    height:100%;
-}
-p{
-    color:black;
-}
-
-h3{
-    color:black;
-} */
