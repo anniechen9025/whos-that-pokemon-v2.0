@@ -40,19 +40,20 @@ function Game(props) {
     userPokemon,
     onDismiss1,
     onDismiss2,
+    lastCaughtPokemon,
   } = useGameLogic();
 
   console.log(randomPokemon);
   console.log(gameWon);
-  console.log(letterHint);
   console.log(guessedPokemon);
+  console.log(pokemonInfo);
 
   return (
     <Container>
       <main className="content">
         <section>
           {gameStarted && (
-            <Col sm="12" md={{ size: 3, offset: 4 }}>
+            <Col sm="12" md={{ size: 3, offset: 4 }} className="mt-3">
               <Card body className="text-center bg-light">
                 <CardSubtitle tag="h6" className="mb-2 text-muted">
                   {counter === 0 ? 'Time over' : counter + ' Seconds Remaining'}
@@ -76,12 +77,51 @@ function Game(props) {
                 )}
                 {!!hint && hint > 2 && (
                   <Alert color="info" isOpen={hint2Visible} toggle={onDismiss2}>
-                    A possible letter is: <b>{letterHint}</b>.
+                    A possible letter is:{' '}
+                    <span className="text-uppercase fw-bold fs-5">
+                      {letterHint}
+                    </span>
+                    .
                   </Alert>
                 )}
               </Card>
             </Col>
           )}
+          {counter === 0 && (
+            <Col
+              sm="12"
+              md={{ size: 3, offset: 4 }}
+              className="mt-5 d-flex align-items-center p-0"
+            >
+              <Card body className="text-center bg-light">
+                <p>
+                  <span className="text-uppercase fw-bold">TIME'S UP!!</span>{' '}
+                  The pokemon got away. Please try again.
+                </p>
+              </Card>
+            </Col>
+          )}
+
+          {!gameStarted && (
+            <Col sm="12" md={{ size: 3, offset: 4 }} className="mt-5">
+              <Card body className="text-center bg-light">
+                <p>
+                  {!!lastCaughtPokemon && (
+                    <>
+                      You caught{' '}
+                      <span className="text-uppercase fw-bold">
+                        {lastCaughtPokemon}
+                      </span>
+                      !!{' '}
+                    </>
+                  )}
+                  Check your Pokedex to see your pokemon, or continue playing to
+                  catch more!
+                </p>
+              </Card>
+            </Col>
+          )}
+
           <Col sm="12" md={{ size: 3, offset: 4 }} className="btncont">
             <Button
               className="start-button"

@@ -1,0 +1,138 @@
+
+
+  .pokemonType {
+    background: #ffffff50;
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  .pokemonBg {
+    background: #ffffff50;
+    border-radius: 50%;
+  }
+  
+  .normal {
+    background: #BABAAE;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .fighting {
+    background: #A75543;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .flying {
+    background: #78A2FF;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .poison {
+    background: #A95CA0;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .ground {
+    background: #EECC55;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .rock {
+    background: #CCBD72;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .bug {
+    background: #C2D21E;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .ghost {
+    background: #7975D7;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .steel {
+    background: #C4C2DB;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .fire {
+    background: #FA5643;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .water {
+    background: #56ADFF;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .grass {
+    background: #8CD750;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .electric {
+    background: #FDE139;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .psychic {
+    background: #FA65B4;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .ice {
+    background: #96F1FF;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .dragon {
+    background: #8673FF;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .dark {
+    background: #8D6855;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }
+  
+  .fairy {
+    background: #F9AEFF;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid #ffffff50;
+  }

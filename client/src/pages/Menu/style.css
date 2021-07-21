@@ -124,16 +124,18 @@ h1 {
 
 
 
-/* img#slides{
+img#slides{
     border-radius: 10%;
     border-left: 10rem;
 }
 div#pokemonpics{
     vertical-align: middle!important;
-    margin-left: 25%;
-    margin-right: 30%;
+    /* margin-left: 25%;
+    margin-right: 30%; */
     margin-top: 5%;
     margin-bottom: 10%;
+    display:flex;
+    justify-content:center;
 }
 
 div.carousel-inner{
@@ -150,4 +152,4 @@ p{
 
 h3{
     color:black;
-} */
+}

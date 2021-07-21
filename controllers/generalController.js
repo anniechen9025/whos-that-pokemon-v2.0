@@ -8,18 +8,18 @@ module.exports = {
     db.User.find({ _id: req.session.user_id })
       .populate('pokemon')
       .then((dbUser) => {
-        console.log(dbUser);
-        // res.json(dbUser[0]);
-        const pokemonarray = dbUser[0].pokemon;
-        const dataarray = [];
-        // console.log(pokemonarray);
-        // return res.json(dbUser)
-        pokemonarray.forEach((data) => {
-          const name = data.name;
-          dataarray.push(name);
-        });
+        // console.log(dbUser);
+        // // res.json(dbUser[0]);
+        // const pokemonarray = dbUser[0].pokemon;
+        // const dataarray = [];
+        // // console.log(pokemonarray);
+        // // return res.json(dbUser)
+        // pokemonarray.forEach((data) => {
+        //   const name = data.name;
+        //   dataarray.push(name);
+        // });
         // console.log(dataarray);
-        res.json(dataarray);
+        res.json(dbUser);
         // fetch(`https://pokeapi.co/api/v2/pokemon/${name}`) .then((res) => res.json())
         // .then((DBdata) => {
         //   console.log(DBdata);
@@ -35,7 +35,8 @@ module.exports = {
   restAllPokemon: function (req, res) {
     db.User.findOneAndUpdate(
       { _id: req.session.user_id },
-      { $set: { pokemon: [], pokemon_amount: '0' } }
+      { $set: { pokemon: [], pokemon_amount: '0' } },
+      { new: true }
     )
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -132,7 +133,7 @@ module.exports = {
       }
     });
   },
-  //pokedex routes
+  // pokedex routes
   createGeneration: function (req, res) {
     console.log(req.body);
     db.Generation.create(req.body)

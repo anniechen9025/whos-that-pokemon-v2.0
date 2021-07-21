@@ -60,27 +60,29 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pokemongame',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  });
+{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
 // Start the API server
 const server = app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-io = socketIo(server, {
-  cors: {
-    origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
+io = socketIo(server
+//   , {
+//   cors: {
+//     origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
+//     methods: ["GET", "POST"],
+//     credentials: true
+//   }
+// }
+);
 
-let usersOnline = ''
+// let usersOnline = ''
 
 io.on('connection', (socket) => {
   console.log('User connected');
@@ -88,11 +90,13 @@ io.on('connection', (socket) => {
   //console.log(Object.keys(io.engine.clients));
   socket.on("user online", (username) => {
     socket.username = username;
-    usersOnline = socket.username
+    //usersOnline = socket.username
+    //usersOnline = username;
     console.log(socket.username, "user connected");
+   // console.log(usersOnline);
     db.User.updateOne(
       {
-        username: username
+        username: socket.username
       },
       {
         $set: { online: true }
@@ -103,23 +107,24 @@ io.on('connection', (socket) => {
         }
         else {
           console.log(edited, "found");
-          socket.emit("user joined", usersOnline)
+          socket.emit("user joined", socket.username)
         }
       });
   })
   // Think about this as an event listener
   socket.on('chat message', (data) => {
-    console.log(data)
+   // console.log(data)
     // Sends the message to the client
     io.emit('chat message', data)
   })
 
   socket.on('disconnect', () => {
-    console.log('User disconnected', usersOnline);
-    io.emit('user disconnect', Object.keys(io.engine.clients))
+    console.log('User disconnected', socket.username);
+    // io.emit('user disconnect', Object.keys(io.engine.clients))
+    io.emit('user disconnect', socket.username)
     db.User.updateOne(
       {
-        username: usersOnline
+        username:socket.username
       },
       {
         $set: { online: false }

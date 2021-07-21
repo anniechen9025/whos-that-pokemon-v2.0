@@ -9,9 +9,9 @@ import ChatList from "../../components/ChatList";
 import API from '../../utils/API';
 import "./style.css";
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "https://enigmatic-reaches-30017.herokuapp.com" 
-// ||"http://localhost:3000";
+const ENDPOINT = "https://enigmatic-reaches-30017.herokuapp.com/";
 const socket = socketIOClient(ENDPOINT);
+// "https://enigmatic-reaches-30017.herokuapp.com/"
 
 //todo list can use reactstrap (Header Icon)
 
@@ -67,28 +67,47 @@ class TestChat extends React.Component {
             });
     }
 
-    handleOnlineUsers() {
-                // onlineUsers.push(data.data)
-                // this.setState({online: onlineUsers})
-                // console.log(this.state.online);
-                socket.emit("user online", this.state.userName)
-                socket.on("user joined", (data) => {
-                    console.log(data, "hello");
-                    API.getOnlineUsers().then(data => {
-                        console.log(data.data, "asdf");
-                        const userArray = []
-                        for(let i = 0; i < data.data.length; i++) {
-                            let userObject = {
-                                username: data.data[i].username,
-                                id: uuidv4()
-                            }
-                            userArray.push(userObject)
-                        }
-                        this.setState({online: userArray})
-                    })
-                    // console.log(this.state.online, "hello");
-                })
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.online !== prevState.online) {
+            console.log(prevState, "what's going on");
+            this.forceUpdate();
+        }
     }
+
+    handleOnlineUsers() {         
+        socket.emit("user online", this.state.userName)
+        socket.on("user joined", (data) => {
+            API.getOnlineUsers().then(data => {
+                console.log(data.data, "asdf");
+                const userArray = []
+                for(let i = 0; i < data.data.length; i++) {
+                    let userObject = {
+                        username: data.data[i].username,
+                        id: uuidv4()
+                    }
+                    userArray.push(userObject)
+                }
+                this.setState({online: userArray})
+            })
+                console.log(this.state.online, "hello");
+        })
+        socket.on("user disconnect", (data) => {
+            console.log(data, "disconnected for sure");
+            const userArray = this.state.online
+            let onlineUsers = userArray.filter((name) => name !== data)
+            this.setState({online: onlineUsers})
+            console.log(this.state.online, "These are the people who are online");
+            // for (let i = 0; i < data.length; i++) {
+            //     let offlineObject = {
+            //         username: data.data[i].username,
+            //         id: uuidv4()
+            //     }
+            //     offlineUser.push(offlineObject)
+            // }
+            // this.setState({online: offlineUser})
+        })
+    }
+
     render() {
         return (
             <div className="chat_window">
