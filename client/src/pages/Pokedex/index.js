@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import './style.css';
-import { Button, Row } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { usePokedexLogic } from './hooks';
 import Pokemon from '../../components/Pokemon';
 
 function Pokedex() {
-  const { pokemonData, loading, releasePokemon, hasPokemon } =
-    usePokedexLogic();
+  const {
+    userPokemon,
+    pokemonData,
+    loading,
+    releasePokemon,
+    hasPokemon,
+    displayPokemon,
+  } = usePokedexLogic();
   console.log(pokemonData);
+  console.log(userPokemon);
+  //console.log(displayPokemon);
   return (
     <div>
       {!hasPokemon && (
@@ -21,9 +28,6 @@ function Pokedex() {
 
       <Pokemon pokemon={pokemonData} loading={loading} />
 
-      <div className="container-md d-flex justify-content-center mt-5">
-        [pagination?]
-      </div>
       <div className="container-md d-flex justify-content-center mt-5">
         <Button
           onClick={() => {

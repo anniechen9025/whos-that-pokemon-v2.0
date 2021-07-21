@@ -2,6 +2,7 @@
   "name": "Whos-That-Pokemon",
   "version": "2.0.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
     "availity-reactstrap-validation": "^2.7.1",

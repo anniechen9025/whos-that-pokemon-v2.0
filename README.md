@@ -43,11 +43,11 @@ Run `npm install` in your terminal to install all dependencies. To run the appli
 - [UUID](https://www.npmjs.com/package/uuid)
 
 ## Example:
-![Home Page](./public/images/example1.png)
-![Signup-Login](./public/images/example2.png)
-![Guess That Pokemon](./public/images/example3.png)
-![Pokedex](./public/images/example5.png)
-![Chatbox](./public/images/example4.png)
+![Home Page](./client/public/image/Home.jpg)
+![Signup-Login](./client/public/image/signup.jpg)
+![Guess That Pokemon](./client/public/image/game.jpg)
+![Pokedex](./client/public/image/pokedex.jpg)
+![Chatbox](./client/public/image/chat.jpg)
 
 ## Contributors:
 Please feel free to contact any of the contributors through their GitHub to collaborate.

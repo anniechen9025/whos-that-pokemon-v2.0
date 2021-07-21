@@ -73,7 +73,6 @@ export function useGameLogic() {
       setGuessedPokemon((prev) => [...prev, randomPokemon]);
       putPokemonAmount(userPokemon + 1);
       postPokemonData(pokemonInfo);
-      console.log(pokemonInfo);
       setLastCaughtPokemon(randomPokemon);
       setRandomPokemon('');
       setGameStarted(false);
@@ -180,7 +179,6 @@ export function useGameLogic() {
       API.getPokemonPics(chosenPokemon)
         .then((res) => {
           setPokemonInfo(res.data);
-          console.log(res.data);
           setPokemonPic(res.data.sprites.other.dream_world.front_default);
         })
         .catch((err) => console.log(err));
@@ -190,10 +188,10 @@ export function useGameLogic() {
 
   // calls API to post guessed pokemon to DB
   function postGuessedPokemon(name) {
-    console.log(name);
+    // console.log(name);
     API.postGameResult({ name: name })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -202,7 +200,7 @@ export function useGameLogic() {
   function putPokemonAmount(number) {
     API.increasePokemonAmount({ pokemon_amount: number })
       .then((res) => {
-        console.log(res.data.pokemon_amount);
+        // console.log(res.data.pokemon_amount);
         setUserPokemon(res.data.pokemon_amount);
       })
       .catch((err) => console.log(err));
@@ -225,7 +223,7 @@ export function useGameLogic() {
       Image_url: pic,
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -235,7 +233,7 @@ export function useGameLogic() {
   function getPokemonAmount() {
     API.getUserInfo()
       .then((res) => {
-        console.log(res.data.pokemon_amount);
+        // console.log(res.data.pokemon_amount);
         setUserPokemon(res.data.pokemon_amount);
       })
       .catch((err) => console.log(err));
