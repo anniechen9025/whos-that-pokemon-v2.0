@@ -66,11 +66,7 @@ function Game(props) {
                 />
                 <CardTitle tag="h5">{displayString}</CardTitle>
                 {!!hint && (
-                  <Alert
-                    color="secondary"
-                    isOpen={hint1Visible}
-                    toggle={onDismiss1}
-                  >
+                  <Alert isOpen={hint1Visible} toggle={onDismiss1}>
                     This is a <b>{pokemonInfo.types[0].type.name}</b> type
                     Pokemon.
                   </Alert>
@@ -138,7 +134,7 @@ function Game(props) {
             {gameStarted && (
               <>
                 <Button
-                  className="hint-button"
+                  className="hint-button mb-3"
                   onClick={() => {
                     setHint(hint + 1);
                   }}
