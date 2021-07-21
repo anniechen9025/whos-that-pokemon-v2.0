@@ -11,6 +11,7 @@ import "./style.css";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "https://enigmatic-reaches-30017.herokuapp.com/";
 const socket = socketIOClient(ENDPOINT);
+// "https://enigmatic-reaches-30017.herokuapp.com/"
 
 //todo list can use reactstrap (Header Icon)
 
