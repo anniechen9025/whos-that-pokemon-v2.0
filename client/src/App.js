@@ -15,7 +15,6 @@ import Profile from './pages/Profile';
 import useToken from './utils/useToken';
 import TestChat from './pages/TestChat';
 
-
 const App = () => {
   const { token, setToken } = useToken();
 
@@ -44,7 +43,8 @@ const App = () => {
         <Route exact path="/game" component={Game} />
         <Route exact path="/pokedex" component={Pokedex} />
         <Wrapper>
-          <Route exact path="/" component={Menu} />
+          <Route exact path="/" component={Main} />
+          <Route exact path="/menu" component={Menu} />
           <Route exact path="/chatbox" component={TestChat} />
           {/* <Route exact path="/login" component={Login} /> */}
           <Route exact path="/profile" component={Profile} />

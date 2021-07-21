@@ -5,7 +5,7 @@ import "./style.css";
 function menu() {
     return (
         <div className="cards">
-            <h1>Pokemon Backstory</h1>
+            <h1>Pokémon Backstory</h1>
             <div className="cards__container">
                 <div className="cards_wrapper">
                     <ul className="cards__items">

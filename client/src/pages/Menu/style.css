@@ -37,7 +37,6 @@ h1 {
     flex-flow: column;
     width: 100%;
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
     filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
     border-radius: 10px;
     overflow: hidden;
@@ -52,7 +51,6 @@ h1 {
 }
 
 .fade-img {
-    animation-name: fade-img;
     animation-duration: 2s;
 }
 
@@ -65,8 +63,8 @@ h1 {
     max-width: calc((100%) - 60px);
     font-size: 12px;
     font-weight: 700;
-    color: #fff;
-    background-color: #1f98f4;
+    color: #242424 !important;
+    background-color: #fff !important;
     box-sizing: border-box;
 }
 
@@ -124,15 +122,15 @@ h1 {
 
 
 
-img#slides{
+/* img#slides{
     border-radius: 10%;
     border-left: 10rem;
 }
 div#pokemonpics{
-    vertical-align: middle!important;
+    vertical-align: middle!important; */
     /* margin-left: 25%;
     margin-right: 30%; */
-    margin-top: 5%;
+    /* margin-top: 5%;
     margin-bottom: 10%;
     display:flex;
     justify-content:center;
@@ -152,4 +150,4 @@ p{
 
 h3{
     color:black;
-}
+} */
