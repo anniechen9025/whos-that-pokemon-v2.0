@@ -26,6 +26,7 @@ const App = () => {
           <Wrapper>
             <Route exact path="/login" render={() => <Login setToken={setToken} token = {token} />} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/" component={Menu} />
           </Wrapper>
           <Footer />
         </Switch>
@@ -44,9 +45,8 @@ const App = () => {
         <Route exact path="/pokedex" component={Pokedex} />
         <Wrapper>
           <Route exact path="/" component={Main} />
-          <Route exact path="/menu" component={Menu} />
           <Route exact path="/chatbox" component={TestChat} />
-          {/* <Route exact path="/login" component={Login} /> */}
+          <Route exact path="/fun" component={Menu} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/signup" component={Signup} />
         </Wrapper>

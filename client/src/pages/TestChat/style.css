@@ -256,3 +256,8 @@ h7.mb-2.mb-2.text-muted.card-subtitle{
 li.col-12.col-sm-5{
     margin-bottom: .25rem!important;
 }
+
+button.fs-4.dropdown-item{
+    text-transform: none!important;
+    font-family: "News Cycle", "Arial Narrow Bold", sans-serif!important;
+}
