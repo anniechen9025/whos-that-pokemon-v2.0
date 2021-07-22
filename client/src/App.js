@@ -15,7 +15,6 @@ import Profile from './pages/Profile';
 import useToken from './utils/useToken';
 import TestChat from './pages/TestChat';
 
-
 const App = () => {
   const { token, setToken } = useToken();
 

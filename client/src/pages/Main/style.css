@@ -1,196 +1,63 @@
-/* GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css?family=Lato:400,100,300,700,100italic,300italic,400italic,700italic,900,900italic');
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
-/* MAIN PAGE BUTTON */
-button {
-  cursor: pointer;
-  overflow: visible;
-  outline: none;
-  color: #fff;
-  position: relative;
-  /* letter-spacing: 0.1em; */
-  font-weight: 400;
-  padding: 1rem 3rem;
-  text-transform: uppercase;
-  font-family: 'Lato';
-  font-size: 1.5em;
+.maingif {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
 }
 
-.btn-bg.Pokemon .btn-group .ball button {
-  border: 5px solid #50514f;
-  border-radius: 5px;
-  background: #ef594f;
-  overflow: hidden;
-  position: relative;
+.gifcontainer {
+    background: url("../../assets/maingif.gif") center center/cover no-repeat;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    object-fit: contain;
+    justify-content: center;
 }
 
-.btn-bg {
-  width: 100%;
-  height: 100vh;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.gifcontainer > h1 {
+    color: white;
+    font-size: 100px;
+    font-weight: 900;
 }
 
-.btn-bg.Pokemon .btn-group .ball button:hover .pokemon-ball::before {
-  transform: translate3d(0, -100%, 0);
-  transition: transform 0.25s;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+.gifcontainer > p {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
 }
 
-.btn-bg.Pokemon .btn-group .ball button:hover .pokemon-ball::after {
-  transform: translate3d(0, -100%, 0);
-  transition: transform 0.25s;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+@media screen and (max-width:960px) {
+
+    .gifcontainer > h1 {
+        color: white;
+        font-size: 70px;
+    }
 }
 
-.btn-bg.Pokemon .btn-group .ball button:hover a {
-  transition: none;
-  color: transparent;
-  z-index: 999;
+@media screen and (max-width: 768px) {
+    .gifcontainer > h1 {
+        color: white;
+        font-size: 50px;
+    }
+
+    .gifcontainer > p {
+        font-size: 30px;
+    }
+
+
+    .btn {
+        width: 100%;
+    }
 }
 
-.btn-bg.Pokemon .btn-group .ball button:hover a::before {
-  transform: translate3d(100%, 0, 0);
-}
-
-.btn-bg.Pokemon .btn-group .ball button:hover a span:first-child::before,
-.btn-bg.Pokemon .btn-group .ball button:hover a span:nth-child(2)::before {
-  transition-delay: 0.3s;
-  transform: translate3d(0, 0, 0);
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-}
-
-.btn-bg.Pokemon .btn-group .ball button .pokemon-ball {
-  position: absolute;
-  content: 'Go!';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9;
-}
-
-.btn-bg.Pokemon .btn-group .ball button .pokemon-ball::before,
-.btn-bg.Pokemon .btn-group .ball button .pokemon-ball::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: #ef594f;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.25s;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-}
-
-.btn-bg.Pokemon .btn-group .ball button .pokemon-ball::after {
-  top: 50%;
-  background: #fff;
-}
-
-.btn-bg.Pokemon .btn-group .ball button a {
-  color: #50514f;
-  font-weight: 600;
-  font-size: 1.5em;
-  transition: color 0.5s 0.25s;
-  overflow: hidden;
-  display: inline-block;
-  position: relative;
-  z-index: 999;
-}
-
-.btn-bg.Pokemon .btn-group .ball button a::before {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 5px;
-  background: #50514f;
-  top: calc(50% - 2.5px);
-  transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-  transform: translate3d(-100%, 0, 0);
-}
-
-.btn-bg.Pokemon .btn-group .ball button a span {
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-.btn-bg.Pokemon .btn-group .ball button a span::before {
-  position: absolute;
-  content: attr(data-letters);
-  left: 0;
-  width: 100%;
-  color: #fff;
-  transition: transform 0.5s;
-}
-
-.btn-bg.Pokemon .btn-group .ball button a span:first-child::before {
-  top: 0;
-  color: #ef594f;
-  transform: translate3d(0, 100%, 0);
-}
-
-.btn-bg.Pokemon .btn-group .ball button a span:nth-child(2) {
-  top: 50%;
-}
-
-.btn-bg.Pokemon .btn-group .ball button a span:nth-child(2)::before {
-  bottom: 0;
-  transform: translate3d(0, -100%, 0);
-}
-
-.btn-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-}
-
-.btn {
-  /* margin: 0 30px 30px 30px; */
-  display: block;
-}
-
-.btn-info {
-  margin-bottom: 10px;
-  text-align: center;
-  font-family: 'Lato';
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  font-size: 3.5em;
-  color: #fff;
-}
-
-.btn-mention {
-  margin-bottom: 70px;
-  text-align: center;
-  font-family: 'Lato';
-  letter-spacing: 0.1em;
-  font-size: 1.1em;
-  color: #fff;
-}
-
-.btn-mention span {
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-button a {
-  text-decoration: none;
-}
 
 .jumbotron#main {
   margin-top:5rem;
   margin-left: 20rem;
 }
+

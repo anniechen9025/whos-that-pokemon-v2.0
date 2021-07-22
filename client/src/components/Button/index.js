@@ -1,7 +1,17 @@
 import React from 'react';
+import "./style.css";
 
-function Button(props) {
-  return <button>{props.text}</button>;
-}
+export const Button = ({
+  onClick, 
+  type, 
+}) => {
 
-export default Button;
+  return (
+
+      <button onClick={onClick} type={type}> CHALLENGE</button>
+    
+  )
+};
+
+
+

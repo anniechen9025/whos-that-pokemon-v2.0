@@ -1,3 +1,14 @@
-.button-style {
-    padding: 1rem;
+/* Button styles */
+
+button {
+    color: #242424;
+    padding: 23px 80px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+}
+
+button:hover {
+    transition: all 0.3s ease-out;
 }

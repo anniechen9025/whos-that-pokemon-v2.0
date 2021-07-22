@@ -39,9 +39,9 @@ const Navigation = (props) => {
                         <NavItem className="fs-4">
                             <NavLink href="/">Main</NavLink>
                         </NavItem>
-                        {/* <NavItem className="fs-4">
-                            <NavLink href="/menu">Fun!!</NavLink>
-                        </NavItem> */}
+                        <NavItem className="fs-4">
+                            <NavLink href="/menu">Facts</NavLink>
+                        </NavItem>
                         <NavItem className="fs-4">
                             <NavLink href="/chatbox">Chatroom</NavLink>
                         </NavItem>
