@@ -73,13 +73,13 @@ const server = app.listen(PORT, function () {
 });
 
 io = socketIo(server
-  , {
-  cors: {
-    origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-}
+//   , {
+//   cors: {
+//     origin: process.env.SOCKETIO_URI ||"http://localhost:3000",
+//     methods: ["GET", "POST"],
+//     credentials: true
+//   }
+// }
 );
 
 // let usersOnline = ''
