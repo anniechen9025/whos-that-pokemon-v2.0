@@ -8,7 +8,9 @@ import Footer from './components/Footer';
 import Game from './pages/Game';
 import Login from './pages/Login';
 import Main from './pages/Main';
+import Main2 from './pages/Main2';
 import Menu from './pages/Menu';
+import Fun from './pages/Fun';
 import Signup from './pages/Signup';
 import Pokedex from './pages/Pokedex';
 import Profile from './pages/Profile';
@@ -26,7 +28,7 @@ const App = () => {
           <Wrapper>
             <Route exact path="/login" render={() => <Login setToken={setToken} token = {token} />} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/" component={Menu} />
+            <Route exact path="/" component={Fun} />
           </Wrapper>
           <Footer />
         </Switch>
@@ -40,13 +42,14 @@ const App = () => {
     <>
       <Navbar />
       <Switch>
-        {/* <Route exact path="/menu" component={Menu} /> */}
         <Route exact path="/game" component={Game} />
         <Route exact path="/pokedex" component={Pokedex} />
         <Wrapper>
           <Route exact path="/" component={Main} />
           <Route exact path="/chatbox" component={TestChat} />
-          <Route exact path="/fun" component={Menu} />
+          <Route exact path="/menu" component={Menu} />
+          <Route exact path="/fun" component={Fun} />
+          <Route exact path="/sub" component={Main2} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/signup" component={Signup} />
         </Wrapper>

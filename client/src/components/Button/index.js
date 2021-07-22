@@ -8,7 +8,7 @@ export const Button = ({
 
   return (
 
-      <button onClick={onClick} type={type}> CHALLENGE</button>
+      <button>CHALLENGE</button>
     
   )
 };
